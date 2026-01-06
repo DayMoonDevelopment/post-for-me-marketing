@@ -1,6 +1,8 @@
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
+import pluginImport from "eslint-plugin-import";
+import preferAliasImports from "./eslint-rules/prefer-alias-imports.js";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -12,6 +14,8 @@ export default [
       ".react-router/**",
       "tailwind.config.ts",
       "routes/+types/*",
+      "scripts/**",
+      "eslint-rules/**",
     ],
   },
   { files: ["**/*.{js,jsx,ts,tsx}"] },
@@ -19,7 +23,24 @@ export default [
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
-    settings: { react: { version: "detect" } },
+    plugins: {
+      import: pluginImport,
+      custom: {
+        rules: {
+          "prefer-alias-imports": preferAliasImports,
+        },
+      },
+    },
+    settings: {
+      react: { version: "detect" },
+      "import/resolver": {
+        typescript: {
+          alwaysTryTypes: true,
+          project: "./tsconfig.json",
+        },
+        node: true,
+      },
+    },
     rules: {
       "react/react-in-jsx-scope": "off",
       "react/jsx-no-leaked-render": ["error", { validStrategies: ["ternary"] }],
@@ -41,6 +62,18 @@ export default [
           fixStyle: "separate-type-imports",
         },
       ],
+      "import/no-useless-path-segments": [
+        "error",
+        {
+          noUselessIndex: true,
+        },
+      ],
+      // Custom rule: Enforce alias imports over relative parent imports
+      // Auto-fixable: bun run lint:fix
+      // Prefer: import { Button } from "~/ui/button"
+      // Over: import { Button } from "../../../ui/button"
+      // Allows: import { Component } from "./sibling-file"
+      "custom/prefer-alias-imports": "error",
     },
   },
 ];

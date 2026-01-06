@@ -1,6 +1,6 @@
 import { Header } from "./components/header";
 import { FeatureCards } from "./components/feature-cards";
-import { CodeExamplesSection } from "./components/code-examples-section";
+import { CodeExamplesSection } from "~/components/code-examples-section";
 import { SetupOptionsSection } from "~/components/setup-options-section";
 import { OpenSource } from "~/components/open-source-section";
 

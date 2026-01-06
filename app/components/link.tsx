@@ -67,7 +67,7 @@ export const Link = ({
     <ReactRouterLink
       to={to}
       target={shouldOpenInNewTab ? "_blank" : target}
-      className={cn(linkStyles({ highlight: shouldOpenInNewTab }), className)}
+      className={cn(linkStyles({ highlight }), className)}
       {...props}
     />
   );

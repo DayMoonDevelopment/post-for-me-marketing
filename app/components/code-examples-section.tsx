@@ -1,4 +1,4 @@
-import { CodeSamples } from "../../_root._index/components/integration/code-samples";
+import { CodeSamples } from "~/components/code-samples";
 
 export const CodeExamplesSection = () => {
   return (
