@@ -1,38 +1,66 @@
-# Post For Me Marketing Site
+<p style="text-align:center;" align="center">
+  <img src="./post-for-me-logo.png" alt="Post For Me Logo" width="200"/>
+</p>
 
-The marketing website for Post For Me - a social media automation platform that enables users to create, schedule, and publish content across multiple social media platforms.
+**A single, unified API for social media posting, feeds, and analytics.**
 
-## Features
+Post For Me is a unified API for social media integrations. Instead of wrestling with TikTok's API, Facebook's Graph API, X's OAuth quirks, and 6 other platform-specific implementations, you integrate once with Post For Me.
 
-- 🎨 **Modern Design** - Clean, responsive design with Tailwind CSS v4
-- 🚀 **Server-Side Rendering** - Fast loading with React Router v7 SSR
-- 📱 **Mobile-First** - Optimized for all device sizes
-- ⚡️ **Performance Optimized** - Lighthouse-optimized with fast loading times
-- 🔍 **SEO Ready** - Meta tags, structured data, and sitemap generation
-- 📊 **Analytics Integration** - PostHog for user behavior tracking
-- 🎯 **Conversion Focused** - Optimized landing pages and CTAs
-- 🌙 **Dark Mode Support** - Theme switching with next-themes
-- 📝 **Content Management** - Markdown-based content with type safety
-- 🔒 **TypeScript** - Full type safety throughout the application
+## What You Can Build
 
-## Architecture
+- **Social Media Schedulers** - Ship with 9 platforms instead of spending months per integration
+- **AI Content Tools** - Generate content and publish it everywhere with a single API call
+- **Marketing Dashboards** - Pull analytics and manage posts across all platforms in one place
+- **Mobile Games** - Let players share achievements to their favorite platforms
+- **B2B SaaS** - Add social features without derailing your roadmap
 
-- **Framework**: React Router v7 with TypeScript
-- **UI Components**: Shadcn/ui with Radix UI primitives
-- **Styling**: Tailwind CSS v4 with custom design system
-- **Icons**: shared icon system for React components
-- **Analytics**: PostHog for user tracking and conversion metrics
-- **Content**: Markdown-based content management
-- **Deployment**: Optimized for Vercel and other edge platforms
+## Why Developers Choose Post For Me
 
-## Key Pages
+**Ship in hours, not weeks**
+One API replaces dozens. Get your first post live the same day you start integrating.
 
-- **Landing Page** - Hero section with product overview and CTAs
-- **Features** - Detailed feature breakdown with benefits
-- **Pricing** - Subscription plans and pricing tiers
-- **About** - Company information and team profiles
-- **Blog** - Content marketing and SEO articles
-- **Legal** - Privacy policy, terms of service, and compliance
+**9 platforms, zero maintenance**
+We track API changes, handle deprecations, and manage OAuth flows. You write code once.
+
+**Your brand, not ours**
+Bring your own OAuth credentials. Your users see your app name, not ours. True white-label support.
+
+**Transparent pricing**
+$10/month for 1,000 posts. $1,000/month for 200,000 posts. No per-seat fees, no account limits, no surprises.
+
+**Open source**
+Our codebase is public on GitHub. Self-host if you want, contribute if you'd like, or use our hosted version.
+
+## Supported Platforms
+
+TikTok • Facebook • Instagram • X • LinkedIn • Pinterest • Bluesky • Threads • YouTube
+
+## What You Get
+
+- **Posting** - Create, schedule, and publish text, images, and video across platforms
+- **Media Processing** - Auto-optimize media for each platform's requirements
+- **OAuth** - Simplified auth flows with automatic token refresh
+- **Feeds** - Fetch and display content in a unified format
+- **Analytics** - Track engagement across all platforms in one place
+- **Webhooks** - Real-time notifications for post status and account connections
+
+## How to Integrate
+
+Choose your integration method:
+
+**REST API** - Single endpoint, consistent interface across all platforms
+**SDKs** - TypeScript, Python, Go, Ruby, Kotlin with automatic auth handling
+**MCP Server** - AI tool integration for seamless content generation pipelines
+
+Check out the [API documentation](https://api.postforme.dev) to get started.
+
+## Links
+
+- **Website**: [postforme.dev](https://postforme.dev)
+- **Dashboard**: [app.postforme.dev](https://app.postforme.dev)
+- **API Docs**: [api.postforme.dev](https://api.postforme.dev)
+- **GitHub**: [github.com/DayMoonDevelopment](https://github.com/DayMoonDevelopment)
+- **Email**: [postforme@daymoon.dev](mailto:postforme@daymoon.dev)
 
 ## Getting Started
 
