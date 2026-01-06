@@ -2,9 +2,13 @@
   <img src="post-for-me-logo.png" alt="Post For Me Logo" width="200"/>
 </p>
 
-**A single, unified API for social media posting, feeds, and analytics.**
+<p align="center" style="max-width: 600px; margin: 0 auto;">
+  <strong>A single, unified API for social media posting, feeds, and analytics.</strong>
+</p>
 
-Post For Me is a unified API for social media integrations. Instead of wrestling with TikTok's API, Facebook's Graph API, X's OAuth quirks, and 6 other platform-specific implementations, you integrate once with Post For Me.
+<p align="center" style="max-width: 600px; margin: 0 auto;">
+  Post For Me is a unified API for social media integrations. Instead of wrestling with TikTok's API, Facebook's Graph API, X's OAuth quirks, and 6 other platform-specific implementations, you integrate once with Post For Me.
+</p>
 
 ## What You Can Build
 
