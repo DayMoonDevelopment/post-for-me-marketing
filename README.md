@@ -1,5 +1,5 @@
 <p style="text-align:center;" align="center">
-  <img src="./post-for-me-logo.png" alt="Post For Me Logo" width="200"/>
+  <img src="post-for-me-logo.png" alt="Post For Me Logo" width="200"/>
 </p>
 
 **A single, unified API for social media posting, feeds, and analytics.**
@@ -66,44 +66,15 @@ Check out the [API documentation](https://api.postforme.dev) to get started.
 
 ## Running This Marketing Site
 
-This repository contains the marketing website for Post For Me. Built with React Router v7, Tailwind CSS v4, and TypeScript.
-
-### Quick Start
-
 ```bash
 # Install dependencies
 bun install
 
-# Start development server at http://localhost:5173
+# Copy and configure environment variables
+cp .env.example .env
+
+# Start dev server at http://localhost:5173
 bun run dev
-
-# Build for production
-bun run build
-
-# Run type checking
-bun run typecheck
-
-# Lint and fix
-bun run lint:fix
 ```
 
-### Environment Variables
-
-Create a `.env` file with:
-
-```bash
-POST_HOG_API_KEY=
-POST_HOG_API_HOST=
-CRISP_WEBSITE_ID=
-MARBLE_API_URL=
-MARBLE_API_KEY=
-```
-
-### Technical Details
-
-For complete development documentation, architecture details, and deployment instructions, see:
-- [CLAUDE.md](./CLAUDE.md) - Development guide and architecture
-- [COPYWRITING.md](./COPYWRITING.md) - Content style guide
-- [PRODUCT.md](./PRODUCT.md) - Product overview and features
-
-Built with React Router v7, Tailwind CSS v4, Shadcn/ui, and Central Icons.
+See [CLAUDE.md](./CLAUDE.md) for complete development documentation.
