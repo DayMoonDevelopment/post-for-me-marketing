@@ -22,7 +22,7 @@ export default [
     settings: { react: { version: "detect" } },
     rules: {
       "react/react-in-jsx-scope": "off",
-      "react/jsx-no-leaked-render": ["warn", { validStrategies: ["ternary"] }],
+      "react/jsx-no-leaked-render": ["error", { validStrategies: ["ternary"] }],
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {
@@ -31,6 +31,14 @@ export default [
           args: "after-used",
           argsIgnorePattern: "^_",
           ignoreRestSiblings: true,
+        },
+      ],
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        {
+          prefer: "type-imports",
+          disallowTypeAnnotations: false,
+          fixStyle: "separate-type-imports",
         },
       ],
     },

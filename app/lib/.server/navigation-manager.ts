@@ -1,6 +1,6 @@
 import { MarbleCMS } from "./marble";
 import { getSolutionPreviews } from "./data/solutions.server";
-import type { MarblePostListResponse } from "./marble.types";
+import type { MarblePostListResponse as _MarblePostListResponse } from "./marble.types";
 import type { ResourcePreview, SolutionPreview } from "~/components/navigation/types";
 
 /**
