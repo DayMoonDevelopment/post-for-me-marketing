@@ -33,8 +33,12 @@ bun run test:watch       # Run tests in watch mode
 
 - **React Router v7** with SSR enabled (server-side rendering)
 - File-based routing using `@react-router/fs-routes` with flat routes structure
-- Routes in `app/routes/` follow naming convention: `_root._index.tsx`, `_root.pricing._index.tsx`, etc.
+- Routes in `app/routes/` follow naming convention:
+  - `_root._index` → `/` (homepage)
+  - `_root.pricing._index` → `/pricing`
+  - `_resource.sitemap[.xml]._index` → `/sitemap.xml` (resource routes don't use layout)
 - Route types auto-generated in `.react-router/types/` (regenerate with `bun run typecheck`)
+- Underscore prefixes (`_root`, `_resource`) indicate layout routes or special route types
 
 ### Path Aliases
 
@@ -75,15 +79,22 @@ bun run test:watch       # Run tests in watch mode
 
 ### Environment Variables
 
-Required in `.env`:
+Copy `.env.example` to `.env` and configure:
 
 ```bash
+# PostHog Analytics
 POST_HOG_API_KEY=
 POST_HOG_API_HOST=
+
+# Crisp Chat
 CRISP_WEBSITE_ID=
-MARBLE_API_URL=
+
+# MarbleCMS (blog/resources)
+MARBLE_API_URL=https://api.marblecms.com/v1
 MARBLE_API_KEY=
 ```
+
+**Note:** The app will run without these variables, but analytics, chat, and blog features will be disabled.
 
 ### Content Management
 
@@ -91,6 +102,12 @@ MARBLE_API_KEY=
 - Product information: `PRODUCT.md` (product overview, features, pricing)
 - Copywriting guide: `COPYWRITING.md` (voice, tone, style guidelines)
 - Important: Follow developer-first tone from `COPYWRITING.md` - specific not vague, benefits before features, no marketing fluff
+- **Blog/Resources**: Fetched from MarbleCMS via `app/lib/.server/marble.ts` query builder
+- **Solutions**: Type-safe data in `app/lib/.server/data/solutions.*.ts` files
+- **Comparisons**: Competitor comparison pages in `app/lib/.server/data/comparisons.*.ts`
+- **FAQ**: Structured data in `app/lib/.server/data/faq.ts`
+
+**Server-only code:** Files in `.server` directories are automatically excluded from client bundles by React Router v7.
 
 ### UI Components
 
