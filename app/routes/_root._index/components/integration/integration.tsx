@@ -1,6 +1,6 @@
 import { IconBookmarkCheck, IconPieChart1, IconTarget } from "@central-icons/outlined";
 
-import { CodeSamples } from "./code-samples";
+import { CodeSamples } from "~/components/code-samples";
 
 import { cn } from "~/lib/utils";
 import { Link } from "~/components/link";
@@ -46,11 +46,11 @@ export const Integration = () => {
               <div
                 key={index}
                 className={cn(
-                  "flex flex-row gap-2 border-primary/25 mb-2 pb-3 pl-1",
+                  "flex flex-row gap-2 border-pop/25 mb-2 pb-3 pl-1",
                   index !== features.length - 1 && "border-b-2",
                 )}
               >
-                <Icon />
+                <Icon className="text-pop" />
                 <div>
                   <h3 className="text-lg">{title}</h3>
                   <div className="text-[17px] leading-relaxed text-muted-foreground">
@@ -71,7 +71,7 @@ export const Integration = () => {
         {/* Media */}
         <div className="lg:col-span-3 flex flex-col items-center relative min-w-0 overflow-hidden">
           <CodeSamples />
-          <Button className="mt-4 mx-auto">
+          <Button className="mt-4 mx-auto" asChild>
             <Link to="https://app.postforme.dev" target="_blank">
               🚀 Start Coding Today
             </Link>

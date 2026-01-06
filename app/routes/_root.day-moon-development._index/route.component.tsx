@@ -40,7 +40,7 @@ export function Component() {
               </span>
               ) kicked off{" "}
               <Link to="https://www.daymoon.dev">Day Moon Development</Link>{" "}
-              back in 2023. We'd met in college and stayed in touch as we built
+              back in 2023. We&apos;d met in college and stayed in touch as we built
               our careers in software, touching everything from e-commerce and
               nonprofits to mobile and web apps.
             </p>
@@ -61,20 +61,20 @@ export function Component() {
         <div className="max-w-3xl mx-auto">
           <div className="space-y-6 text-base md:text-lg">
             <p>
-              We've always kept an eye out for the problems that pop up again
+              We&apos;ve always kept an eye out for the problems that pop up again
               and again in our client projects. When we see those patterns, we
               turn them into products that anyone can use, helping folks from
               big companies to solo indie hackers scale up without the hassle.
             </p>
             <p>
-              That's how{" "}
+              That&apos;s how{" "}
               <Link to="/about" className="text-primary hover:underline">
                 Post for Me
               </Link>{" "}
               came about, our first real product out the door. We noticed
               everyone struggling with social media integrations amid all the AI
               content hype and the push for steady posting. Rather than rebuild
-              the wheel for each client, we created the unified API we'd been
+              the wheel for each client, we created the unified API we&apos;d been
               wishing for. It lets you boost your online presence without
               starting from zero every time.
             </p>
