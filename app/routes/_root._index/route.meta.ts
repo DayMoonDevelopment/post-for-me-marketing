@@ -19,7 +19,7 @@ export const meta: Route.MetaFunction = () => {
     },
 
     // Canonical URL
-    { rel: "canonical", href: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
 
     // Open Graph – optimized for social sharing of the homepage
     { property: "og:type", content: "website" },
