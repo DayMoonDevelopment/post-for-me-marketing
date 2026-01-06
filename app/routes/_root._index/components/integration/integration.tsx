@@ -46,7 +46,7 @@ export const Integration = () => {
               <div
                 key={index}
                 className={cn(
-                  "flex flex-row gap-2 border-primary/25 mb-2 pb-3 pl-1",
+                  "flex flex-row gap-2 border-pop/25 mb-2 pb-3 pl-1",
                   index !== features.length - 1 && "border-b-2",
                 )}
               >
