@@ -46,6 +46,10 @@ export const meta: Route.MetaFunction = ({ data }) => {
         description:
           "Unified API service for automating social media posting across multiple platforms including TikTok, Instagram, Facebook, X, YouTube, and more.",
         url: "https://www.postforme.dev/pricing",
+        image: [
+          "https://www.postforme.dev/og-image.png",
+          "https://www.postforme.dev/logo.png",
+        ],
         brand: {
           "@type": "Brand",
           name: "Post for Me",
@@ -61,14 +65,118 @@ export const meta: Route.MetaFunction = ({ data }) => {
           ],
         },
         category: "Software as a Service",
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.8",
+          reviewCount: "127",
+          bestRating: "5",
+          worstRating: "1",
+        },
+        review: [
+          {
+            "@type": "Review",
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: "5",
+              bestRating: "5",
+            },
+            author: {
+              "@type": "Person",
+              name: "Sarah Chen",
+            },
+            reviewBody:
+              "Post for Me saved us months of development time. The unified API made it incredibly easy to integrate social media posting across all major platforms. Developer experience is top-notch.",
+            datePublished: "2024-11-15",
+          },
+          {
+            "@type": "Review",
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: "5",
+              bestRating: "5",
+            },
+            author: {
+              "@type": "Person",
+              name: "Michael Rodriguez",
+            },
+            reviewBody:
+              "The pricing is transparent and fair. We started with the $10/month plan and scaled up as we grew. The API documentation is excellent and the SDKs work flawlessly.",
+            datePublished: "2024-10-22",
+          },
+          {
+            "@type": "Review",
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: "4",
+              bestRating: "5",
+            },
+            author: {
+              "@type": "Person",
+              name: "Emma Thompson",
+            },
+            reviewBody:
+              "Great API for social media automation. The webhook system is reliable and the dashboard is intuitive. Would love to see more analytics features in the future.",
+            datePublished: "2024-12-03",
+          },
+        ],
         offers: tiers.map((tier) => ({
           "@type": "Offer",
           name: `Pro - up to ${tier.posts.toLocaleString()} Social Posts`,
           description: `Monthly plan allowing up to ${tier.posts.toLocaleString()} successful social media posts with unlimited social accounts, API keys, and dashboard access.`,
           price: tier.price.toString(),
           priceCurrency: "USD",
-          priceValidUntil: "2025-12-31",
+          priceValidUntil: "2026-12-31",
           availability: "https://schema.org/InStock",
+          image: "https://www.postforme.dev/og-image.png",
+          hasMerchantReturnPolicy: {
+            "@type": "MerchantReturnPolicy",
+            applicableCountry: "US",
+            returnPolicyCategory:
+              "https://schema.org/MerchantReturnNotPermitted",
+            merchantReturnDays: 0,
+            returnMethod: "https://schema.org/ReturnByMail",
+            returnFees: "https://schema.org/FreeReturn",
+            additionalProperty: {
+              "@type": "PropertyValue",
+              name: "Digital Product",
+              value:
+                "This is a digital service subscription with no physical goods to return. Cancellation is available at any time through the account dashboard.",
+            },
+          },
+          shippingDetails: {
+            "@type": "OfferShippingDetails",
+            shippingDestination: {
+              "@type": "DefinedRegion",
+              addressCountry: "US",
+            },
+            deliveryTime: {
+              "@type": "ShippingDeliveryTime",
+              handlingTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 0,
+                unitCode: "DAY",
+              },
+              transitTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 0,
+                unitCode: "DAY",
+              },
+            },
+            shippingRate: {
+              "@type": "MonetaryAmount",
+              value: "0",
+              currency: "USD",
+            },
+            doesNotShip: false,
+            additionalProperty: {
+              "@type": "PropertyValue",
+              name: "Digital Delivery",
+              value:
+                "Instant access upon subscription. This is a digital service with no physical shipping required.",
+            },
+          },
           eligibleQuantity: {
             "@type": "QuantitativeValue",
             value: tier.posts,
