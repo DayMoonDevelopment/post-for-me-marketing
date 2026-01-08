@@ -65,60 +65,6 @@ export const meta: Route.MetaFunction = ({ data }) => {
           ],
         },
         category: "Software as a Service",
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.8",
-          reviewCount: "127",
-          bestRating: "5",
-          worstRating: "1",
-        },
-        review: [
-          {
-            "@type": "Review",
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: "5",
-              bestRating: "5",
-            },
-            author: {
-              "@type": "Person",
-              name: "Sarah Chen",
-            },
-            reviewBody:
-              "Post for Me saved us months of development time. The unified API made it incredibly easy to integrate social media posting across all major platforms. Developer experience is top-notch.",
-            datePublished: "2024-11-15",
-          },
-          {
-            "@type": "Review",
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: "5",
-              bestRating: "5",
-            },
-            author: {
-              "@type": "Person",
-              name: "Michael Rodriguez",
-            },
-            reviewBody:
-              "The pricing is transparent and fair. We started with the $10/month plan and scaled up as we grew. The API documentation is excellent and the SDKs work flawlessly.",
-            datePublished: "2024-10-22",
-          },
-          {
-            "@type": "Review",
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: "4",
-              bestRating: "5",
-            },
-            author: {
-              "@type": "Person",
-              name: "Emma Thompson",
-            },
-            reviewBody:
-              "Great API for social media automation. The webhook system is reliable and the dashboard is intuitive. Would love to see more analytics features in the future.",
-            datePublished: "2024-12-03",
-          },
-        ],
         offers: tiers.map((tier) => ({
           "@type": "Offer",
           name: `Pro - up to ${tier.posts.toLocaleString()} Social Posts`,
