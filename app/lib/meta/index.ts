@@ -20,6 +20,8 @@ export class MetadataComposer {
   private _locale: string = "en_US";
   private _imageWidth: number = 1200;
   private _imageHeight: number = 630;
+  private _robots?: string;
+  private _ogSiteName?: string;
 
   constructor() {
     // Add base site metadata on construction
@@ -197,6 +199,17 @@ export class MetadataComposer {
   }
 
   /**
+   * Set robots meta tag (e.g., "index, follow", "noindex, nofollow")
+   */
+  set robots(value: string) {
+    this._robots = value;
+  }
+
+  get robots(): string | undefined {
+    return this._robots;
+  }
+
+  /**
    * Set breadcrumb structured data
    */
   setBreadcrumbs(breadcrumbs?: BreadcrumbItem[]): this {
@@ -243,6 +256,10 @@ export class MetadataComposer {
 
     if (this._keywords) {
       autoMeta.push({ name: "keywords", content: this._keywords });
+    }
+
+    if (this._robots) {
+      autoMeta.push({ name: "robots", content: this._robots });
     }
 
     // Open Graph metadata (generated automatically)
@@ -465,6 +482,164 @@ export class MetadataComposer {
           text: qa.answer,
         },
       })),
+    };
+  }
+
+  /**
+   * Create Organization schema
+   */
+  createOrganizationSchema(config: {
+    name: string;
+    url: string;
+    logo?: string;
+    description?: string;
+    foundingDate?: string;
+    sameAs?: string[];
+    contactEmail?: string;
+    parentOrganization?: Record<string, unknown>;
+  }): Record<string, unknown> {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": `${config.url}#organization`,
+      name: config.name,
+      url: config.url,
+      ...(config.logo && {
+        logo: {
+          "@type": "ImageObject",
+          url: config.logo,
+          width: 512,
+          height: 512,
+        },
+      }),
+      ...(config.description && { description: config.description }),
+      ...(config.foundingDate && { foundingDate: config.foundingDate }),
+      ...(config.parentOrganization && {
+        parentOrganization: config.parentOrganization,
+      }),
+      ...(config.sameAs && { sameAs: config.sameAs }),
+      ...(config.contactEmail && {
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: config.contactEmail,
+          contactType: "Customer Support",
+          availableLanguage: "English",
+        },
+      }),
+    };
+  }
+
+  /**
+   * Create Product schema with all required fields for Google
+   */
+  createProductSchema(config: {
+    name: string;
+    description: string;
+    url: string;
+    image?: string[];
+    brand?: string;
+    manufacturer?: Record<string, unknown>;
+    category?: string;
+    aggregateRating?: {
+      ratingValue: string;
+      reviewCount: string;
+      bestRating?: string;
+      worstRating?: string;
+    };
+    reviews?: Array<{
+      rating: string;
+      author: string;
+      reviewBody: string;
+      datePublished: string;
+    }>;
+    offers?: Array<Record<string, unknown>>;
+  }): Record<string, unknown> {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: config.name,
+      description: config.description,
+      url: config.url,
+      ...(config.image && { image: config.image }),
+      ...(config.brand && {
+        brand: {
+          "@type": "Brand",
+          name: config.brand,
+        },
+      }),
+      ...(config.manufacturer && { manufacturer: config.manufacturer }),
+      ...(config.category && { category: config.category }),
+      ...(config.aggregateRating && {
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: config.aggregateRating.ratingValue,
+          reviewCount: config.aggregateRating.reviewCount,
+          bestRating: config.aggregateRating.bestRating || "5",
+          worstRating: config.aggregateRating.worstRating || "1",
+        },
+      }),
+      ...(config.reviews && {
+        review: config.reviews.map((review) => ({
+          "@type": "Review",
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: review.rating,
+            bestRating: "5",
+          },
+          author: {
+            "@type": "Person",
+            name: review.author,
+          },
+          reviewBody: review.reviewBody,
+          datePublished: review.datePublished,
+        })),
+      }),
+      ...(config.offers && { offers: config.offers }),
+    };
+  }
+
+  /**
+   * Create SoftwareApplication schema
+   */
+  createSoftwareApplicationSchema(config: {
+    name: string;
+    description: string;
+    url: string;
+    applicationCategory?: string;
+    operatingSystem?: string;
+    featureList?: string[];
+    offers?: Record<string, unknown>;
+    aggregateRating?: {
+      ratingValue: string;
+      reviewCount: string;
+    };
+    author?: Record<string, unknown>;
+    keywords?: string;
+  }): Record<string, unknown> {
+    return {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "@id": `${config.url}#software`,
+      name: config.name,
+      url: config.url,
+      description: config.description,
+      ...(config.applicationCategory && {
+        applicationCategory: config.applicationCategory,
+      }),
+      ...(config.operatingSystem && { operatingSystem: config.operatingSystem }),
+      ...(config.featureList && { featureList: config.featureList }),
+      ...(config.offers && { offers: config.offers }),
+      ...(config.aggregateRating && {
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: config.aggregateRating.ratingValue,
+          reviewCount: config.aggregateRating.reviewCount,
+          bestRating: "5",
+          worstRating: "1",
+        },
+      }),
+      ...(config.author && { author: config.author }),
+      ...(config.keywords && { keywords: config.keywords }),
     };
   }
 

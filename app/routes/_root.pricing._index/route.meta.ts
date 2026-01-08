@@ -46,6 +46,10 @@ export const meta: Route.MetaFunction = ({ data }) => {
         description:
           "Unified API service for automating social media posting across multiple platforms including TikTok, Instagram, Facebook, X, YouTube, and more.",
         url: "https://www.postforme.dev/pricing",
+        image: [
+          "https://www.postforme.dev/og-image.png",
+          "https://www.postforme.dev/logo.png",
+        ],
         brand: {
           "@type": "Brand",
           name: "Post for Me",
@@ -67,8 +71,58 @@ export const meta: Route.MetaFunction = ({ data }) => {
           description: `Monthly plan allowing up to ${tier.posts.toLocaleString()} successful social media posts with unlimited social accounts, API keys, and dashboard access.`,
           price: tier.price.toString(),
           priceCurrency: "USD",
-          priceValidUntil: "2025-12-31",
+          priceValidUntil: "2026-12-31",
           availability: "https://schema.org/InStock",
+          image: "https://www.postforme.dev/og-image.png",
+          hasMerchantReturnPolicy: {
+            "@type": "MerchantReturnPolicy",
+            applicableCountry: "US",
+            returnPolicyCategory:
+              "https://schema.org/MerchantReturnNotPermitted",
+            merchantReturnDays: 0,
+            returnMethod: "https://schema.org/ReturnByMail",
+            returnFees: "https://schema.org/FreeReturn",
+            additionalProperty: {
+              "@type": "PropertyValue",
+              name: "Digital Product",
+              value:
+                "This is a digital service subscription with no physical goods to return. Cancellation is available at any time through the account dashboard.",
+            },
+          },
+          shippingDetails: {
+            "@type": "OfferShippingDetails",
+            shippingDestination: {
+              "@type": "DefinedRegion",
+              addressCountry: "US",
+            },
+            deliveryTime: {
+              "@type": "ShippingDeliveryTime",
+              handlingTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 0,
+                unitCode: "DAY",
+              },
+              transitTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 0,
+                unitCode: "DAY",
+              },
+            },
+            shippingRate: {
+              "@type": "MonetaryAmount",
+              value: "0",
+              currency: "USD",
+            },
+            doesNotShip: false,
+            additionalProperty: {
+              "@type": "PropertyValue",
+              name: "Digital Delivery",
+              value:
+                "Instant access upon subscription. This is a digital service with no physical shipping required.",
+            },
+          },
           eligibleQuantity: {
             "@type": "QuantitativeValue",
             value: tier.posts,

@@ -37,10 +37,6 @@ function generateFAQCollectionPages(sections: FAQSection[]) {
     name: section.title,
     description: `${section.title.toLowerCase()} for Post for Me social media API.`,
     url: `https://www.postforme.dev/faq#${section.title.toLowerCase().replace(/\s+/g, "-")}`,
-    isPartOf: {
-      "@type": "FAQPage",
-      url: "https://www.postforme.dev/faq",
-    },
     mainEntity: section.faq.map((faq) => ({
       "@type": "Question",
       name: faq.q,
