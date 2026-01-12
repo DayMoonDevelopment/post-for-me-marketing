@@ -101,43 +101,5 @@ export const meta: Route.MetaFunction = ({
     metadata.addSchema(itemListSchema);
   }
 
-  // Add FAQ schema for resources landing page
-  const faqSchema = metadata.createFAQSchema({
-    id: `${siteUrl}/resources#faq`,
-    questions: [
-      {
-        question: "What is Post for Me?",
-        answer:
-          "Post for Me is a social media automation API that enables developers to programmatically post content to TikTok, Instagram, Facebook, LinkedIn, and X (Twitter). Our API handles authentication, media processing, and content distribution across multiple platforms.",
-      },
-      {
-        question: "What social media platforms does Post for Me support?",
-        answer:
-          "Post for Me supports TikTok, Instagram, Facebook, LinkedIn, and X (Twitter). Our API provides unified endpoints for posting to all these platforms, handling platform-specific requirements and authentication flows.",
-      },
-      {
-        question: "How do I get started with the Post for Me API?",
-        answer:
-          "Start by signing up for a Post for Me account and obtaining your API key. Then explore our developer resources which include authentication guides, API documentation, code examples, and integration tutorials for each supported platform.",
-      },
-      {
-        question: "What types of content can I post through the API?",
-        answer:
-          "You can post text, images, videos, and mixed media content. Our API handles media processing, format conversion, and platform-specific optimizations automatically. Each platform has specific content requirements which our documentation covers in detail.",
-      },
-      {
-        question: "Is there rate limiting on the Post for Me API?",
-        answer:
-          "Yes, the API implements rate limiting to ensure fair usage and compliance with social platform policies. Rate limits vary by plan and platform. Check our API documentation for specific limits and best practices for handling rate limit responses.",
-      },
-      {
-        question: "Do you provide SDKs or just REST APIs?",
-        answer:
-          "We provide both REST APIs and official SDKs for popular programming languages including JavaScript/Node.js, Python, PHP, and others. Our developer resources include code examples and integration guides for each SDK.",
-      },
-    ],
-  });
-  metadata.addSchema(faqSchema);
-
   return metadata.build();
 };
