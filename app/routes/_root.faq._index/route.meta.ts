@@ -31,24 +31,6 @@ function generateFAQBreadcrumbs() {
   };
 }
 
-function generateFAQCollectionPages(sections: FAQSection[]) {
-  return sections.map((section) => ({
-    "@type": "CollectionPage",
-    name: section.title,
-    description: `${section.title.toLowerCase()} for Post for Me social media API.`,
-    url: `https://www.postforme.dev/faq#${section.title.toLowerCase().replace(/\s+/g, "-")}`,
-    mainEntity: section.faq.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-        dateModified: new Date().toISOString(),
-      },
-    })),
-  }));
-}
-
 export const meta: Route.MetaFunction = ({ data }) => {
   const faqSections = (data as FAQPageData | undefined)?.faq || [];
   const allFAQs = (data as FAQPageData | undefined)?.allFAQs || [];
@@ -142,31 +124,13 @@ export const meta: Route.MetaFunction = ({ data }) => {
           url: "https://www.postforme.dev",
         },
         breadcrumb: generateFAQBreadcrumbs(),
-        hasPart: generateFAQCollectionPages(faqSections),
         mainEntity: allFAQs.map((faq, index) => ({
           "@type": "Question",
           "@id": `https://www.postforme.dev/faq#question-${index + 1}`,
           name: faq.q,
-          text: faq.q,
-          answerCount: 1,
           acceptedAnswer: {
             "@type": "Answer",
-            "@id": `https://www.postforme.dev/faq#answer-${index + 1}`,
             text: faq.a,
-            author: {
-              "@type": "Organization",
-              name: "Day Moon Development",
-            },
-            dateCreated: new Date().toISOString(),
-            upvoteCount: 0,
-          },
-          suggestedAnswer: {
-            "@type": "Answer",
-            text: faq.a,
-            author: {
-              "@type": "Organization",
-              name: "Day Moon Development",
-            },
           },
         })),
         speakable: {
