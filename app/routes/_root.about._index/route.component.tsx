@@ -11,7 +11,23 @@ export function Component() {
           A developer-first unified social media API
         </h1>
       </div>
+      {/* Video */}
+      <div className="max-w-(--breakpoint-xl) w-full mx-auto px-4">
+        <div className="max-w-3xl mx-auto">
+          <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/3CAZhwUdtfw"
+              title="Post for Me Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute top-0 left-0 w-full h-full"
+            />
+          </div>
+        </div>
+      </div>
+
       <Separator className="max-w-3xl w-full mx-auto" />
+
       {/* Story */}
       <div className="max-w-(--breakpoint-xl) w-full mx-auto px-4">
         <div className="max-w-3xl mx-auto">
@@ -50,7 +66,7 @@ export function Component() {
       <div className="w-full">
         <div className="max-w-(--breakpoint-xl) mx-auto px-4 border-pop/20 border-y py-16">
           <h2 className="max-w-3xl mx-auto text-center text-balance text-3xl text-muted-foreground leading-tight tracking-tight">
-            Post for Me is the tool we wished we had back then.
+            Post for Me is the tool we wished we had.
           </h2>
         </div>
       </div>
