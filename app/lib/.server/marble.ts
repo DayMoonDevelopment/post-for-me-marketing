@@ -1,260 +1,35 @@
+import { Marble } from "@usemarble/sdk";
 import type {
   Category,
-  MarbleCategoryListResponse,
-  MarblePostListResponse,
-  MarblePostResponse,
-  MarbleTagListResponse,
+  CategoriesListResponse,
+  CategoryResponse,
+  PostsListResponse,
+  PostResponse,
   Tag,
-} from "./marble.types";
+  TagResponse,
+  TagsListResponse,
+} from "@usemarble/sdk/models";
 
-// Base query builder with common pagination
-abstract class BaseQueryBuilder<T> {
-  protected params: URLSearchParams = new URLSearchParams();
-  protected baseUrl: string;
-  protected apiKey: string;
-
-  constructor(baseUrl: string, apiKey: string) {
-    this.baseUrl = baseUrl;
-    this.apiKey = apiKey;
-  }
-
-  /**
-   * Set the maximum number of items per page (1-200) or "all" for all items
-   */
-  limit(value: number | "all"): this {
-    this.params.set("limit", String(value));
-    return this;
-  }
-
-  /**
-   * Set the page number to return (starts at 1)
-   */
-  page(value: number): this {
-    this.params.set("page", String(value));
-    return this;
-  }
-
-  protected async fetch<R>(endpoint: string): Promise<R | undefined> {
-    try {
-      const url = new URL(endpoint, this.baseUrl);
-      url.search = this.params.toString();
-
-      console.log(`Fetching: ${url.toString()}`);
-
-      const response = await fetch(url.toString(), {
-        headers: {
-          Authorization: `Bearer ${this.apiKey}`,
-        },
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error(`MarbleCMS API error (${response.status}):`, errorText);
-        return undefined;
-      }
-
-      const data: R = await response.json();
-      return data;
-    } catch (error) {
-      console.error("MarbleCMS fetch error:", error);
-      return undefined;
-    }
-  }
-
-  abstract get(): Promise<T | undefined>;
-}
-
-// Posts query builder with all filtering, sorting, and search options
-export class PostsQueryBuilder extends BaseQueryBuilder<MarblePostListResponse> {
-  private endpoint: string;
-
-  constructor(baseUrl: string, apiKey: string, endpoint = "/v1/posts") {
-    super(baseUrl, apiKey);
-    this.endpoint = endpoint;
-  }
-
-  /**
-   * Sort order by publishedAt date (default: "desc")
-   */
-  order(value: "asc" | "desc"): this {
-    this.params.set("order", value);
-    return this;
-  }
-
-  /**
-   * Filter by category slugs (comma-separated)
-   */
-  categories(...slugs: string[]): this {
-    if (slugs.length > 0) {
-      this.params.set("categories", slugs.join(","));
-    }
-    return this;
-  }
-
-  /**
-   * Exclude category slugs (comma-separated)
-   */
-  excludeCategories(...slugs: string[]): this {
-    if (slugs.length > 0) {
-      this.params.set("excludeCategories", slugs.join(","));
-    }
-    return this;
-  }
-
-  /**
-   * Filter by tag slugs (comma-separated, matches any)
-   */
-  tags(...slugs: string[]): this {
-    if (slugs.length > 0) {
-      this.params.set("tags", slugs.join(","));
-    }
-    return this;
-  }
-
-  /**
-   * Exclude tag slugs (comma-separated)
-   */
-  excludeTags(...slugs: string[]): this {
-    if (slugs.length > 0) {
-      this.params.set("excludeTags", slugs.join(","));
-    }
-    return this;
-  }
-
-  /**
-   * Full-text search across title and content
-   */
-  search(query: string): this {
-    if (query.trim()) {
-      this.params.set("query", query);
-    }
-    return this;
-  }
-
-  /**
-   * Format of the content field (default: "html")
-   */
-  format(format: "html" | "markdown"): this {
-    this.params.set("format", format);
-    return this;
-  }
-
-  /**
-   * Execute the query and fetch posts
-   */
-  async get(): Promise<MarblePostListResponse | undefined> {
-    return this.fetch<MarblePostListResponse>(this.endpoint);
-  }
-}
-
-// Single post query builder
-export class SinglePostQueryBuilder extends BaseQueryBuilder<MarblePostResponse> {
-  private identifier: string;
-
-  constructor(baseUrl: string, apiKey: string, identifier: string) {
-    super(baseUrl, apiKey);
-    this.identifier = identifier;
-  }
-
-  /**
-   * Format of the content field (default: "html")
-   */
-  format(format: "html" | "markdown"): this {
-    this.params.set("format", format);
-    return this;
-  }
-
-  /**
-   * Execute the query and fetch the post
-   */
-  async get(): Promise<MarblePostResponse | undefined> {
-    return this.fetch<MarblePostResponse>(`/v1/posts/${this.identifier}`);
-  }
-}
-
-// Categories query builder
-export class CategoriesQueryBuilder extends BaseQueryBuilder<MarbleCategoryListResponse> {
-  constructor(baseUrl: string, apiKey: string) {
-    super(baseUrl, apiKey);
-  }
-
-  /**
-   * Execute the query and fetch categories
-   */
-  async get(): Promise<MarbleCategoryListResponse | undefined> {
-    return this.fetch<MarbleCategoryListResponse>("/v1/categories");
-  }
-}
-
-// Single category query builder
-export class SingleCategoryQueryBuilder extends BaseQueryBuilder<{
-  category: Category;
-}> {
-  private identifier: string;
-
-  constructor(baseUrl: string, apiKey: string, identifier: string) {
-    super(baseUrl, apiKey);
-    this.identifier = identifier;
-  }
-
-  /**
-   * Execute the query and fetch the category
-   */
-  async get(): Promise<{ category: Category } | undefined> {
-    return this.fetch<{ category: Category }>(
-      `/v1/categories/${this.identifier}`,
-    );
-  }
-}
-
-// Tags query builder
-export class TagsQueryBuilder extends BaseQueryBuilder<MarbleTagListResponse> {
-  constructor(baseUrl: string, apiKey: string) {
-    super(baseUrl, apiKey);
-  }
-
-  /**
-   * Execute the query and fetch tags
-   */
-  async get(): Promise<MarbleTagListResponse | undefined> {
-    return this.fetch<MarbleTagListResponse>("/v1/tags");
-  }
-}
-
-// Single tag query builder
-export class SingleTagQueryBuilder extends BaseQueryBuilder<{ tag: Tag }> {
-  private identifier: string;
-
-  constructor(baseUrl: string, apiKey: string, identifier: string) {
-    super(baseUrl, apiKey);
-    this.identifier = identifier;
-  }
-
-  /**
-   * Execute the query and fetch the tag
-   */
-  async get(): Promise<{ tag: Tag } | undefined> {
-    return this.fetch<{ tag: Tag }>(`/v1/tags/${this.identifier}`);
-  }
-}
-
-// Main MarbleCMS client with query builder methods
+/**
+ * MarbleCMS client wrapper around the official @usemarble/sdk
+ *
+ * This provides a convenient API for fetching blog posts, categories, and tags
+ * from MarbleCMS with automatic error handling and pagination support.
+ */
 export class MarbleCMS {
-  private baseUrl: string;
-  private apiKey: string;
+  private client: Marble;
 
   constructor() {
-    this.baseUrl = process.env.MARBLE_API_URL!;
-    this.apiKey = process.env.MARBLE_API_KEY!;
+    const apiKey = process.env.MARBLE_API_KEY;
 
-    if (!this.baseUrl || !this.apiKey) {
-      console.error("MarbleCMS: Missing environment variables!");
-      console.error("MARBLE_API_URL:", this.baseUrl || "(not set)");
-      console.error(
-        "MARBLE_API_KEY:",
-        this.apiKey ? "(set)" : "(not set)",
-      );
+    if (!apiKey) {
+      console.error("MarbleCMS: Missing MARBLE_API_KEY environment variable!");
+      console.error("MARBLE_API_KEY:", apiKey ? "(set)" : "(not set)");
     }
+
+    this.client = new Marble({
+      apiKey: apiKey ?? "",
+    });
   }
 
   /**
@@ -270,7 +45,7 @@ export class MarbleCMS {
    * ```
    */
   posts(): PostsQueryBuilder {
-    return new PostsQueryBuilder(this.baseUrl, this.apiKey);
+    return new PostsQueryBuilder(this.client);
   }
 
   /**
@@ -282,7 +57,7 @@ export class MarbleCMS {
    * ```
    */
   post(identifier: string): SinglePostQueryBuilder {
-    return new SinglePostQueryBuilder(this.baseUrl, this.apiKey, identifier);
+    return new SinglePostQueryBuilder(this.client, identifier);
   }
 
   /**
@@ -293,7 +68,7 @@ export class MarbleCMS {
    * ```
    */
   categories(): CategoriesQueryBuilder {
-    return new CategoriesQueryBuilder(this.baseUrl, this.apiKey);
+    return new CategoriesQueryBuilder(this.client);
   }
 
   /**
@@ -304,11 +79,7 @@ export class MarbleCMS {
    * ```
    */
   category(identifier: string): SingleCategoryQueryBuilder {
-    return new SingleCategoryQueryBuilder(
-      this.baseUrl,
-      this.apiKey,
-      identifier,
-    );
+    return new SingleCategoryQueryBuilder(this.client, identifier);
   }
 
   /**
@@ -319,7 +90,7 @@ export class MarbleCMS {
    * ```
    */
   tags(): TagsQueryBuilder {
-    return new TagsQueryBuilder(this.baseUrl, this.apiKey);
+    return new TagsQueryBuilder(this.client);
   }
 
   /**
@@ -330,52 +101,423 @@ export class MarbleCMS {
    * ```
    */
   tag(identifier: string): SingleTagQueryBuilder {
-    return new SingleTagQueryBuilder(this.baseUrl, this.apiKey, identifier);
+    return new SingleTagQueryBuilder(this.client, identifier);
   }
+}
 
-  // Legacy methods for backward compatibility (deprecated)
-  /**
-   * @deprecated Use marble.posts().get() instead
-   */
-  async getPosts(): Promise<MarblePostListResponse | undefined> {
-    return this.posts().get();
-  }
+// Posts query builder with all filtering, sorting, and search options
+export class PostsQueryBuilder {
+  private client: Marble;
+  private options: {
+    limit?: number | "all";
+    page?: number;
+    order?: "asc" | "desc";
+    categories?: string;
+    excludeCategories?: string;
+    tags?: string;
+    excludeTags?: string;
+    query?: string;
+    format?: "html" | "markdown";
+    featured?: "true" | "false";
+  } = {};
 
-  /**
-   * @deprecated Use marble.tags().get() instead
-   */
-  async getTags(): Promise<MarbleTagListResponse | undefined> {
-    return this.tags().get();
-  }
-
-  /**
-   * @deprecated Use marble.post(slug).get() instead
-   */
-  async getSinglePost(slug: string): Promise<MarblePostResponse | undefined> {
-    return this.post(slug).get();
-  }
-
-  /**
-   * @deprecated Use marble.categories().get() instead
-   */
-  async getCategories(): Promise<MarbleCategoryListResponse | undefined> {
-    return this.categories().get();
+  constructor(client: Marble) {
+    this.client = client;
   }
 
   /**
-   * @deprecated Use marble.posts().categories(categorySlug).tags(tagSlug).get() instead
+   * Set the maximum number of items per page (1-200) or "all" for all items
    */
-  async getPostsByTag(
-    tagSlug: string,
-    categorySlug: string = "resources",
-  ): Promise<MarblePostListResponse | undefined> {
-    return this.posts().categories(categorySlug).tags(tagSlug).get();
+  limit(value: number | "all"): this {
+    this.options.limit = value;
+    return this;
   }
 
   /**
-   * @deprecated Use marble.tag(tagSlug).get() instead
+   * Set the page number to return (starts at 1)
    */
-  async getTagBySlug(tagSlug: string): Promise<{ tag: Tag } | undefined> {
-    return this.tag(tagSlug).get();
+  page(value: number): this {
+    this.options.page = value;
+    return this;
+  }
+
+  /**
+   * Sort order by publishedAt date (default: "desc")
+   */
+  order(value: "asc" | "desc"): this {
+    this.options.order = value;
+    return this;
+  }
+
+  /**
+   * Filter by category slugs (comma-separated)
+   */
+  categories(...slugs: string[]): this {
+    if (slugs.length > 0) {
+      this.options.categories = slugs.join(",");
+    }
+    return this;
+  }
+
+  /**
+   * Exclude category slugs (comma-separated)
+   */
+  excludeCategories(...slugs: string[]): this {
+    if (slugs.length > 0) {
+      this.options.excludeCategories = slugs.join(",");
+    }
+    return this;
+  }
+
+  /**
+   * Filter by tag slugs (comma-separated, matches any)
+   */
+  tags(...slugs: string[]): this {
+    if (slugs.length > 0) {
+      this.options.tags = slugs.join(",");
+    }
+    return this;
+  }
+
+  /**
+   * Exclude tag slugs (comma-separated)
+   */
+  excludeTags(...slugs: string[]): this {
+    if (slugs.length > 0) {
+      this.options.excludeTags = slugs.join(",");
+    }
+    return this;
+  }
+
+  /**
+   * Full-text search across title and content
+   */
+  search(query: string): this {
+    if (query.trim()) {
+      this.options.query = query;
+    }
+    return this;
+  }
+
+  /**
+   * Format of the content field (default: "html")
+   */
+  format(format: "html" | "markdown"): this {
+    this.options.format = format;
+    return this;
+  }
+
+  /**
+   * Filter by featured status
+   */
+  featured(value: boolean): this {
+    this.options.featured = value ? "true" : "false";
+    return this;
+  }
+
+  /**
+   * Execute the query and fetch posts
+   */
+  async get(): Promise<PostsListResponse | undefined> {
+    try {
+      const fetchAll = this.options.limit === "all";
+      const limit: number | undefined = fetchAll ? 100 : (this.options.limit as number | undefined);
+
+      const result = await this.client.posts.list({
+        ...(limit !== undefined && { limit }),
+        ...(this.options.page !== undefined && { page: this.options.page }),
+        ...(this.options.order && { order: this.options.order }),
+        ...(this.options.categories && {
+          categories: this.options.categories.split(","),
+        }),
+        ...(this.options.excludeCategories && {
+          excludeCategories: this.options.excludeCategories.split(","),
+        }),
+        ...(this.options.tags && { tags: this.options.tags.split(",") }),
+        ...(this.options.excludeTags && {
+          excludeTags: this.options.excludeTags.split(","),
+        }),
+        ...(this.options.query && { query: this.options.query }),
+        ...(this.options.format && { format: this.options.format }),
+        ...(this.options.featured && { featured: this.options.featured }),
+      });
+
+      // If fetchAll is true, collect all pages
+      if (fetchAll) {
+        const allPosts: any[] = [];
+        let lastPagination: any = null;
+
+        for await (const page of result) {
+          const pageData = page.result as PostsListResponse;
+          allPosts.push(...pageData.posts);
+          lastPagination = pageData.pagination;
+        }
+
+        return {
+          posts: allPosts,
+          pagination: {
+            limit: allPosts.length,
+            currentPage: 1,
+            nextPage: null,
+            previousPage: null,
+            totalItems: allPosts.length,
+            totalPages: 1,
+          },
+        };
+      }
+
+      // Otherwise, return just the first page
+      for await (const page of result) {
+        return page.result as PostsListResponse;
+      }
+
+      return undefined;
+    } catch (error) {
+      console.error("MarbleCMS fetch error:", error);
+      return undefined;
+    }
+  }
+}
+
+// Single post query builder
+export class SinglePostQueryBuilder {
+  private client: Marble;
+  private identifier: string;
+  private options: {
+    format?: "html" | "markdown";
+  } = {};
+
+  constructor(client: Marble, identifier: string) {
+    this.client = client;
+    this.identifier = identifier;
+  }
+
+  /**
+   * Format of the content field (default: "html")
+   */
+  format(format: "html" | "markdown"): this {
+    this.options.format = format;
+    return this;
+  }
+
+  /**
+   * Execute the query and fetch the post
+   */
+  async get(): Promise<PostResponse | undefined> {
+    try {
+      const response = await this.client.posts.get({
+        identifier: this.identifier,
+        ...(this.options.format && { format: this.options.format }),
+      });
+
+      return response as PostResponse;
+    } catch (error) {
+      console.error("MarbleCMS fetch error:", error);
+      return undefined;
+    }
+  }
+}
+
+// Categories query builder
+export class CategoriesQueryBuilder {
+  private client: Marble;
+  private options: {
+    limit?: number | "all";
+    page?: number;
+  } = {};
+
+  constructor(client: Marble) {
+    this.client = client;
+  }
+
+  /**
+   * Set the maximum number of items per page (1-200) or "all" for all items
+   */
+  limit(value: number | "all"): this {
+    this.options.limit = value;
+    return this;
+  }
+
+  /**
+   * Set the page number to return (starts at 1)
+   */
+  page(value: number): this {
+    this.options.page = value;
+    return this;
+  }
+
+  /**
+   * Execute the query and fetch categories
+   */
+  async get(): Promise<CategoriesListResponse | undefined> {
+    try {
+      const fetchAll = this.options.limit === "all";
+      const limit: number | undefined = fetchAll ? 100 : (this.options.limit as number | undefined);
+
+      const result = await this.client.categories.list({
+        ...(limit !== undefined && { limit }),
+        ...(this.options.page !== undefined && { page: this.options.page }),
+      });
+
+      // If fetchAll is true, collect all pages
+      if (fetchAll) {
+        const allCategories: any[] = [];
+
+        for await (const page of result) {
+          const pageData = page.result as CategoriesListResponse;
+          allCategories.push(...pageData.categories);
+        }
+
+        return {
+          categories: allCategories,
+          pagination: {
+            limit: allCategories.length,
+            currentPage: 1,
+            nextPage: null,
+            previousPage: null,
+            totalItems: allCategories.length,
+            totalPages: 1,
+          },
+        };
+      }
+
+      // Otherwise, return just the first page
+      for await (const page of result) {
+        return page.result as CategoriesListResponse;
+      }
+
+      return undefined;
+    } catch (error) {
+      console.error("MarbleCMS fetch error:", error);
+      return undefined;
+    }
+  }
+}
+
+// Single category query builder
+export class SingleCategoryQueryBuilder {
+  private client: Marble;
+  private identifier: string;
+
+  constructor(client: Marble, identifier: string) {
+    this.client = client;
+    this.identifier = identifier;
+  }
+
+  /**
+   * Execute the query and fetch the category
+   */
+  async get(): Promise<CategoryResponse | undefined> {
+    try {
+      const response = await this.client.categories.get({
+        identifier: this.identifier,
+      });
+      return response as CategoryResponse;
+    } catch (error) {
+      console.error("MarbleCMS fetch error:", error);
+      return undefined;
+    }
+  }
+}
+
+// Tags query builder
+export class TagsQueryBuilder {
+  private client: Marble;
+  private options: {
+    limit?: number | "all";
+    page?: number;
+  } = {};
+
+  constructor(client: Marble) {
+    this.client = client;
+  }
+
+  /**
+   * Set the maximum number of items per page (1-200) or "all" for all items
+   */
+  limit(value: number | "all"): this {
+    this.options.limit = value;
+    return this;
+  }
+
+  /**
+   * Set the page number to return (starts at 1)
+   */
+  page(value: number): this {
+    this.options.page = value;
+    return this;
+  }
+
+  /**
+   * Execute the query and fetch tags
+   */
+  async get(): Promise<TagsListResponse | undefined> {
+    try {
+      const fetchAll = this.options.limit === "all";
+      const limit: number | undefined = fetchAll ? 100 : (this.options.limit as number | undefined);
+
+      const result = await this.client.tags.list({
+        ...(limit !== undefined && { limit }),
+        ...(this.options.page !== undefined && { page: this.options.page }),
+      });
+
+      // If fetchAll is true, collect all pages
+      if (fetchAll) {
+        const allTags: any[] = [];
+
+        for await (const page of result) {
+          const pageData = page.result as TagsListResponse;
+          allTags.push(...pageData.tags);
+        }
+
+        return {
+          tags: allTags,
+          pagination: {
+            limit: allTags.length,
+            currentPage: 1,
+            nextPage: null,
+            previousPage: null,
+            totalItems: allTags.length,
+            totalPages: 1,
+          },
+        };
+      }
+
+      // Otherwise, return just the first page
+      for await (const page of result) {
+        return page.result as TagsListResponse;
+      }
+
+      return undefined;
+    } catch (error) {
+      console.error("MarbleCMS fetch error:", error);
+      return undefined;
+    }
+  }
+}
+
+// Single tag query builder
+export class SingleTagQueryBuilder {
+  private client: Marble;
+  private identifier: string;
+
+  constructor(client: Marble, identifier: string) {
+    this.client = client;
+    this.identifier = identifier;
+  }
+
+  /**
+   * Execute the query and fetch the tag
+   */
+  async get(): Promise<TagResponse | undefined> {
+    try {
+      const response = await this.client.tags.get({
+        identifier: this.identifier,
+      });
+      return response as TagResponse;
+    } catch (error) {
+      console.error("MarbleCMS fetch error:", error);
+      return undefined;
+    }
   }
 }

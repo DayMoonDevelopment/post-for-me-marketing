@@ -13,7 +13,7 @@ import {
   SidebarRail,
 } from "~/ui/sidebar";
 
-import type { Tag, Post } from "~/lib/.server/marble.types";
+import type { Tag, Post } from "@usemarble/sdk/models";
 
 interface ResourcesSidebarProps extends React.ComponentProps<typeof Sidebar> {
   tags: Tag[];

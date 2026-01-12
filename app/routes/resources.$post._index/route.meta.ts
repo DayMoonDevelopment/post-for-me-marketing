@@ -104,7 +104,9 @@ export const meta: Route.MetaFunction = ({ data }): MetaDescriptor[] => {
   metadata.title = title;
   metadata.description = description;
   metadata.canonical = canonical;
-  metadata.image = data.coverImage;
+  if (data.coverImage) {
+    metadata.image = data.coverImage;
+  }
   metadata.contentType = "website"; // Using website to prevent auto Article schema (we have TechArticle)
   metadata.keywords =
     `${categoryName} API, ${categoryName} integration, ${categoryName} authentication, API documentation, developer guide, OAuth 2.0, REST API, webhook integration, rate limiting, API tutorial, ${tags.join(", ")}`.replace(
