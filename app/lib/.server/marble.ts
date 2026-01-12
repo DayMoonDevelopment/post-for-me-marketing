@@ -1,14 +1,13 @@
 import { Marble } from "@usemarble/sdk";
 import type {
-  Category,
   CategoriesListResponse,
   CategoryResponse,
   PostsListResponse,
   PostResponse,
-  Tag,
   TagResponse,
   TagsListResponse,
 } from "@usemarble/sdk/models";
+import type { Post, Category, Tag } from "@usemarble/sdk/models";
 
 /**
  * MarbleCMS client wrapper around the official @usemarble/sdk
@@ -244,13 +243,11 @@ export class PostsQueryBuilder {
 
       // If fetchAll is true, collect all pages
       if (fetchAll) {
-        const allPosts: any[] = [];
-        let lastPagination: any = null;
+        const allPosts: Post[] = [];
 
         for await (const page of result) {
           const pageData = page.result as PostsListResponse;
           allPosts.push(...pageData.posts);
-          lastPagination = pageData.pagination;
         }
 
         return {
@@ -361,7 +358,7 @@ export class CategoriesQueryBuilder {
 
       // If fetchAll is true, collect all pages
       if (fetchAll) {
-        const allCategories: any[] = [];
+        const allCategories: Category[] = [];
 
         for await (const page of result) {
           const pageData = page.result as CategoriesListResponse;
@@ -463,7 +460,7 @@ export class TagsQueryBuilder {
 
       // If fetchAll is true, collect all pages
       if (fetchAll) {
-        const allTags: any[] = [];
+        const allTags: Tag[] = [];
 
         for await (const page of result) {
           const pageData = page.result as TagsListResponse;
