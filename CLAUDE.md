@@ -92,6 +92,8 @@ CRISP_WEBSITE_ID=
 # MarbleCMS (blog/resources)
 MARBLE_API_URL=https://api.marblecms.com/v1
 MARBLE_API_KEY=
+# Set to 'true' to show draft posts (for local testing)
+MARBLE_SHOW_DRAFTS=
 ```
 
 **Note:** The app will run without these variables, but analytics, chat, and blog features will be disabled.

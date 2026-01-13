@@ -17,6 +17,7 @@ import type { Post, Category, Tag } from "@usemarble/sdk/models";
  */
 export class MarbleCMS {
   private client: Marble;
+  private showDrafts: boolean;
 
   constructor() {
     const apiKey = process.env.MARBLE_API_KEY;
@@ -29,6 +30,9 @@ export class MarbleCMS {
     this.client = new Marble({
       apiKey: apiKey ?? "",
     });
+
+    // Only show drafts if explicitly set to 'true'
+    this.showDrafts = process.env.MARBLE_SHOW_DRAFTS === "true";
   }
 
   /**
@@ -44,7 +48,7 @@ export class MarbleCMS {
    * ```
    */
   posts(): PostsQueryBuilder {
-    return new PostsQueryBuilder(this.client);
+    return new PostsQueryBuilder(this.client, this.showDrafts);
   }
 
   /**
@@ -56,7 +60,7 @@ export class MarbleCMS {
    * ```
    */
   post(identifier: string): SinglePostQueryBuilder {
-    return new SinglePostQueryBuilder(this.client, identifier);
+    return new SinglePostQueryBuilder(this.client, identifier, this.showDrafts);
   }
 
   /**
@@ -107,6 +111,7 @@ export class MarbleCMS {
 // Posts query builder with all filtering, sorting, and search options
 export class PostsQueryBuilder {
   private client: Marble;
+  private showDrafts: boolean;
   private options: {
     limit?: number | "all";
     page?: number;
@@ -120,8 +125,9 @@ export class PostsQueryBuilder {
     featured?: "true" | "false";
   } = {};
 
-  constructor(client: Marble) {
+  constructor(client: Marble, showDrafts: boolean = false) {
     this.client = client;
+    this.showDrafts = showDrafts;
   }
 
   /**
@@ -239,6 +245,7 @@ export class PostsQueryBuilder {
         ...(this.options.query && { query: this.options.query }),
         ...(this.options.format && { format: this.options.format }),
         ...(this.options.featured && { featured: this.options.featured }),
+        ...(this.showDrafts && { draft: "true" }),
       });
 
       // If fetchAll is true, collect all pages
@@ -280,13 +287,15 @@ export class PostsQueryBuilder {
 export class SinglePostQueryBuilder {
   private client: Marble;
   private identifier: string;
+  private showDrafts: boolean;
   private options: {
     format?: "html" | "markdown";
   } = {};
 
-  constructor(client: Marble, identifier: string) {
+  constructor(client: Marble, identifier: string, showDrafts: boolean = false) {
     this.client = client;
     this.identifier = identifier;
+    this.showDrafts = showDrafts;
   }
 
   /**
@@ -305,6 +314,7 @@ export class SinglePostQueryBuilder {
       const response = await this.client.posts.get({
         identifier: this.identifier,
         ...(this.options.format && { format: this.options.format }),
+        ...(this.showDrafts && { draft: "true" }),
       });
 
       return response as PostResponse;
