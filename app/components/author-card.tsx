@@ -1,4 +1,7 @@
+import { IconGlobe, IconGithub } from "@central-icons/outlined";
+
 import { parseSocialLink } from "~/lib/social-links";
+
 import { BlueskyBrandIcon } from "./bluesky-brand-icon";
 import { FacebookBrandIcon } from "./facebook-brand-icon";
 import { InstagramBrandIcon } from "./instagram-brand-icon";
@@ -8,7 +11,6 @@ import { ThreadsBrandIcon } from "./threads-brand-icon";
 import { TikTokBrandIcon } from "./tiktok-brand-icon";
 import { XBrandIcon } from "./x-brand-icon";
 import { YouTubeBrandIcon } from "./youtube-brand-icon";
-import { IconGlobe, IconGithub } from "@central-icons/outlined";
 
 interface AuthorCardProps {
   author: {

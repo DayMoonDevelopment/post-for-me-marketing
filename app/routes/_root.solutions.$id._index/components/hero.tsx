@@ -1,9 +1,10 @@
+import { IconArrowUpRight } from "@central-icons/outlined";
 import { useLoaderData } from "react-router";
 
 import { Link } from "~/components/link";
-import { Button } from "~/ui/button";
-import { IconArrowUpRight } from "@central-icons/outlined";
 import { SocialIconsRow } from "~/components/social-icons-row";
+
+import { Button } from "~/ui/button";
 
 import type { Route } from "../+types/route";
 

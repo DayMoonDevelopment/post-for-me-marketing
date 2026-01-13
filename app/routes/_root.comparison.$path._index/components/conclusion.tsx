@@ -1,8 +1,9 @@
+import { IconArrowUpRight } from "@central-icons/outlined";
 import { useLoaderData } from "react-router";
 
 import { Link } from "~/components/link";
+
 import { Button } from "~/ui/button";
-import { IconArrowUpRight } from "@central-icons/outlined";
 
 import type { Route } from "../+types/route";
 

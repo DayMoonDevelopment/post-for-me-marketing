@@ -6,6 +6,9 @@
 
 const ALIAS_DIRS = ["ui", "components", "lib", "hooks", "providers", "routes"];
 
+// Route name patterns that indicate cross-route imports
+const ROUTE_PATTERNS = ["_root", "_resource", "resources"];
+
 export default {
   meta: {
     type: "suggestion",
@@ -34,7 +37,6 @@ export default {
           return;
         }
 
-        // Check if this import targets one of our alias directories
         const segments = importPath.split("/");
         const firstNonDotSegment = segments.find(
           (seg) => seg !== ".." && seg !== "."
@@ -44,77 +46,76 @@ export default {
           return;
         }
 
-        // Special case: Check if this is a cross-route import (e.g., ../../_root._index/...)
+        // Check for cross-route imports first (e.g., ../../_root._index/...)
         // These should use ~/routes/[route-name]/...
-        // Check this FIRST before checking for other alias directories
-        if (
+        const isCrossRouteImport =
           sourceFile.includes("/routes/") &&
-          (firstNonDotSegment.startsWith("_root") ||
-            firstNonDotSegment.startsWith("_resource") ||
-            firstNonDotSegment === "resources")
-        ) {
-          // This is a cross-route import
+          ROUTE_PATTERNS.some(pattern =>
+            firstNonDotSegment === pattern || firstNonDotSegment.startsWith(pattern)
+          );
+
+        if (isCrossRouteImport) {
           const aliasDirIndex = segments.indexOf(firstNonDotSegment);
           const remainingPath = segments.slice(aliasDirIndex).join("/");
           const newImportPath = `~/routes/${remainingPath}`;
 
-          context.report({
-            node: node.source,
-            messageId: "useAlias",
-            data: {
-              dir: "routes",
-              path: remainingPath,
-            },
-            fix(fixer) {
-              const quote = node.source.raw[0];
-              return fixer.replaceText(
-                node.source,
-                `${quote}${newImportPath}${quote}`
-              );
-            },
-          });
+          reportAliasViolation(context, node, "routes", remainingPath, newImportPath);
           return;
         }
 
-        // Check if any segment matches our alias directories
-        let aliasDirIndex = -1;
-        let aliasDir = null;
+        // Check if any segment matches our standard alias directories
+        const aliasInfo = findAliasDirectory(segments);
 
-        for (let i = 0; i < segments.length; i++) {
-          if (ALIAS_DIRS.includes(segments[i])) {
-            aliasDirIndex = i;
-            aliasDir = segments[i];
-            break;
-          }
-        }
-
-        // Skip if no alias directory found
-        if (aliasDir === null) {
+        if (!aliasInfo) {
           return;
         }
 
-        // Build the new import path
+        const { aliasDir, aliasDirIndex } = aliasInfo;
         const remainingPath = segments.slice(aliasDirIndex + 1).join("/");
-        const newImportPath = `~/${aliasDir}${
-          remainingPath ? "/" + remainingPath : ""
-        }`;
+        const newImportPath = `~/${aliasDir}${remainingPath ? "/" + remainingPath : ""}`;
 
-        context.report({
-          node: node.source,
-          messageId: "useAlias",
-          data: {
-            dir: aliasDir,
-            path: remainingPath || "",
-          },
-          fix(fixer) {
-            const quote = node.source.raw[0];
-            return fixer.replaceText(
-              node.source,
-              `${quote}${newImportPath}${quote}`
-            );
-          },
-        });
+        reportAliasViolation(context, node, aliasDir, remainingPath, newImportPath);
       },
     };
   },
 };
+
+/**
+ * Find the first alias directory in the import path segments
+ * @param {string[]} segments - Path segments split by "/"
+ * @returns {{aliasDir: string, aliasDirIndex: number} | null}
+ */
+function findAliasDirectory(segments) {
+  for (let i = 0; i < segments.length; i++) {
+    if (ALIAS_DIRS.includes(segments[i])) {
+      return {
+        aliasDir: segments[i],
+        aliasDirIndex: i,
+      };
+    }
+  }
+  return null;
+}
+
+/**
+ * Report an alias import violation and provide auto-fix
+ * @param {Object} context - ESLint context
+ * @param {Object} node - Import declaration node
+ * @param {string} aliasDir - The alias directory (e.g., "ui", "routes")
+ * @param {string} remainingPath - Path after the alias directory
+ * @param {string} newImportPath - The corrected import path
+ */
+function reportAliasViolation(context, node, aliasDir, remainingPath, newImportPath) {
+  context.report({
+    node: node.source,
+    messageId: "useAlias",
+    data: {
+      dir: aliasDir,
+      path: remainingPath,
+    },
+    fix(fixer) {
+      const quote = node.source.raw[0];
+      return fixer.replaceText(node.source, `${quote}${newImportPath}${quote}`);
+    },
+  });
+}

@@ -2,13 +2,16 @@
  * design-note: there is a negative bottom margin so that we retain the sticky properties of the navbar while "indenting" the underlying component underneath the navbar
  */
 
+import { Link } from "~/components/link";
+import { Logo } from "~/components/logo";
+
 import { Button } from "~/ui/button";
 import { ButtonGroup } from "~/ui/button-group";
-import { Logo } from "~/components/logo";
-import { Link } from "~/components/link";
+
 import { NavigationMenu } from "./navigation-menu";
 import { NavigationSheet } from "./navigation-sheet";
 import { navigationConfig } from "./navigation.config";
+
 import type { NavigationProps } from "./types";
 
 export const Navigation = ({ resources = [], solutions = [] }: NavigationProps) => {

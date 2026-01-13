@@ -1,6 +1,6 @@
-import * as React from "react";
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { IconChevronDownMedium } from "@central-icons/outlined";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import * as React from "react";
 
 import { cn } from "~/lib/utils";
 

@@ -1,4 +1,3 @@
-import { Link, useLoaderData } from "react-router";
 import {
   IconCalendarClock,
   IconRobot,
@@ -12,7 +11,10 @@ import {
   IconNotes,
   IconTicket,
 } from "@central-icons/outlined";
+import { Link, useLoaderData } from "react-router";
+
 import { cn } from "~/lib/utils";
+
 import type { Route } from "./+types/route";
 
 // Map solution IDs to icons

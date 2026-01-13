@@ -1,4 +1,5 @@
 import { data } from "react-router";
+
 import { comparisons } from "~/lib/.server/data/comparisons";
 
 import type { Route } from "./+types/route";

@@ -1,6 +1,8 @@
-import { Link } from "~/components/link";
-import { Button } from "~/ui/button";
 import { IconArrowUpRight, IconCheckmark1 } from "@central-icons/outlined";
+
+import { Link } from "~/components/link";
+
+import { Button } from "~/ui/button";
 
 export const Pricing = () => {
   return (

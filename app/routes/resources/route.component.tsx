@@ -1,10 +1,10 @@
 import { Outlet, useLoaderData } from "react-router";
 
-import { Navigation } from "~/components/navigation/navigation";
 import { Footer } from "~/components/footer";
+import { Navigation } from "~/components/navigation/navigation";
 
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "~/ui/sidebar";
 import { Separator } from "~/ui/separator";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "~/ui/sidebar";
 
 import { ResourcesSidebar } from "./components/resources-sidebar";
 

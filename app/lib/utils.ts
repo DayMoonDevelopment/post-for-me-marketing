@@ -1,7 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import uniqBy from "lodash/uniqBy";
-import type { MetaDescriptor } from "react-router";
 import { twMerge } from "tailwind-merge";
+
+import type { MetaDescriptor } from "react-router";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

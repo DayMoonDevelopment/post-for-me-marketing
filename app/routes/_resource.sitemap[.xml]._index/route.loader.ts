@@ -2,6 +2,7 @@ import { XMLBuilder } from "fast-xml-parser";
 
 import { MarbleCMS } from "~/lib/.server/marble";
 import { SITEMAP_CONFIG } from "~/lib/.server/sitemap.config";
+
 import type { Route } from "./+types/route";
 
 const builder = new XMLBuilder({

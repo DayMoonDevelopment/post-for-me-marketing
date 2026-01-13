@@ -1,5 +1,5 @@
 import { MetadataComposer } from "~/lib/meta";
-import { getSocialProfileUrl } from "~/lib/social-links";
+
 import type { Route } from "./+types/route";
 
 export function meta({ data }: Route.MetaArgs) {

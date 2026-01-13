@@ -1,6 +1,6 @@
-import { Link } from "~/components/link";
 import { IconArrowUpRight } from "@central-icons/outlined";
 
+import { Link } from "~/components/link";
 import { RotatingText } from "~/components/rotating-text";
 
 import { Button } from "~/ui/button";

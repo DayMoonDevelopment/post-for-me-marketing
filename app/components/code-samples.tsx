@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   CodeBlock,
   CodeBlockBody,
@@ -14,7 +16,6 @@ import { TypescriptLogo } from "~/components/typescript-logo";
 import { ToggleGroup, ToggleGroupItem } from "~/ui/toggle-group";
 
 import type { BundledLanguage } from "~/components/code-block";
-import { useState } from "react";
 
 const code = [
   {

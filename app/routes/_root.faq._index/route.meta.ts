@@ -1,5 +1,5 @@
-import type { FAQType } from "~/lib/global.types";
 import type { Route } from "./+types/route";
+import type { FAQType } from "~/lib/global.types";
 
 interface FAQSection {
   title: string;

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import posthog from "posthog-js";
 import { PostHogProvider as RootPostHogProvider } from "posthog-js/react";
+import { useEffect, useState } from "react";
 
 export function PostHogProvider({
   apiKey,

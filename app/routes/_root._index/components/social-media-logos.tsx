@@ -2,10 +2,10 @@ import { BlueskyLogo } from "~/components/bluesky-logo";
 import { FacebookLogo } from "~/components/facebook-logo";
 import { InstagramLogo } from "~/components/instagram-logo";
 import { LinkedInLogo } from "~/components/linkedin-logo";
-import { TikTokLogo } from "~/components/tiktok-logo";
-import { XLogo } from "~/components/x-logo";
 import { PinterestLogo } from "~/components/pinterest-logo";
 import { ThreadsLogo } from "~/components/threads-logo";
+import { TikTokLogo } from "~/components/tiktok-logo";
+import { XLogo } from "~/components/x-logo";
 import { YouTubeLogo } from "~/components/youtube-logo";
 
 export const SocialMediaLogos = () => {

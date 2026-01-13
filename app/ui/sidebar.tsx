@@ -1,12 +1,14 @@
 "use client";
 
-import * as React from "react";
+import { IconSidebarSimpleLeftSquare } from "@central-icons/outlined";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { IconSidebarSimpleLeftSquare } from "@central-icons/outlined";
+import * as React from "react";
 
 import { useIsMobile } from "~/hooks/use-mobile";
+
 import { cn } from "~/lib/utils";
+
 import { Button } from "~/ui/button";
 import { Input } from "~/ui/input";
 import { Separator } from "~/ui/separator";

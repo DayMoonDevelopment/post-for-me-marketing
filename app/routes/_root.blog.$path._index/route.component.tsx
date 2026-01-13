@@ -1,20 +1,23 @@
-import { Link as RouterLink, useLoaderData } from "react-router";
-import { format } from "date-fns";
-import { RawHtml } from "~/components/raw-html";
 import { IconChevronLeft } from "@central-icons/outlined";
-import { Button } from "~/ui/button";
-import { Link } from "~/components/link";
-import { parseSocialLink } from "~/lib/social-links";
+import { IconGlobe, IconGithub } from "@central-icons/outlined";
+import { format } from "date-fns";
+import { Link as RouterLink, useLoaderData } from "react-router";
+
 import { BlueskyBrandIcon } from "~/components/bluesky-brand-icon";
 import { FacebookBrandIcon } from "~/components/facebook-brand-icon";
 import { InstagramBrandIcon } from "~/components/instagram-brand-icon";
+import { Link } from "~/components/link";
 import { LinkedInBrandIcon } from "~/components/linkedin-brand-icon";
 import { PinterestBrandIcon } from "~/components/pinterest-brand-icon";
+import { RawHtml } from "~/components/raw-html";
 import { ThreadsBrandIcon } from "~/components/threads-brand-icon";
 import { TikTokBrandIcon } from "~/components/tiktok-brand-icon";
 import { XBrandIcon } from "~/components/x-brand-icon";
 import { YouTubeBrandIcon } from "~/components/youtube-brand-icon";
-import { IconGlobe, IconGithub } from "@central-icons/outlined";
+
+import { parseSocialLink } from "~/lib/social-links";
+
+import { Button } from "~/ui/button";
 
 import type { Route } from "./+types/route";
 

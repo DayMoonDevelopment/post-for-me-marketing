@@ -1,10 +1,17 @@
 import {
-  cloneElement,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+  IconBun,
+  IconCheckmark1,
+  IconClipboard2,
+  IconCpp,
+  IconJavascript,
+  IconMarkdown,
+  IconPhp,
+  IconPhyton,
+  IconRemix,
+  IconRive,
+  IconTypescript,
+  IconVercel,
+} from "@central-icons/outlined";
 import {
   SiAstro,
   SiBiome,
@@ -67,19 +74,12 @@ import {
 } from "@icons-pack/react-simple-icons";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
-  IconBun,
-  IconCheckmark1,
-  IconClipboard2,
-  IconCpp,
-  IconJavascript,
-  IconMarkdown,
-  IconPhp,
-  IconPhyton,
-  IconRemix,
-  IconRive,
-  IconTypescript,
-  IconVercel,
-} from "@central-icons/outlined";
+  cloneElement,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import { cn } from "~/lib/utils";
 
@@ -92,13 +92,13 @@ import {
   SelectValue,
 } from "~/ui/select";
 
+import type { IconType } from "@icons-pack/react-simple-icons";
 import type {
   ComponentProps,
   HTMLAttributes,
   ReactElement,
   ReactNode,
 } from "react";
-import type { IconType } from "@icons-pack/react-simple-icons";
 
 export type BundledLanguage = string;
 

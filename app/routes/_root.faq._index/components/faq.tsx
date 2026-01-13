@@ -1,4 +1,5 @@
 import { FAQSection } from "~/components/faq-section";
+
 import type { FAQType } from "~/lib/global.types";
 
 export const FAQ = ({ title, faq }: { title: string; faq: FAQType[] }) => {

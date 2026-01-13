@@ -1,6 +1,8 @@
 import { Link } from "~/components/link";
-import { Differentiators } from "./components/differentiators";
+
 import { Separator } from "~/ui/separator";
+
+import { Differentiators } from "./components/differentiators";
 
 export function Component() {
   return (

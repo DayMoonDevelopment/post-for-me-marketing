@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router";
+
 import { FAQSection } from "~/components/faq-section";
 
 import type { Route } from "../+types/route";

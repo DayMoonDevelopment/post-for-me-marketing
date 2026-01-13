@@ -1,7 +1,7 @@
 import { Link } from "~/components/link";
 
-import { Skeleton } from "~/ui/skeleton";
 import { Card, CardContent, CardTitle, CardDescription } from "~/ui/card";
+import { Skeleton } from "~/ui/skeleton";
 
 import type { loader } from "~/routes/resources/route";
 

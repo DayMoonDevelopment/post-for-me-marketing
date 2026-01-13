@@ -1,7 +1,9 @@
 import { Link } from "~/components/link";
-import { Services } from "./components/differentiators";
-import { Separator } from "~/ui/separator";
+
 import { Avatar, AvatarImage } from "~/ui/avatar";
+import { Separator } from "~/ui/separator";
+
+import { Services } from "./components/differentiators";
 export function Component() {
   return (
     <div className="flex flex-col pt-24 gap-12">

@@ -1,10 +1,10 @@
-import * as React from "react";
-import * as SelectPrimitive from "@radix-ui/react-select";
 import {
   IconCheckmark1,
   IconChevronDownMedium,
   IconChevronTopMedium,
 } from "@central-icons/outlined";
+import * as SelectPrimitive from "@radix-ui/react-select";
+import * as React from "react";
 
 import { cn } from "~/lib/utils";
 

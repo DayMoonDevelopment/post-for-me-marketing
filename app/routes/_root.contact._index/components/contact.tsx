@@ -1,5 +1,7 @@
-import { Link } from "~/components/link";
 import { IconArrowRight, IconEmail1, IconBubble2 } from "@central-icons/outlined";
+
+import { Link } from "~/components/link";
+
 import { Button } from "~/ui/button";
 
 export const Contact = () => (

@@ -1,7 +1,7 @@
-import * as React from "react";
+import { IconChevronDownMedium } from "@central-icons/outlined";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { cva } from "class-variance-authority";
-import { IconChevronDownMedium } from "@central-icons/outlined";
+import * as React from "react";
 
 import { cn } from "~/lib/utils";
 

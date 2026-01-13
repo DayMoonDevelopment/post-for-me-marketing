@@ -1,5 +1,7 @@
-import { Link } from "~/components/link";
 import { IconArrowRight } from "@central-icons/outlined";
+
+import { Link } from "~/components/link";
+
 import { Badge } from "~/ui/badge";
 
 export const OpenSource = () => (
