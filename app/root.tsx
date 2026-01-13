@@ -8,10 +8,10 @@ import {
   useLoaderData,
 } from "react-router";
 
+import "./app.css";
 import { PostHogProvider } from "./providers/posthog-provider";
 
 import type { Route } from "./+types/root";
-import "./app.css";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

@@ -1,8 +1,9 @@
 import { XMLBuilder } from "fast-xml-parser";
-import type { LoaderFunctionArgs } from "react-router";
 
 import { MarbleCMS } from "~/lib/.server/marble";
 import { SITEMAP_CONFIG } from "~/lib/.server/sitemap.config";
+
+import type { LoaderFunctionArgs } from "react-router";
 
 const builder = new XMLBuilder({
   format: true,

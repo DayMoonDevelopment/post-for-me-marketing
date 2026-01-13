@@ -3,6 +3,7 @@ import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import pluginImport from "eslint-plugin-import";
 import preferAliasImports from "./eslint-rules/prefer-alias-imports.js";
+import importOrder from "./eslint-rules/import-order.js";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -28,6 +29,7 @@ export default [
       custom: {
         rules: {
           "prefer-alias-imports": preferAliasImports,
+          "import-order": importOrder,
         },
       },
     },
@@ -74,6 +76,16 @@ export default [
       // Over: import { Button } from "../../../ui/button"
       // Allows: import { Component } from "./sibling-file"
       "custom/prefer-alias-imports": "error",
+    },
+  },
+  // Import ordering rule - applies only to app directory
+  {
+    files: ["app/**/*.{js,jsx,ts,tsx}"],
+    rules: {
+      // Custom rule: Enforce strict import ordering
+      // Auto-fixable: bun run lint:fix
+      // Order: 1) External modules, 2) Alias imports by parent dir, 3) Relative, 4) Types
+      "custom/import-order": "error",
     },
   },
 ];

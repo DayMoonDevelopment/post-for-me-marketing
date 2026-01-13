@@ -10,9 +10,10 @@ import {
   navigationMenuTriggerStyle,
 } from "~/ui/navigation-menu";
 
-import type { ComponentProps } from "react";
-import type { ResourcePreview, SolutionPreview } from "./types";
 import { navigationConfig } from "./navigation.config";
+
+import type { ResourcePreview, SolutionPreview } from "./types";
+import type { ComponentProps } from "react";
 
 export const NavigationMenu = ({
   resources = [],

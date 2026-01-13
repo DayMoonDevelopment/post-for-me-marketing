@@ -5,6 +5,7 @@ import {
   getCategoryDisplayName,
   getAllFAQs,
 } from "~/lib/.server/data/faq";
+
 import type { FAQItem } from "~/lib/global.types";
 
 export function loader() {

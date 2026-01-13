@@ -1,5 +1,6 @@
-import type { Route } from "./+types/route";
 import { MetadataComposer } from "~/lib/meta";
+
+import type { Route } from "./+types/route";
 
 export const meta: Route.MetaFunction = () => {
   const composer = new MetadataComposer();

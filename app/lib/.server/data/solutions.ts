@@ -1,14 +1,14 @@
-import { socialMediaScheduler } from "./solutions.social-media-scheduler";
 import { aiContentGeneration } from "./solutions.ai-content-generation";
-import { multiAccountManagement } from "./solutions.multi-account-management";
-import { games } from "./solutions.games";
-import { saasProducts } from "./solutions.saas-products";
-import { ecommercePlatforms } from "./solutions.e-commerce-platforms";
-import { influencerManagement } from "./solutions.influencer-management";
 import { crmSystems } from "./solutions.crm-systems";
 import { damTools } from "./solutions.dam-tools";
-import { newsMediaPublishers } from "./solutions.news-media-publishers";
+import { ecommercePlatforms } from "./solutions.e-commerce-platforms";
 import { eventManagement } from "./solutions.event-management";
+import { games } from "./solutions.games";
+import { influencerManagement } from "./solutions.influencer-management";
+import { multiAccountManagement } from "./solutions.multi-account-management";
+import { newsMediaPublishers } from "./solutions.news-media-publishers";
+import { saasProducts } from "./solutions.saas-products";
+import { socialMediaScheduler } from "./solutions.social-media-scheduler";
 
 export interface SolutionData {
   id: string;

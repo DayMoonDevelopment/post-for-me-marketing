@@ -1,6 +1,8 @@
-import DotPattern from "~/ui/dot-pattern";
 import { SocialMediaLogoParticles } from "~/components/social-media-logo-particles";
+
 import { cn } from "~/lib/utils";
+
+import DotPattern from "~/ui/dot-pattern";
 
 export const BackgroundPattern = () => {
   return (

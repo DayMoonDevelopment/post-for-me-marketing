@@ -1,7 +1,8 @@
-import { data } from "react-router";
 import { marked } from "marked";
-import { solutions } from "~/lib/.server/data/solutions";
+import { data } from "react-router";
+
 import { getFAQsForRoute } from "~/lib/.server/data/faq";
+import { solutions } from "~/lib/.server/data/solutions";
 
 import type { Route } from "./+types/route";
 

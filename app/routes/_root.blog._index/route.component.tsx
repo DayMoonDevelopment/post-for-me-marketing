@@ -1,6 +1,7 @@
-import { Link, useLoaderData } from "react-router";
-import type { Route } from "./+types/route";
+import { IconArrowRight, IconNewspaper } from "@central-icons/outlined";
 import { format } from "date-fns";
+import { Link, useLoaderData } from "react-router";
+
 import {
   Card,
   CardContent,
@@ -9,7 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "~/ui/card";
-import { IconArrowRight, IconNewspaper } from "@central-icons/outlined";
+
+import type { Route } from "./+types/route";
 
 export default function BlogIndex() {
   const { posts } = useLoaderData<Route.ComponentProps["loaderData"]>();

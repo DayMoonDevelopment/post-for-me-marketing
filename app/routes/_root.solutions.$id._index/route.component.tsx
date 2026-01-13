@@ -1,10 +1,11 @@
-import { Hero } from "./components/hero";
-import { ValueProposition } from "./components/value-proposition";
+import { SetupOptionsSection as SetupOptions } from "~/components/setup-options-section";
+
 import { CoreFeatures } from "./components/core-features";
 import { DeveloperExperience } from "./components/developer-experience";
-import { SetupOptionsSection as SetupOptions } from "~/components/setup-options-section";
-import { Pricing } from "./components/pricing";
 import { FAQ } from "./components/faq";
+import { Hero } from "./components/hero";
+import { Pricing } from "./components/pricing";
+import { ValueProposition } from "./components/value-proposition";
 
 export function Component() {
   return (

@@ -1,6 +1,6 @@
-import * as React from "react"
-import { Slot as SlotPrimitive } from "radix-ui"
 import { IconChevronRight, IconDotGrid1x3Horizontal } from "@central-icons/outlined"
+import { Slot as SlotPrimitive } from "radix-ui"
+import * as React from "react"
 
 import { cn } from "~/lib/utils"
 

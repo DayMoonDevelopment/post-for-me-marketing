@@ -1,7 +1,6 @@
-import { Link as ReactRouterLink, type LinkProps } from "react-router";
-import { useEffect, useState } from "react";
-
 import { cva } from "class-variance-authority";
+import { useEffect, useState } from "react";
+import { Link as ReactRouterLink, type LinkProps } from "react-router";
 
 import { cn } from "~/lib/utils";
 

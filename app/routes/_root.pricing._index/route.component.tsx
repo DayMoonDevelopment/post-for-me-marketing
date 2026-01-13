@@ -1,6 +1,6 @@
 import { IconCheckmark1 } from "@central-icons/outlined";
-import { Link, useLoaderData } from "react-router";
 import { useState } from "react";
+import { Link, useLoaderData } from "react-router";
 
 import { Button } from "~/ui/button";
 import {
@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "~/ui/card";
-import { Separator } from "~/ui/separator";
 import {
   Select,
   SelectContent,
@@ -18,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/ui/select";
+import { Separator } from "~/ui/separator";
 
 import type { Route } from "./+types/route";
 

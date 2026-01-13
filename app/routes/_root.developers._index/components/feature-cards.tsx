@@ -5,7 +5,6 @@ import {
   IconArrowUpRight,
 } from "@central-icons/outlined";
 
-import { Link } from "~/components/link";
 import {
   FeatureGrid,
   Feature,
@@ -16,6 +15,7 @@ import {
   FeatureHeader,
   FeatureGridContent,
 } from "~/components/feature-grid-layout";
+import { Link } from "~/components/link";
 
 import { Button } from "~/ui/button";
 

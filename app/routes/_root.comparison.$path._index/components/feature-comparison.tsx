@@ -1,6 +1,5 @@
-import { useLoaderData } from "react-router";
-
 import { IconCircleCheck, IconCircleX } from "@central-icons/outlined";
+import { useLoaderData } from "react-router";
 
 import type { Route } from "../+types/route";
 

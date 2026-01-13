@@ -1,10 +1,9 @@
-import { useLoaderData } from "react-router";
-
 import {
   IconCode,
   IconArCube1,
   IconApiAggregate,
 } from "@central-icons/outlined";
+import { useLoaderData } from "react-router";
 
 import type { Route } from "../+types/route";
 

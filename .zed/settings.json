@@ -1,0 +1,39 @@
+{
+  "languages": {
+    "TypeScript": {
+      "format_on_save": {
+        "external": {
+          "command": "./scripts/eslint-fix-formatter.sh",
+          "arguments": ["{buffer_path}"]
+        }
+      }
+    },
+    "TSX": {
+      "format_on_save": {
+        "external": {
+          "command": "./scripts/eslint-fix-formatter.sh",
+          "arguments": ["{buffer_path}"]
+        }
+      }
+    },
+    "JavaScript": {
+      "format_on_save": {
+        "external": {
+          "command": "./scripts/eslint-fix-formatter.sh",
+          "arguments": ["{buffer_path}"]
+        }
+      }
+    }
+  },
+  "lsp": {
+    "eslint": {
+      "settings": {
+        "format": false,
+        "run": "onSave",
+        "experimental": {
+          "useFlatConfig": true
+        }
+      }
+    }
+  }
+}

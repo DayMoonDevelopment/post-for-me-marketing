@@ -1,6 +1,6 @@
+import { IconTarget, IconRocket, IconAgent } from "@central-icons/outlined";
 import { useLoaderData } from "react-router";
 
-import { IconTarget, IconRocket, IconAgent } from "@central-icons/outlined";
 import {
   Feature,
   FeatureContent,

@@ -3,6 +3,7 @@ import {
   IconFileTextDefault,
   IconGithub,
 } from "@central-icons/outlined";
+
 import type { NavigationConfig } from "./types";
 
 export const navigationConfig: NavigationConfig = {

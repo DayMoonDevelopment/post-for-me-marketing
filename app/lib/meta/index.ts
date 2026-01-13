@@ -1,8 +1,9 @@
-import type { MetaDescriptor } from "react-router";
 import {
   generateBreadcrumbStructuredData,
   type BreadcrumbItem,
 } from "~/lib/utils";
+
+import type { MetaDescriptor } from "react-router";
 
 export class MetadataComposer {
   private explicitMeta: MetaDescriptor[] = [];

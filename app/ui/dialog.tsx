@@ -1,6 +1,6 @@
-import * as React from "react";
-import { Dialog as DialogPrimitive } from "radix-ui";
 import { IconCrossLarge } from "@central-icons/outlined";
+import { Dialog as DialogPrimitive } from "radix-ui";
+import * as React from "react";
 
 import { cn } from "~/lib/utils";
 

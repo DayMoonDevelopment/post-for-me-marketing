@@ -1,7 +1,8 @@
+import { IconArrowRight } from "@central-icons/outlined";
 import { useLoaderData } from "react-router";
 
-import { IconArrowRight } from "@central-icons/outlined";
 import { PostForMeBrandIcon } from "~/components/post-for-me-brand-icons";
+
 import { Separator } from "~/ui/separator";
 
 import type { Route } from "../+types/route";

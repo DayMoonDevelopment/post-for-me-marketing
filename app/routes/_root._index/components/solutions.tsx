@@ -1,11 +1,3 @@
-import { useState } from "react";
-import {
-  IconRobot as IconRobotOutlined,
-  IconCalendarClock as IconCalendarClockOutlined,
-  IconGamepad as IconGamepadOutlined,
-  IconDevices as IconDevicesOutlined,
-  IconCelebrate as IconCelebrateOutlined,
-} from "@central-icons/outlined";
 import {
   IconRobot as IconRobotFilled,
   IconCalendarClock as IconCalendarClockFilled,
@@ -13,6 +5,14 @@ import {
   IconDevices as IconDevicesFilled,
   IconCelebrate as IconCelebrateFilled,
 } from "@central-icons/filled";
+import {
+  IconRobot as IconRobotOutlined,
+  IconCalendarClock as IconCalendarClockOutlined,
+  IconGamepad as IconGamepadOutlined,
+  IconDevices as IconDevicesOutlined,
+  IconCelebrate as IconCelebrateOutlined,
+} from "@central-icons/outlined";
+import { useState } from "react";
 
 import { cn } from "~/lib/utils";
 

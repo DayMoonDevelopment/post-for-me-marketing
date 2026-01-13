@@ -1,4 +1,5 @@
 import { MarbleCMS } from "~/lib/.server/marble";
+
 import type { Route } from "./+types/route";
 
 export async function loader(_: Route.LoaderArgs) {

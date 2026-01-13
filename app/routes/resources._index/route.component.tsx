@@ -2,8 +2,8 @@ import { useLoaderData, useRouteLoaderData } from "react-router";
 
 import { PostGrid } from "./components/post-grid";
 
-import type { loader } from "~/routes/resources/route";
 import type { Route } from "./+types/route";
+import type { loader } from "~/routes/resources/route";
 
 type ResourcesLoader = Awaited<ReturnType<typeof loader>>;
 

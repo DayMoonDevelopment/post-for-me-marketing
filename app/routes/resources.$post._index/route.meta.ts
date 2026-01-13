@@ -1,7 +1,7 @@
-import type { MetaDescriptor } from "react-router";
 import { MetadataComposer } from "~/lib/meta";
-// import { buildResourcesBreadcrumbs } from "~/lib/utils";
+
 import type { Route } from "./+types/route";
+import type { MetaDescriptor } from "react-router";
 
 /**
  * Estimate reading time based on word count

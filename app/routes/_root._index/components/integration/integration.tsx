@@ -1,11 +1,12 @@
 import { IconBookmarkCheck, IconPieChart1, IconTarget } from "@central-icons/outlined";
+import { IconArrowUpRight } from "@central-icons/outlined";
 
 import { CodeSamples } from "~/components/code-samples";
+import { Link } from "~/components/link";
 
 import { cn } from "~/lib/utils";
-import { Link } from "~/components/link";
+
 import { Button } from "~/ui/button";
-import { IconArrowUpRight } from "@central-icons/outlined";
 
 const features = [
   {

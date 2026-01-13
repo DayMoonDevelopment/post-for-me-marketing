@@ -1,6 +1,6 @@
 import { Link } from "~/components/link";
-
 import { Logo } from "~/components/logo";
+
 import {
   Accordion,
   AccordionContent,
@@ -9,6 +9,7 @@ import {
 } from "~/ui/accordion";
 
 import { GetStarted } from "./get-started";
+
 import type { ResourcePreview } from "~/components/navigation/types";
 
 const getFooterSections = (resources: ResourcePreview[] = []) => [
