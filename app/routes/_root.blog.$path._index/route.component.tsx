@@ -1,9 +1,50 @@
-import { Link, useLoaderData } from "react-router";
-import type { Route } from "./+types/route";
+import { Link as RouterLink, useLoaderData } from "react-router";
 import { format } from "date-fns";
 import { RawHtml } from "~/components/raw-html";
 import { IconChevronLeft } from "@central-icons/outlined";
 import { Button } from "~/ui/button";
+import { Link } from "~/components/link";
+import { parseSocialLink } from "~/lib/social-links";
+import { BlueskyBrandIcon } from "~/components/bluesky-brand-icon";
+import { FacebookBrandIcon } from "~/components/facebook-brand-icon";
+import { InstagramBrandIcon } from "~/components/instagram-brand-icon";
+import { LinkedInBrandIcon } from "~/components/linkedin-brand-icon";
+import { PinterestBrandIcon } from "~/components/pinterest-brand-icon";
+import { ThreadsBrandIcon } from "~/components/threads-brand-icon";
+import { TikTokBrandIcon } from "~/components/tiktok-brand-icon";
+import { XBrandIcon } from "~/components/x-brand-icon";
+import { YouTubeBrandIcon } from "~/components/youtube-brand-icon";
+import { IconGlobe, IconGithub } from "@central-icons/outlined";
+
+import type { Route } from "./+types/route";
+
+function getSocialIcon(platform: string) {
+  switch (platform) {
+    case "x":
+    case "twitter":
+      return <XBrandIcon />;
+    case "linkedin":
+      return <LinkedInBrandIcon />;
+    case "github":
+      return <IconGithub />;
+    case "facebook":
+      return <FacebookBrandIcon />;
+    case "instagram":
+      return <InstagramBrandIcon />;
+    case "youtube":
+      return <YouTubeBrandIcon />;
+    case "tiktok":
+      return <TikTokBrandIcon />;
+    case "pinterest":
+      return <PinterestBrandIcon />;
+    case "bluesky":
+      return <BlueskyBrandIcon />;
+    case "threads":
+      return <ThreadsBrandIcon />;
+    default:
+      return <IconGlobe />;
+  }
+}
 
 export default function BlogPost() {
   const { post, relatedPosts } =
@@ -14,10 +55,10 @@ export default function BlogPost() {
       {/* Article */}
       <article className="max-w-4xl mx-auto">
         <Button asChild mode="link" className="mb-6">
-          <Link to="/blog">
+          <RouterLink to="/blog">
             <IconChevronLeft />
             All posts
-          </Link>
+          </RouterLink>
         </Button>
 
         {/* Featured Image */}
@@ -33,31 +74,81 @@ export default function BlogPost() {
 
         {/* Article Header */}
         <header className="mb-8 pb-8 border-b">
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 mr-18">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 mr-18">
             {post.title}
           </h1>
 
           {/* Meta Information */}
-          <div className="flex flex-wrap items-center gap-2.5 text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-2.5 text-sm text-muted-foreground">
             {post.publishedAt ? (
               <time dateTime={post.publishedAt.toISOString()}>
                 {format(post.publishedAt, "MMMM d, yyyy")}
               </time>
             ) : null}
 
-            {post.authors && post.authors.length > 0
-              ? [
-                  <span key="author-dot" aria-hidden="true">
-                    •
-                  </span>,
-                  <span key="author-name">
-                    {"by "}
-                    <span className="text-foreground">
-                      {post.authors[0].name}
-                    </span>
-                  </span>,
-                ]
-              : null}
+            {/* Authors */}
+            {post.authors.length > 0 ? (
+              <>
+                <span aria-hidden="true">•</span>
+                <div className="flex flex-wrap items-center gap-2.5">
+                  {post.authors.map((author, index) => {
+                    const parsedSocials = author.socials.map((social) =>
+                      parseSocialLink(social.url, social.platform),
+                    );
+
+                    return (
+                      <div key={author.id} className="flex items-center gap-2">
+                        {index > 0 ? (
+                          <span
+                            aria-hidden="true"
+                            className="text-muted-foreground"
+                          >
+                            •
+                          </span>
+                        ) : null}
+
+                        {/* Author info */}
+                        <div className="flex items-center gap-1.5">
+                          {author.image ? (
+                            <img
+                              src={author.image}
+                              alt={author.name}
+                              className="size-5 rounded-full object-cover"
+                            />
+                          ) : null}
+                          <span className="text-foreground font-medium">
+                            {author.name}
+                          </span>
+
+                          {/* Social links */}
+                          {parsedSocials.length > 0 ? (
+                            <div className="flex items-center gap-0.5 ml-0.5">
+                              {parsedSocials.map((social, socialIndex) => (
+                                <Button
+                                  key={socialIndex}
+                                  asChild
+                                  variant="ghost"
+                                  mode="icon"
+                                  size="xs"
+                                  className="size-5 p-0"
+                                >
+                                  <Link
+                                    to={social.url}
+                                    aria-label={`${author.name} on ${social.displayName}`}
+                                  >
+                                    {getSocialIcon(social.platform)}
+                                  </Link>
+                                </Button>
+                              ))}
+                            </div>
+                          ) : null}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            ) : null}
           </div>
         </header>
 
@@ -99,7 +190,7 @@ export default function BlogPost() {
                 className="group flex flex-col border rounded-lg overflow-hidden transition-shadow hover:shadow-md"
               >
                 {relatedPost.coverImage ? (
-                  <Link
+                  <RouterLink
                     to={`/blog/${relatedPost.slug}`}
                     className="aspect-video overflow-hidden bg-muted"
                   >
@@ -108,7 +199,7 @@ export default function BlogPost() {
                       alt={relatedPost.title}
                       className="w-full h-full object-cover"
                     />
-                  </Link>
+                  </RouterLink>
                 ) : null}
 
                 <div className="flex flex-col flex-1 p-4">
@@ -124,9 +215,9 @@ export default function BlogPost() {
 
                   {/* Title */}
                   <h3 className="text-base font-semibold tracking-tight mb-2">
-                    <Link to={`/blog/${relatedPost.slug}`}>
+                    <RouterLink to={`/blog/${relatedPost.slug}`}>
                       {relatedPost.title}
-                    </Link>
+                    </RouterLink>
                   </h3>
 
                   {/* Description */}

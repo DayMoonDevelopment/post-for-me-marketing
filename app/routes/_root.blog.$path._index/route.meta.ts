@@ -1,4 +1,5 @@
 import { MetadataComposer } from "~/lib/meta";
+import { getSocialProfileUrl } from "~/lib/social-links";
 import type { Route } from "./+types/route";
 
 export function meta({ data }: Route.MetaArgs) {
@@ -22,8 +23,8 @@ export function meta({ data }: Route.MetaArgs) {
     metadata.image = post.coverImage;
   }
 
-  // Add author if available
-  if (post.authors && post.authors.length > 0) {
+  // Add author if available (use primary author for metadata)
+  if (post.authors.length > 0) {
     metadata.author = post.authors[0].name;
   }
 
@@ -37,11 +38,26 @@ export function meta({ data }: Route.MetaArgs) {
     datePublished: post.publishedAt.toISOString(),
     dateModified: post.updatedAt.toISOString(),
     author:
-      post.authors && post.authors.length > 0
-        ? {
-            "@type": "Person",
-            name: post.authors[0].name,
-          }
+      post.authors.length > 0
+        ? post.authors.length === 1
+          ? {
+              "@type": "Person",
+              name: post.authors[0].name,
+              ...(post.authors[0].image && { image: post.authors[0].image }),
+              ...(post.authors[0].bio && { description: post.authors[0].bio }),
+              ...(post.authors[0].socials.length > 0 && {
+                sameAs: post.authors[0].socials.map((s) => s.url),
+              }),
+            }
+          : post.authors.map((author) => ({
+              "@type": "Person",
+              name: author.name,
+              ...(author.image && { image: author.image }),
+              ...(author.bio && { description: author.bio }),
+              ...(author.socials.length > 0 && {
+                sameAs: author.socials.map((s) => s.url),
+              }),
+            }))
         : {
             "@type": "Organization",
             name: "Post For Me",
