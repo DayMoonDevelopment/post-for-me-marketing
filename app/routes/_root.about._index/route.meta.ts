@@ -114,5 +114,23 @@ export const meta: Route.MetaFunction = () => {
     ],
   });
 
+  // Video schema
+  composer.addSchema({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "The Easiest Way to Build Social Media Integrations: Post for Me API",
+    description:
+      "One REST API call to post, schedule, and analyze across TikTok, Instagram, YouTube, Facebook, X, LinkedIn, Threads, Pinterest, and Bluesky.",
+    thumbnailUrl: "https://i.ytimg.com/vi/3CAZhwUdtfw/maxresdefault.jpg",
+    uploadDate: "2024-01-01",
+    contentUrl: "https://www.youtube.com/watch?v=3CAZhwUdtfw",
+    embedUrl: "https://www.youtube-nocookie.com/embed/3CAZhwUdtfw",
+    publisher: {
+      "@type": "Organization",
+      name: "Post For Me",
+      url: "https://www.postforme.dev",
+    },
+  });
+
   return composer.build();
 };
