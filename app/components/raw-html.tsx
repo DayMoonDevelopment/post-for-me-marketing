@@ -55,6 +55,9 @@ export function RawHtml({ html }: { html: string }) {
 
         // Muted text
         "[&_.muted]:text-sm [&_.muted]:text-muted-foreground",
+
+        // YouTube embed
+        "[&_iframe]:w-full [&_iframe]:max-w-lg [&_iframe]:mx-auto [&_iframe]:aspect-video [&_iframe]:rounded-lg [&_iframe]:border [&_iframe]:overflow-hidden [&_iframe]:relative",
       )}
       dangerouslySetInnerHTML={{ __html: html }}
     />

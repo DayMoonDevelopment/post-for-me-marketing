@@ -27,6 +27,12 @@ export const navigationConfig: NavigationConfig = {
     },
     {
       type: "link",
+      label: "Blog",
+      href: "/blog",
+      visibility: { desktop: true, mobile: true },
+    },
+    {
+      type: "link",
       label: "Developers",
       href: "/developers",
       visibility: { desktop: true, mobile: true },

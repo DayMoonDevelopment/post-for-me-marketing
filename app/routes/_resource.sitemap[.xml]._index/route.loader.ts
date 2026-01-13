@@ -23,21 +23,37 @@ export async function loader({ request }: Route.LoaderArgs) {
     },
   ];
 
-  // Calculate how many resource sitemap pages we need
+  // Calculate how many resource and blog sitemap pages we need
   try {
     const marble = new MarbleCMS();
-    const response = await marble.posts().limit("all").get();
 
-    if (response?.posts) {
-      const publishedPosts = response.posts.filter((post) => post.publishedAt);
-      const totalPages = Math.ceil(
-        publishedPosts.length / SITEMAP_CONFIG.URLS_PER_PAGE,
-      );
+    // Fetch first page of posts to get total count for resources sitemap
+    const resourcesResponse = await marble.posts().limit(1).get();
+
+    if (resourcesResponse?.pagination) {
+      const totalPosts = resourcesResponse.pagination.totalItems;
+      const totalPages = Math.ceil(totalPosts / SITEMAP_CONFIG.RESOURCES.PAGE_SIZE);
 
       // Add resource sitemap pages
       for (let page = 1; page <= totalPages; page++) {
         sitemaps.push({
           loc: `${baseUrl}${SITEMAP_CONFIG.SITEMAP_URLS.RESOURCES(page)}`,
+          lastmod: currentDate,
+        });
+      }
+    }
+
+    // Fetch first page of blog posts to get total count for blog sitemap
+    const blogResponse = await marble.posts().categories("blog").limit(1).get();
+
+    if (blogResponse?.pagination) {
+      const totalBlogPosts = blogResponse.pagination.totalItems;
+      const totalBlogPages = Math.ceil(totalBlogPosts / SITEMAP_CONFIG.BLOG.PAGE_SIZE);
+
+      // Add blog sitemap pages
+      for (let page = 1; page <= totalBlogPages; page++) {
+        sitemaps.push({
+          loc: `${baseUrl}${SITEMAP_CONFIG.SITEMAP_URLS.BLOG(page)}`,
           lastmod: currentDate,
         });
       }
