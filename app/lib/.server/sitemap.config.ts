@@ -27,6 +27,7 @@ export const SITEMAP_CONFIG = {
   SITEMAP_URLS: {
     STATIC: "/sitemap/static.xml",
     RESOURCES: (page: number) => `/sitemap/resources/${page}.xml`,
+    BLOG: (page: number) => `/sitemap/blog/${page}.xml`,
   },
 
   /**
@@ -43,10 +44,24 @@ export const SITEMAP_CONFIG = {
    * Resources (blog posts) sitemap specific settings
    */
   RESOURCES: {
+    /** Number of URLs per resources sitemap page (MarbleCMS API max: 100) */
+    PAGE_SIZE: 100,
     /** URL change frequency for resource pages */
     CHANGE_FREQ: "weekly" as const,
     /** Priority for resource pages in sitemap */
     PRIORITY: "0.7",
+  },
+
+  /**
+   * Blog sitemap specific settings
+   */
+  BLOG: {
+    /** Number of URLs per blog sitemap page (MarbleCMS API max: 100) */
+    PAGE_SIZE: 100,
+    /** URL change frequency for blog pages */
+    CHANGE_FREQ: "weekly" as const,
+    /** Priority for blog pages in sitemap */
+    PRIORITY: "0.8",
   },
 
   /**
@@ -72,6 +87,11 @@ export const SITEMAP_CONFIG = {
     RESOURCES_INDEX: {
       CHANGE_FREQ: "daily" as const,
       PRIORITY: "0.8",
+    },
+    /** Blog index page settings */
+    BLOG_INDEX: {
+      CHANGE_FREQ: "daily" as const,
+      PRIORITY: "0.9",
     },
   },
 } as const;
@@ -158,6 +178,14 @@ export function generateStaticSitemapUrls(): SitemapUrl[] {
     lastmod: currentDate,
     changefreq: SITEMAP_CONFIG.STATIC.RESOURCES_INDEX.CHANGE_FREQ,
     priority: SITEMAP_CONFIG.STATIC.RESOURCES_INDEX.PRIORITY,
+  });
+
+  // Blog index page
+  urls.push({
+    loc: `${SITEMAP_CONFIG.BASE_URL}/blog`,
+    lastmod: currentDate,
+    changefreq: SITEMAP_CONFIG.STATIC.BLOG_INDEX.CHANGE_FREQ,
+    priority: SITEMAP_CONFIG.STATIC.BLOG_INDEX.PRIORITY,
   });
 
   return urls;
