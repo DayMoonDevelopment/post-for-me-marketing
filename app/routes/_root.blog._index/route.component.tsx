@@ -46,12 +46,12 @@ export default function BlogIndex() {
                 as="article"
                 className="h-full transition-shadow hover:shadow-md overflow-hidden pt-0"
               >
-                <div className="w-full aspect-video bg-muted flex items-center justify-center">
+                <div className="w-full aspect-video bg-muted flex items-center justify-center mb-4 overflow-hidden">
                   {post.coverImage ? (
                     <img
                       src={post.coverImage}
                       alt={post.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform"
                     />
                   ) : (
                     <IconNewspaper className="w-16 h-16 text-muted-foreground/30" />
@@ -74,7 +74,9 @@ export default function BlogIndex() {
                     ) : null}
                   </div>
 
-                  <CardTitle className="text-lg">{post.title}</CardTitle>
+                  <CardTitle className="text-lg leading-tight">
+                    {post.title}
+                  </CardTitle>
                 </CardHeader>
 
                 {post.description ? (
@@ -85,10 +87,10 @@ export default function BlogIndex() {
                   </CardContent>
                 ) : null}
 
-                <CardFooter className="mt-auto">
-                  <span className="text-sm text-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                <CardFooter className="mt-auto pt-2">
+                  <span className="text-sm text-primary font-medium inline-flex items-center gap-1">
                     Read post
-                    <IconArrowRight className="w-4 h-4" />
+                    <IconArrowRight className="size-4" />
                   </span>
                 </CardFooter>
               </Card>
