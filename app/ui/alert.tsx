@@ -13,6 +13,7 @@ const alertVariants = cva(
           "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
         affirmative:
           "text-affirmative bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-affirmative/90",
+        pop: "text-pop bg-card [&>svg]:text-pop *:data-[slot=alert-description]:text-muted-foreground border-pop/20",
       },
     },
     defaultVariants: {

@@ -48,6 +48,44 @@ Desktop.ini
 # Claude Code
 .claude/
 
+# AI Agent directories
+.agent/
+.agents/
+.cline/
+.codebuddy/
+.codex/
+.commandcode/
+.continue/
+.crush/
+.cursor/
+.factory/
+.gemini/
+.goose/
+.junie/
+.kilocode/
+.kiro/
+.kode/
+.mcpjam/
+.mux/
+.neovate/
+.opencode/
+.openhands/
+.pi/
+.pochi/
+.qoder/
+.qwen/
+.roo/
+.trae/
+.windsurf/
+.zencoder/
+
+# Skills directories
+skills/
+.github/skills/
+
+# Editor directories
+.zed/
+
 # Temporary files
 *.tmp
 *.temp

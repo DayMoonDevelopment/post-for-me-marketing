@@ -1,69 +1,66 @@
 import type { CompetitorComparisonData } from "./comparisons";
 
-export const buffer: CompetitorComparisonData = {
+export const ayrshare: CompetitorComparisonData = {
   competitor: {
-    name: "Buffer",
-    slug: "buffer",
-    productType: "SaaS Dashboard",
+    name: "Ayrshare",
+    slug: "ayrshare",
+    productType: "API Infrastructure",
     pricingModel: "Per-Profile",
-    websiteUrl: "https://buffer.com",
+    websiteUrl: "https://ayrshare.com",
   },
   pricing: {
     rows: [
       {
         label: "Getting Started",
         pfm: "$10/mo",
-        competitor: "Free for 3 social channels (limit 10 posts)",
+        competitor: "$149/mo (Premium tier)",
       },
       {
         label: "Pricing Model",
         pfm: "Fixed pricing based on post volume",
-        competitor: "Pay per connected channel starting at $6/mo/channel",
+        competitor: "Per-profile pricing with tier caps",
       },
       {
         label: "Social Media Accounts",
-        pfm: "Unlimited at no extra cost",
-        competitor: "Charged per connected channel",
+        pfm: "Unlimited",
+        competitor: "Tiered limits (e.g., 10 or 30 profiles)",
       },
       {
         label: "Media Storage",
-        pfm: "Included",
-        competitor: "Included",
+        pfm: "Free and unlimited",
+        competitor: "Available on Premium, Business, Enterprise plans",
       },
       {
         label: "Team Users",
         pfm: "Unlimited – same price, no extra fees",
-        competitor: "Team plans start at $12/mo per channel",
+        competitor: "You are not charged for engineers, product managers, support staff, internal users or logins",
       },
       {
         label: "Scaling and Growth",
         pfm: "Predictable pricing with no overage penalties",
-        competitor: "Costs increase linearly with each new channel",
+        competitor: "Higher tiers required for more profiles",
       },
     ],
   },
 
   youMightUse: {
     competitorScenarios: [
-      "You need a pre-built visual dashboard for a marketing team to manage posts directly.",
-      "You want built-in engagement tools like a social inbox for comments and DMs.",
-      "You are managing a small number of channels for a single brand without developers.",
+      "You're building a SaaS product that needs to post on behalf of your users.",
+      "You require management of paid ads.",
+      "You require access to a social media platform that Post for Me doesn't support (yet, we're probably working on it!).",
     ],
   },
-
-  proposition: null,
-
   features: {
     sdks: [
       {
         name: "TypeScript/JavaScript",
         pfmAvailable: true,
-        competitorAvailable: false,
+        competitorAvailable: true,
       },
       {
         name: "Python",
         pfmAvailable: true,
-        competitorAvailable: false,
+        competitorAvailable: true,
       },
       {
         name: "Go",
@@ -75,7 +72,7 @@ export const buffer: CompetitorComparisonData = {
         pfmAvailable: true,
         competitorAvailable: false,
       },
-
     ],
   },
+  proposition: null,
 };

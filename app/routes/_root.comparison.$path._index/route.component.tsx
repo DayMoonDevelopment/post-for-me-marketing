@@ -1,19 +1,21 @@
-import { Conclusion } from "./components/conclusion";
-import { FeatureComparison } from "./components/feature-comparison";
 import { Hero } from "./components/hero";
-import { IdealFor } from "./components/ideal-for";
-import { Overview } from "./components/overview";
-import { PricingComparison } from "./components/pricing-comparison";
+import { IntentOfUseNotice } from "./components/intent-of-use-notice";
+import { KeyFeatures } from "./components/key-features";
+import { PricingTable } from "./components/pricing-table";
+import { Proposition } from "./components/proposition";
+import { SdkComparison } from "./components/sdk-comparison";
+import { YouMightUse } from "./components/you-might-use";
 
 export function Component() {
   return (
-    <div className="flex flex-col pt-16">
+    <div className="flex flex-col">
       <Hero />
-      <Overview />
-      <FeatureComparison />
-      <PricingComparison />
-      <IdealFor />
-      <Conclusion />
+      <KeyFeatures />
+      <PricingTable />
+      <Proposition />
+      <YouMightUse />
+      <SdkComparison />
+      <IntentOfUseNotice />
     </div>
   );
 }

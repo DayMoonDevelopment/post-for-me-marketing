@@ -8,34 +8,38 @@ export const meta: Route.MetaFunction = ({ data, params }) => {
     return [{ title: "Comparison Not Found | Post for Me" }];
   }
 
+  const title = `Post for Me vs ${comparison.competitor.name}: A Developer's Guide | Post for Me`;
+  const description = `Discover why developers are choosing Post for Me over ${comparison.competitor.name} to build integrations with social media platforms for posting and analytics`;
+  const headline = `Post for Me vs. ${comparison.competitor.name}: A Developer's Guide`;
+
   return [
     {
-      title: comparison.meta.title,
+      title,
     },
     {
       name: "description",
-      content: comparison.meta.description,
+      content: description,
     },
     { rel: "canonical", href: canonicalUrl },
     { property: "og:type", content: "article" },
     {
       property: "og:title",
-      content: comparison.hero.headline,
+      content: headline,
     },
     {
       property: "og:description",
-      content: comparison.hero.subheadline,
+      content: description,
     },
     { property: "og:url", content: canonicalUrl },
     { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:title",
-      content: comparison.hero.headline,
+      content: headline,
     },
     {
       name: "twitter:description",
-      content: comparison.meta.description,
+      content: description,
     },
     {
       name: "twitter:image",
@@ -43,14 +47,14 @@ export const meta: Route.MetaFunction = ({ data, params }) => {
     },
     {
       name: "keywords",
-      content: `Post for Me vs ${comparison.competitor.name}, ${comparison.competitor.name} alternative, social media API, developer API comparison, social media posting API`,
+      content: `Post for Me vs ${comparison.competitor.name}, ${comparison.competitor.name} alternative, social media API, developer API comparison, social media posting API, Post for Me vs ${comparison.competitor.name}, social media API comparison, ${comparison.competitor.productType}, developer tools`,
     },
     {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "Article",
-        headline: comparison.hero.headline,
-        description: comparison.meta.description,
+        headline,
+        description,
         author: {
           "@type": "Organization",
           name: "Day Moon Development",

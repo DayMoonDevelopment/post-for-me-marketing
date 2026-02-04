@@ -1,65 +1,52 @@
+import { ayrshare } from "./comparisons.ayrshare";
 import { buffer } from "./comparisons.buffer";
 import { hootsuite } from "./comparisons.hootsuite";
-import { sproutSocial } from "./comparisons.sprout-social";
+import { late } from "./comparisons.late";
+import { outstand } from "./comparisons.outstand";
+import { postplanify } from "./comparisons.postplanify";
+import { uploadPost } from "./comparisons.upload-post";
 
-export interface ComparisonFeature {
-  name: string;
-  postForMe: {
-    available: boolean;
-    description: string;
-  };
+export interface PricingComparisonRow {
+  label: string;
+  pfm: string;
+  competitor: string;
+}
+
+export interface CompetitorComparisonData {
   competitor: {
-    available: boolean;
-    description: string;
+    name: string; // e.g., "Buffer" or "Upload-Post"
+    slug: string; // e.g., "buffer"
+    productType: "SaaS Dashboard" | "API Infrastructure" | "Automation Tool";
+    pricingModel: "Per-Seat" | "Per-Profile" | "Tiered" | "Hybrid";
+    websiteUrl: string; // External Link
+  };
+  pricing: {
+    rows: PricingComparisonRow[];
+  };
+  // Optional "you might use" section - set to null to hide this section for a competitor
+  youMightUse?: {
+    competitorScenarios: string[]; // When the competitor is the right choice
+  } | null;
+  // Optional proposition for displaying a single value proposition
+  proposition?: {
+    title: string; // Alert title
+    description: string; // Alert description
+  } | null;
+  features: {
+    sdks: {
+      name: string;
+      pfmAvailable: boolean;
+      competitorAvailable: boolean;
+    }[];
   };
 }
 
-export interface ComparisonPricing {
-  postForMe: {
-    startingPrice: string;
-    model: string;
-    details: string[];
-  };
-  competitor: {
-    startingPrice: string;
-    model: string;
-    details: string[];
-  };
-}
-
-export interface ComparisonData {
-  id: string;
-  competitor: {
-    name: string;
-    description: string;
-  };
-  meta: {
-    title: string;
-    description: string;
-  };
-  hero: {
-    headline: string;
-    subheadline: string;
-  };
-  overview: {
-    postForMe: string;
-    competitor: string;
-  };
-  features: ComparisonFeature[];
-  pricing: ComparisonPricing;
-  idealFor: {
-    postForMe: string[];
-    competitor: string[];
-  };
-  conclusion: {
-    headline: string;
-    description: string;
-    cta: string;
-  };
-}
-
-export const comparisons: Record<string, ComparisonData> = {
+export const comparisons: Record<string, CompetitorComparisonData> = {
   buffer: buffer,
   hootsuite: hootsuite,
-  "sprout-social": sproutSocial,
+  ayrshare: ayrshare,
+  late: late,
+  "upload-post": uploadPost,
+  outstand: outstand,
+  postplanify: postplanify,
 };
