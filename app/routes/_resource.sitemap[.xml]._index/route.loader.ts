@@ -22,6 +22,14 @@ export async function loader({ request }: Route.LoaderArgs) {
       loc: `${baseUrl}${SITEMAP_CONFIG.SITEMAP_URLS.STATIC}`,
       lastmod: currentDate,
     },
+    {
+      loc: `${baseUrl}${SITEMAP_CONFIG.SITEMAP_URLS.COMPARE}`,
+      lastmod: currentDate,
+    },
+    {
+      loc: `${baseUrl}${SITEMAP_CONFIG.SITEMAP_URLS.SOLUTIONS}`,
+      lastmod: currentDate,
+    },
   ];
 
   // Calculate how many resource and blog sitemap pages we need
