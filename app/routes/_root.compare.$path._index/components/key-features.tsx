@@ -1,9 +1,11 @@
-import { IconApiConnection, IconCode, IconMultiMedia, IconReceiptCheck, IconSupport } from "@central-icons/outlined";
 import { IconGithub } from "@central-icons/filled";
-import type { ComponentType, ReactNode } from "react";
+import { IconApiConnection, IconCode, IconMultiMedia, IconReceiptCheck, IconSupport } from "@central-icons/outlined";
 
 import { Link } from "~/components/link";
+
 import { Button } from "~/ui/button";
+
+import type { ComponentType, ReactNode } from "react";
 
 interface KeyFeature {
   title: string;

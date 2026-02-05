@@ -1,11 +1,10 @@
 import { IconArrowUpRight, IconExclamationTriangle } from "@central-icons/outlined";
-
 import { useLoaderData } from "react-router";
+
+import { Link } from "~/components/link";
 
 import { Alert, AlertDescription, AlertTitle } from "~/ui/alert";
 import { Button } from "~/ui/button";
-
-import { Link } from "~/components/link";
 
 import type { Route } from "../+types/route";
 

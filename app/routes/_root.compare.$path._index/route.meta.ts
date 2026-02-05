@@ -1,7 +1,7 @@
 import type { Route } from "./+types/route";
 
 export const meta: Route.MetaFunction = ({ data, params }) => {
-  const canonicalUrl = `https://www.postforme.dev/comparison/${params.path}`;
+  const canonicalUrl = `https://www.postforme.dev/compare/${params.path}`;
   const comparison = data?.comparison;
 
   if (!comparison) {
