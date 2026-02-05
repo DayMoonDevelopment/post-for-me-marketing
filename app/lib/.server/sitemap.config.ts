@@ -1,4 +1,3 @@
-import { solutions } from "./data/solutions";
 
 /**
  * Sitemap generation configuration
@@ -26,6 +25,8 @@ export const SITEMAP_CONFIG = {
    */
   SITEMAP_URLS: {
     STATIC: "/sitemap/static.xml",
+    COMPARE: "/sitemap/compare.xml",
+    SOLUTIONS: "/sitemap/solutions.xml",
     RESOURCES: (page: number) => `/sitemap/resources/${page}.xml`,
     BLOG: (page: number) => `/sitemap/blog/${page}.xml`,
   },
@@ -132,6 +133,8 @@ export function generateStaticSitemapUrls(): SitemapUrl[] {
     "/developers",
     "/privacy",
     "/terms",
+    "/compare",
+    "/solutions",
   ];
 
   urls.push(
@@ -142,35 +145,6 @@ export function generateStaticSitemapUrls(): SitemapUrl[] {
       priority: SITEMAP_CONFIG.STATIC.MARKETING.PRIORITY,
     })),
   );
-
-  // Solutions index page
-  urls.push({
-    loc: `${SITEMAP_CONFIG.BASE_URL}/solutions`,
-    lastmod: currentDate,
-    changefreq: SITEMAP_CONFIG.STATIC.SOLUTIONS.CHANGE_FREQ,
-    priority: SITEMAP_CONFIG.STATIC.SOLUTIONS.PRIORITY,
-  });
-
-  // Individual solution pages (read synchronously from solutions data)
-  urls.push(
-    ...Object.keys(solutions).map((solutionId) => ({
-      loc: `${SITEMAP_CONFIG.BASE_URL}/solutions/${solutionId}`,
-      lastmod: currentDate,
-      changefreq: SITEMAP_CONFIG.STATIC.SOLUTIONS.CHANGE_FREQ,
-      priority: SITEMAP_CONFIG.STATIC.SOLUTIONS.PRIORITY,
-    })),
-  );
-
-  // todo : finish the design/layout and then add
-  // Individual comparison pages (read synchronously from comparisons data)
-  // urls.push(
-  //   ...Object.keys(comparisons).map((comparisonId) => ({
-  //     loc: `${SITEMAP_CONFIG.BASE_URL}/comparison/${comparisonId}`,
-  //     lastmod: currentDate,
-  //     changefreq: SITEMAP_CONFIG.STATIC.MARKETING.CHANGE_FREQ,
-  //     priority: SITEMAP_CONFIG.STATIC.MARKETING.PRIORITY,
-  //   })),
-  // );
 
   // Resources index page
   urls.push({
