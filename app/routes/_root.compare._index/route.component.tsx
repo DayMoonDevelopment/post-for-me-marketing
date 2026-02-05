@@ -1,9 +1,7 @@
 import { IconArrowRight } from "@central-icons/outlined";
 import { Link, useLoaderData } from "react-router";
 
-import { Badge } from "~/ui/badge";
 import { Button } from "~/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/ui/card";
 
 import type { Route } from './+types/route'
 
