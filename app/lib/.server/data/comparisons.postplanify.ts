@@ -1,53 +1,53 @@
 import type { CompetitorComparisonData } from "./comparisons";
 
-export const buffer: CompetitorComparisonData = {
+export const postplanify: CompetitorComparisonData = {
   competitor: {
-    name: "Buffer",
-    slug: "buffer",
+    name: "PostPlanify",
+    slug: "postplanify",
     productType: "SaaS Dashboard",
-    pricingModel: "Per-Profile",
-    websiteUrl: "https://buffer.com",
+    pricingModel: "Tiered",
+    websiteUrl: "https://postplanify.com",
   },
   pricing: {
     rows: [
       {
         label: "Getting Started",
         pfm: "$10/mo",
-        competitor: "Free for 3 social channels (limit 10 posts)",
+        competitor: "$19/mo",
       },
       {
         label: "Pricing Model",
         pfm: "Fixed pricing based on post volume",
-        competitor: "Pay per connected channel starting at $6/mo/channel",
+        competitor: "Tiered subscription",
       },
       {
         label: "Social Media Accounts",
-        pfm: "Unlimited at no extra cost",
-        competitor: "Charged per connected channel",
+        pfm: "Unlimited",
+        competitor: "Capped (3 on Starter plan)",
       },
       {
         label: "Media Storage",
-        pfm: "Included",
+        pfm: "Free and unlimited",
         competitor: "Included",
       },
       {
         label: "Team Users",
-        pfm: "Unlimited – same price, no extra fees",
-        competitor: "Team plans start at $12/mo per channel",
+        pfm: "Unlimited",
+        competitor: "Unlimited",
       },
       {
         label: "Scaling and Growth",
         pfm: "Predictable pricing with no overage penalties",
-        competitor: "Costs increase linearly with each new channel",
+        competitor: "Upgrade tiers for more social accounts",
       },
     ],
   },
 
   youMightUse: {
     competitorScenarios: [
-      "You need a pre-built visual dashboard for a marketing team to manage posts directly.",
-      "You want built-in engagement tools like a social inbox for comments and DMs.",
-      "You are managing a small number of channels for a single brand without developers.",
+      "You need a ready-made tool to manage your own social presence directly.",
+      "You want AI help with writing captions and designing posts in Canva.",
+      `You prefer a "buy" strategy over a "build" strategy for internal tools.`,
     ],
   },
 
@@ -75,7 +75,6 @@ export const buffer: CompetitorComparisonData = {
         pfmAvailable: true,
         competitorAvailable: false,
       },
-
     ],
   },
 };
