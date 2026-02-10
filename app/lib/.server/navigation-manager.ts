@@ -25,7 +25,6 @@ export class NavigationManager {
     const data = await this.marble
       .posts()
       .categories("resources")
-      .tags("social-media-platforms")
       .get();
 
     const posts = data?.posts || [];
