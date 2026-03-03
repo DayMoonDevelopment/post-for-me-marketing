@@ -1,6 +1,6 @@
 # Post for Me – Privacy Policy
 
-_Last updated: June&nbsp;26, 2025_
+_Last updated: March&nbsp;3, 2026_
 
 ## 1. What We Collect
 
@@ -9,6 +9,8 @@ _Last updated: June&nbsp;26, 2025_
 - **Usage logs** – timestamps of API calls, destinations, and basic error data
 - **Product-analytics events** – page views and clicks captured via **PostHog** (first-party)
 - **Payment info** – billing email address and Stripe customer IDs (we never store full card numbers)
+
+If you connect a Google/YouTube account, we also collect and store **Authorized Data** returned by YouTube API Services (for example: channel identifiers, account metadata, and OAuth tokens) as needed to provide the features you enable.
 
 ## 2. How We Use Your Data
 
@@ -21,10 +23,16 @@ _Last updated: June&nbsp;26, 2025_
 ## 3. Login & Cookies
 
 - **Authentication** – password-less; we email a one-time magic link to verify you
-- **Cookies** – first-party only, used for session management, UI preferences, and PostHog analytics.  
-  We do **not** use advertising or cross-site tracking cookies
+- **Cookies and similar technology** – we (and service providers that help us run the product, such as PostHog) store, access, and collect information directly or indirectly on or from your devices and browsers (for example, by placing, accessing, or recognizing cookies, local storage, and similar technology) for session management, security, preferences, and product analytics.  
+  We do **not** use advertising or cross-site tracking cookies.
 
-## 4. When We Share
+## 4. YouTube API Services
+
+Post for Me uses **YouTube API Services** when you connect YouTube.
+
+- **Google Privacy Policy** – http://www.google.com/policies/privacy
+
+## 5. When We Share
 
 We share data only with:
 
@@ -36,17 +44,19 @@ We share data only with:
 
 We **never** sell or rent your information.
 
-## 5. Security
+## 6. Security
 
 All data is encrypted in transit (HTTPS) and at rest. Production access is protected by least-privilege roles and mandatory two-factor authentication.
 
-## 6. Your Choices
+## 7. Your Choices (Including YouTube Data)
 
 - **Access / update** – Manage your email and projects at any time in the dashboard
-- **Delete** – Delete your account whenever you wish; project data and scheduled jobs are removed within 30 days (billing records are retained as required by law)
+- **Disconnect YouTube** – You can disconnect YouTube in the dashboard. We will stop making requests to YouTube API Services for that connection.
+- **Revoke access via Google** – You can revoke Post for Me’s access at any time from Google’s security settings page: https://myaccount.google.com/connections?filters=3,4&hl=en
+- **Delete** – Delete your account whenever you wish; project data and scheduled jobs are removed within 30 days (billing records are retained as required by law). If you want deletion of any stored Authorized Data associated with a connected Google/YouTube account sooner, email us and we’ll process the request.
 - **Questions** – Email **privacy@postforme.dev**
 
-## 7. Changes to This Policy
+## 8. Changes to This Policy
 
 We’ll post any changes here and email account owners if the changes are significant.
 

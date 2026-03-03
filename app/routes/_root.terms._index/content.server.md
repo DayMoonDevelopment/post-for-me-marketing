@@ -1,6 +1,6 @@
 # Post for Me – Terms of Service
 
-_Last updated: June 26, 2025_
+_Last updated: March 3, 2026_
 
 Welcome to **Post for Me** (“Service”), owned and operated by **Day Moon Development LLC** (“we,” “our,” or “us”). By accessing or using the Service—including its API, dashboard, website, and any related features—you agree to these Terms of Service (“Terms”). If you do not agree, do not use the Service.
 
@@ -42,6 +42,8 @@ We aim for high uptime but do not guarantee uninterrupted or error-free operatio
 ## 6. Third-Party Platforms
 
 Your posts are subject to the terms and policies of each social-media site (e.g., X/Twitter, LinkedIn). We are not responsible for platform actions such as removals, rate limits, or bans.
+
+If you use the Service in connection with YouTube, you acknowledge that the Service uses YouTube API Services. **By using the Service, you agree to be bound by the YouTube Terms of Service**: https://www.youtube.com/t/terms
 
 ## 7. Intellectual Property
 
