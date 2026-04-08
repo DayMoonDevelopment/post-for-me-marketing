@@ -10,9 +10,9 @@ export const meta: Route.MetaFunction = () => {
     {
       name: "description",
       content:
-        "Discover how Post for Me powers social media features for schedulers, AI tools, games, SaaS products, e-commerce, influencer platforms, CRMs, DAMs, news publishers, and event management. One API for all platforms.",
+        "See how Post for Me powers social media features for schedulers, AI tools, games, SaaS products, CRMs, e-commerce platforms, and more.",
     },
-    { rel: "canonical", href: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
 
     // Open Graph
     { property: "og:type", content: "website" },

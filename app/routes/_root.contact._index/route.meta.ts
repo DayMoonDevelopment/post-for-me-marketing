@@ -17,6 +17,7 @@ export const meta: Route.MetaFunction = () => {
       content:
         "contact Post for Me, support, customer service, get in touch, API support, developer support",
     },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
     { property: "og:type", content: "website" },
     {
       property: "og:title",

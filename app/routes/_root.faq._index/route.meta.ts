@@ -43,13 +43,15 @@ export const meta: Route.MetaFunction = ({ data }) => {
     },
     {
       name: "description",
-      content: `Get answers to frequently asked questions about Post for Me's unified social media API. Find help with pricing, integrations, security, media processing, and technical support for TikTok, Instagram, Facebook, X, YouTube, and more platforms. ${totalQuestions} questions answered across ${faqSections.length} categories.`,
+      content:
+        "Answers to common questions about the Post for Me API: pricing, platform support, rate limits, OAuth setup, and getting started.",
     },
     {
       name: "keywords",
       content:
         "Post for Me FAQ, social media API questions, developer support, API documentation, social media integration help, platform API questions, pricing FAQ, technical support",
     },
+    { tagName: "link", rel: "canonical", href: "https://www.postforme.dev/faq" },
     { property: "og:type", content: "website" },
     {
       property: "og:title",

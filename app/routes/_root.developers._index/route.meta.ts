@@ -14,11 +14,11 @@ export const meta: Route.MetaFunction = () => {
     {
       name: "description",
       content:
-        "Unified social media API for TikTok, Instagram, Facebook, X, YouTube, LinkedIn, Pinterest, Threads & Bluesky. REST API, SDKs, webhooks. Quickstart or white label. From $10/mo.",
+        "Build social media integrations in minutes. REST API, SDKs, and webhooks for TikTok, Instagram, Facebook, X, YouTube, LinkedIn, Pinterest, Threads, and Bluesky.",
     },
 
     // Canonical URL
-    { rel: "canonical", href: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
 
     // Open Graph – optimized for developer sharing
     { property: "og:type", content: "website" },
@@ -75,6 +75,7 @@ export const meta: Route.MetaFunction = () => {
               "Unified social media posting API that enables developers to integrate TikTok, Instagram, Facebook, X (Twitter), YouTube, LinkedIn, Pinterest, Threads, and Bluesky with a single REST API. Features include client SDKs, real-time webhooks, unlimited account connections, analytics, and feeds.",
             offers: {
               "@type": "AggregateOffer",
+              price: "10",
               priceCurrency: "USD",
               lowPrice: "10",
               highPrice: "1000",
@@ -161,6 +162,7 @@ export const meta: Route.MetaFunction = () => {
             },
             datePublished: "2024-01-01",
             dateModified: new Date().toISOString().split("T")[0],
+            image: "https://www.postforme.dev/og-image.png",
           },
           // BreadcrumbList for navigation
           {

@@ -29,7 +29,7 @@ export class MetadataComposer {
     this.explicitMeta.push(
       { property: "og:site_name", content: this._siteName },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@postforme" },
+      { name: "twitter:site", content: "@postforme_dev" },
       { name: "theme-color", content: "#000000" },
       { tagName: "link", rel: "icon", href: "/favicon.ico" },
     );

@@ -8,7 +8,7 @@ export const meta: Route.MetaFunction = () => {
   composer.title =
     "About Post for Me | Unified Social Media API for Developers";
   composer.description =
-    "How Post for Me was built: A unified API for TikTok, Instagram, Facebook, X, LinkedIn, Pinterest, Bluesky, Threads, and YouTube. Open source, transparent pricing from $10/month, built by developers for developers.";
+    "Post for Me was born from building the same social media integrations over and over. One API to replace them all — built by developers, for developers.";
   composer.canonical = "https://www.postforme.dev/about";
   composer.keywords =
     "Post for Me about, unified social media API, developer-first API, social media integration, TikTok API, Instagram API, Facebook API, X API, LinkedIn API, Pinterest API, Bluesky API, Threads API, YouTube API, 9 platforms, API-first platform, open source social API, Day Moon Development, OAuth integration";

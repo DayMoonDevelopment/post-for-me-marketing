@@ -14,8 +14,7 @@ export const meta: Route.MetaFunction = () => {
     {
       name: "description",
       content:
-        "Unified developer API to post and schedule content across TikTok, Instagram, Facebook, X, LinkedIn, YouTube, Threads, Pinterest, and Bluesky. Plans start at just $10/month with unlimited accounts and analytics.",
-      // 160 characters exactly
+        "Developer API to post and schedule content across TikTok, Instagram, Facebook, X, LinkedIn, YouTube, Threads, Pinterest, and Bluesky. One integration, every platform.",
     },
 
     // Canonical URL
@@ -82,6 +81,7 @@ export const meta: Route.MetaFunction = () => {
               "https://github.com/DayMoonDevelopment/post-for-me",
               "https://x.com/postforme_dev",
               "https://discord.gg/Nv6xEZ2vP5",
+              "https://www.daymoon.dev",
             ],
             contactPoint: {
               "@type": "ContactPoint",

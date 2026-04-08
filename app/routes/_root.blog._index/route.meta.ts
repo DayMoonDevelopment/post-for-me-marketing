@@ -4,9 +4,9 @@ import type { Route } from "./+types/route";
 
 export function meta({ data }: Route.MetaArgs) {
   const metadata = new MetadataComposer();
-  metadata.title = "Blog - Post For Me";
+  metadata.title = "Post for Me Blog — Developer Guides & Social Media API Insights";
   metadata.description =
-    "Technical guides, integration tutorials, and insights for developers building social media automation. Learn how to integrate with TikTok, Facebook, Instagram, X, LinkedIn, and more.";
+    "Technical guides, integration tutorials, and insights for developers building social media automation with the Post for Me API.";
   metadata.canonical = "https://www.postforme.dev/blog";
 
   // Add Collection Page schema
