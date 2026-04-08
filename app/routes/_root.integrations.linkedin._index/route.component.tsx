@@ -1,6 +1,5 @@
-import { useLoaderData } from "react-router";
-
 import { IconPeople, IconBuildings } from "@central-icons/filled";
+import { useLoaderData } from "react-router";
 
 import { ConfigurationsSection } from "~/components/integration-shared/configurations-section";
 import { FAQSectionWrapper } from "~/components/integration-shared/faq-section-wrapper";
