@@ -16,6 +16,12 @@ export const navigationConfig: NavigationConfig = {
     },
     {
       type: "link",
+      label: "Integrations",
+      href: "/integrations",
+      visibility: { desktop: true, mobile: true },
+    },
+    {
+      type: "link",
       label: "Pricing",
       href: "/pricing",
       visibility: { desktop: true, mobile: true },
