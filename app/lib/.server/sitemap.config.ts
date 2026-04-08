@@ -27,6 +27,7 @@ export const SITEMAP_CONFIG = {
     STATIC: "/sitemap/static.xml",
     COMPARE: "/sitemap/compare.xml",
     SOLUTIONS: "/sitemap/solutions.xml",
+    INTEGRATIONS: "/sitemap/integrations.xml",
     RESOURCES: (page: number) => `/sitemap/resources/${page}.xml`,
     BLOG: (page: number) => `/sitemap/blog/${page}.xml`,
   },
@@ -84,6 +85,11 @@ export const SITEMAP_CONFIG = {
       CHANGE_FREQ: "monthly" as const,
       PRIORITY: "0.9",
     },
+    /** Integrations pages settings */
+    INTEGRATIONS: {
+      CHANGE_FREQ: "monthly" as const,
+      PRIORITY: "0.9",
+    },
     /** Resources index page settings */
     RESOURCES_INDEX: {
       CHANGE_FREQ: "daily" as const,
@@ -135,6 +141,7 @@ export function generateStaticSitemapUrls(): SitemapUrl[] {
     "/terms",
     "/compare",
     "/solutions",
+    "/integrations",
   ];
 
   urls.push(

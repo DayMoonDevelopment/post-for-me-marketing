@@ -43,6 +43,47 @@ const getFooterSections = (resources: ResourcePreview[] = []) => [
     ],
   },
   {
+    title: "Integrations",
+    links: [
+      {
+        title: "TikTok",
+        href: "/integrations/tiktok",
+      },
+      {
+        title: "Facebook",
+        href: "/integrations/facebook",
+      },
+      {
+        title: "Instagram",
+        href: "/integrations/instagram",
+      },
+      {
+        title: "X (Twitter)",
+        href: "/integrations/x",
+      },
+      {
+        title: "LinkedIn",
+        href: "/integrations/linkedin",
+      },
+      {
+        title: "Pinterest",
+        href: "/integrations/pinterest",
+      },
+      {
+        title: "Bluesky",
+        href: "/integrations/bluesky",
+      },
+      {
+        title: "Threads",
+        href: "/integrations/threads",
+      },
+      {
+        title: "YouTube",
+        href: "/integrations/youtube",
+      },
+    ],
+  },
+  {
     title: "Solutions",
     links: [
       {
@@ -171,7 +212,7 @@ export const Footer = ({
           </div>
 
           {/* Desktop Grid Layout */}
-          <div className="hidden flex-1 justify-end grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-6 gap-y-8 px-4 sm:px-6 lg:px-8 md:grid">
+          <div className="hidden flex-1 justify-end grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-6 gap-y-8 px-4 sm:px-6 lg:px-8 md:grid">
             {footerSections.map(({ title, links }) => (
               <div key={title}>
                 <h3 className="text-sm font-medium">{title}</h3>
