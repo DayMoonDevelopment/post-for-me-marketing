@@ -143,6 +143,7 @@ export function generateStaticSitemapUrls(): SitemapUrl[] {
     "/solutions",
     "/integrations",
     "/social-media",
+    "/social-media/posting",
   ];
 
   urls.push(
