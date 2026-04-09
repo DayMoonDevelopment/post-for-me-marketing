@@ -113,10 +113,10 @@ export function Component() {
               <Badge variant="outline" className="mb-6">
                 Social Media API
               </Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] text-pretty">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] text-balance">
                 Social media posting and analytics across all major platforms
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-lg text-muted-foreground leading-relaxed text-balance">
                 Ship social media features in hours, not months. One REST API
                 replaces platform-by-platform integration work.
               </p>
@@ -135,14 +135,21 @@ export function Component() {
                 </Button>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-4 justify-items-center">
+            {/* Desktop: 3x3 grid with card containers */}
+            <div className="hidden lg:grid grid-cols-3 gap-4 justify-items-center">
               {platformIcons.map((Icon, i) => (
                 <div
                   key={i}
-                  className="flex items-center justify-center size-16 md:size-20 rounded-xl border bg-card shadow-sm"
+                  className="flex items-center justify-center size-20 rounded-xl border bg-card shadow-sm"
                 >
-                  <Icon className="size-8 md:size-10" />
+                  <Icon className="size-10" />
                 </div>
+              ))}
+            </div>
+            {/* Mobile/Tablet: single row, icons only */}
+            <div className="flex justify-around lg:hidden col-span-full">
+              {platformIcons.map((Icon, i) => (
+                <Icon key={i} className="size-6" />
               ))}
             </div>
           </div>
@@ -151,7 +158,7 @@ export function Component() {
 
       {/* Quick Feature Overview */}
       <div className="bg-muted">
-        <div className="max-w-(--breakpoint-lg) w-full mx-auto px-6 py-16 md:py-24">
+        <div className="max-w-(--breakpoint-lg) w-full mx-auto px-6 py-10 md:py-14">
           <div className="grid sm:grid-cols-3 gap-8">
             {[
               {
