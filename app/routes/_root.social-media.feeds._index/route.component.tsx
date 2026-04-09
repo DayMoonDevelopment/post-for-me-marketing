@@ -334,7 +334,7 @@ export function Component() {
               </div>
             </Link>
             <Link
-              to="/social-media"
+              to="/social-media/analytics"
               className="flex items-start gap-4 bg-card border rounded-xl p-6 hover:border-primary/50 transition-colors"
             >
               <div className="flex items-center justify-center w-10 h-10 shrink-0 rounded-lg bg-muted border border-border">

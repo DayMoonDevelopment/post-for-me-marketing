@@ -2,16 +2,14 @@ import {
   IconArrowRight,
   IconArrowsRepeat,
   IconArrowUpRight,
-  IconCalendar1,
+  IconChart1,
   IconCode,
-  IconDraft,
-  IconImages1,
-  IconPreview,
+  IconLineChart1,
   IconNewspaper,
-  IconPeopleAdd,
+  IconPointChart,
   IconSend,
   IconShield,
-  IconTextBlock,
+  IconTrending1,
 } from "@central-icons/outlined";
 import { Link } from "react-router";
 
@@ -38,129 +36,114 @@ const platformIcons = [
   BlueskyBrandIcon, ThreadsBrandIcon, YouTubeBrandIcon,
 ];
 
-const postingCapabilities = [
+const analyticsCapabilities = [
   {
-    icon: IconTextBlock,
-    title: "Captions",
+    icon: IconChart1,
+    title: "Post-level metrics",
     description:
-      "Write once or customize per platform. Captions are validated against each platform's character limits and formatting rules before publishing.",
+      "Retrieve impressions, reach, engagement, likes, comments, shares, and saves for individual posts. Not account-level, not aggregate.",
   },
   {
-    icon: IconImages1,
-    title: "Media",
+    icon: IconCode,
+    title: "Unified response format",
     description:
-      "Attach images and video to any post. Post for Me validates formats, handles transcoding, and enforces platform-specific size and resolution requirements.",
+      "Every platform returns metrics in the same structure. No need to normalize 9 different analytics response formats yourself.",
   },
   {
-    icon: IconPreview,
-    title: "Thumbnails",
+    icon: IconTrending1,
+    title: "Track engagement over time",
     description:
-      "Set custom thumbnails for video posts. Supported on platforms that allow it, ignored gracefully on those that don't.",
+      "Fetch analytics for any post at any point after publishing. Build trend views by retrieving metrics repeatedly over days, weeks, or months.",
   },
   {
-    icon: IconCalendar1,
-    title: "Scheduled posting",
+    icon: IconPointChart,
+    title: "Cross-platform comparison",
     description:
-      "Set a future publish time and Post for Me delivers the post on schedule. Timezone normalization and platform scheduling rules are handled for you.",
+      "Compare how the same content performs across different platforms. Consistent metric names and formats make cross-platform analysis straightforward.",
   },
   {
-    icon: IconDraft,
-    title: "Draft mode",
+    icon: IconLineChart1,
+    title: "Real-time and historical",
     description:
-      "Create posts without publishing them. Review, edit, and publish later through the API or dashboard. On TikTok, drafts can be sent to the app for manual review.",
+      "Access the latest available metrics for any post. Platforms update at different rates, but Post for Me always returns the freshest data available.",
   },
   {
-    icon: IconPeopleAdd,
-    title: "Multi-account posting",
+    icon: IconShield,
+    title: "No credentials to start",
     description:
-      "Target multiple connected accounts in a single API call. Each account receives the post with any platform-specific customizations you define.",
+      "Start retrieving post analytics immediately with managed OAuth credentials. Bring your own when you are ready for production.",
   },
 ];
 
-const platformCustomizations = [
+const useCases = [
   {
-    icon: YouTubeBrandIcon,
-    platform: "YouTube",
-    detail: "Set a video title in addition to the caption",
+    title: "Performance dashboards",
+    description:
+      "Show users how their posts are performing across platforms. Build engagement views, comparison charts, and trend reports inside your product.",
   },
   {
-    icon: TikTokBrandIcon,
-    platform: "TikTok",
-    detail: "Send posts to the TikTok app as drafts for manual review and publishing",
+    title: "Content optimization",
+    description:
+      "Identify top-performing posts and surface patterns. Help users understand which content types, formats, and platforms drive the most engagement.",
   },
   {
-    icon: InstagramBrandIcon,
-    platform: "Instagram",
-    detail: "Post content to the account feed, reels, or story",
-  },
-  {
-    icon: PinterestBrandIcon,
-    platform: "Pinterest",
-    detail: "Target a specific board for each pin",
-  },
-  {
-    icon: XBrandIcon,
-    platform: "X",
-    detail: "Create polls with custom options and duration",
-  },
-  {
-    icon: LinkedInBrandIcon,
-    platform: "LinkedIn",
-    detail: "Post to business pages or personal profiles",
+    title: "Reporting and exports",
+    description:
+      "Pull metrics into reports for stakeholders, clients, or internal review. Consistent data formats make automated reporting straightforward.",
   },
 ];
 
 const whyNotBuildItYourself = [
   {
-    title: "9 different APIs to learn",
+    title: "9 different metrics formats",
     description:
-      "Every platform has its own authentication model, request format, media requirements, and rate limits. Building and maintaining 9 integrations is a full-time job.",
+      "Every platform names and structures its analytics differently. Impressions on one platform are not the same field on another. Normalizing all of them is tedious, ongoing work.",
     icon: IconCode,
   },
   {
-    title: "Constant platform changes",
+    title: "Constant API changes",
     description:
-      "Platforms deprecate endpoints, change API versions, and update requirements regularly. Each change means engineering time to investigate, update, and test.",
+      "Platforms regularly update their analytics endpoints, deprecate fields, and change rate limits. Each change requires investigation, code updates, and testing.",
     icon: IconArrowsRepeat,
   },
   {
-    title: "Credential management overhead",
+    title: "OAuth and credential overhead",
     description:
-      "Each platform requires its own developer application, approval process, and credential management. Post for Me handles this out of the box or lets you bring your own.",
+      "Accessing post analytics requires authenticated API access to each platform. That means managing developer apps, approval processes, token refresh, and credential storage for every integration.",
     icon: IconShield,
   },
 ];
 
 const faqs = [
   {
-    question: "What content types can I post through the API?",
+    question: "What analytics data does Post for Me provide?",
     answer:
-      "Text captions, images, and video. Post for Me validates formats, handles transcoding, and enforces platform-specific requirements automatically. You don't need to know each platform's media specs.",
+      "Post-level analytics including impressions, reach, engagement, likes, comments, shares, and saves. All metrics are normalized across platforms into a consistent response format.",
   },
   {
-    question: "Can I schedule posts for future publishing?",
+    question: "Is this account-level analytics?",
     answer:
-      'Yes. Include a <code>publish_at</code> timestamp in your API call and Post for Me publishes at the specified time. Timezone normalization and platform-specific scheduling rules are handled for you.',
+      "No. Post for Me provides analytics at the individual post level, not account-level metrics. You get performance data for specific posts across any connected account.",
   },
   {
-    question: "Can I customize posts per platform?",
+    question: "Which platforms support post analytics?",
     answer:
-      'Yes. Post for Me supports per-platform overrides so you can set YouTube titles, choose Instagram content types, post to specific Pinterest boards, create X polls, and more. All in the same API call. <a href="/integrations">See all platform capabilities</a>.',
+      'All 9 supported platforms: TikTok, Facebook, Instagram, X, LinkedIn, Pinterest, Bluesky, Threads, and YouTube. All return metrics in the same unified format. <a href="/integrations">See all platform details</a>.',
   },
   {
-    question: "Can I post to multiple accounts at once?",
+    question: "Can I track engagement over time?",
     answer:
-      "Yes. A single API call can target multiple connected accounts across different platforms. Each account receives the post with any platform-specific customizations you define.",
+      "Yes. Fetch analytics for any post at any point after publishing. Retrieve metrics repeatedly to track how engagement changes over time and build performance trend views in your product.",
   },
   {
-    question: "What is draft mode?",
+    question: "Do I need platform credentials to access analytics?",
     answer:
-      "Draft mode lets you create posts without publishing them immediately. Drafts can be reviewed, edited, and published later through the API or dashboard. On TikTok, drafts can be sent to the TikTok app for manual review and publishing.",
+      'No. Post for Me provides managed OAuth credentials so you can start retrieving analytics immediately. When you are ready for production, you can <a href="/developers">bring your own credentials</a> for full control.',
   },
   {
-    question: "How does media handling work?",
+    question: "How fresh is the analytics data?",
     answer:
-      "Upload images or video with your post and Post for Me takes care of the rest. Format validation, transcoding, resolution enforcement, and platform-specific requirements are all handled automatically.",
+      "Post for Me returns the latest available metrics from each platform at the time of your request. The freshness depends on each platform's API update frequency.",
   },
 ];
 
@@ -173,15 +156,15 @@ export function Component() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <Badge variant="pop" className="mb-6">
-                Social Media Posting
+                Post Analytics
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] text-balance">
-                Post to every major social media platform through one API
+                Track post performance across every platform
               </h1>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed text-balance">
-                Post text, images, and video to 9 platforms in a single call.
-                Schedule for later, save as draft, or publish now. Media
-                processing and platform-specific formatting handled for you.
+                Retrieve post-level engagement data from 9 social platforms
+                through one API. Impressions, reach, likes, comments, shares,
+                and saves in a single, consistent format.
               </p>
               <p className="mt-3 text-base italic text-muted-foreground/80">
                 No platform credentials required to get started.
@@ -224,11 +207,12 @@ export function Component() {
         <div className="max-w-(--breakpoint-lg) w-full mx-auto px-6 py-16 md:py-24">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-balance">
-              Developing posting infrastructure in-house is more work than it looks
+              Building social media analytics in-house is harder than it looks
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
-              Cross-platform posting means maintaining 9 separate integrations,
-              each with its own auth, media rules, and API quirks.
+              Retrieving and normalizing post metrics across platforms means
+              maintaining 9 separate integrations, each with its own response
+              format, field names, and auth requirements.
             </p>
           </div>
 
@@ -248,17 +232,16 @@ export function Component() {
         </div>
       </div>
 
-      {/* Posting Feature Surface */}
+      {/* Analytics Feature Surface */}
       <div className="max-w-(--breakpoint-lg) w-full mx-auto px-6 py-16 md:py-24">
         <div className="mb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <div>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-balance">
-              Everything you need to build posting into your product
+              Post-level engagement data, unified across platforms
             </h2>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-              Post for Me gives you a complete posting system out of the box.
-              Captions, media, scheduling, drafts, and multi-account delivery
-              all work through the same API.
+              Post for Me gives you analytics for individual posts across all
+              9 platforms. Same metrics, same format, same API.
             </p>
           </div>
           <Button asChild size="lg" className="shrink-0 w-fit">
@@ -269,7 +252,7 @@ export function Component() {
           </Button>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {postingCapabilities.map(({ icon: Icon, title, description }) => (
+          {analyticsCapabilities.map(({ icon: Icon, title, description }) => (
             <div key={title} className="bg-card border rounded-xl p-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-muted border border-border mb-4">
                 <Icon className="size-5 text-pop" />
@@ -283,26 +266,23 @@ export function Component() {
         </div>
       </div>
 
-      {/* How Posting Works + Platform Customizations */}
+      {/* What Teams Build With Analytics */}
       <div className="bg-muted">
         <div className="max-w-(--breakpoint-lg) w-full mx-auto px-6 py-16 md:py-24">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <IconSend className="size-5 text-pop" />
+                <IconChart1 className="size-5 text-pop" />
                 <span className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                  How it works
+                  Use cases
                 </span>
               </div>
               <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-balance">
-                One request, every platform, full control
+                Turn post metrics into product features
               </h2>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-                Define your content once: caption, media, and publish settings. Post
-                for Me normalizes your request for each target platform, handles media
-                processing, and delivers the post. Every platform has unique features,
-                and you can take advantage of them with per-platform overrides in the
-                same API call.
+                Analytics data powers dashboards, reports, and optimization
+                workflows that your users care about.
               </p>
             </div>
             <Button asChild size="lg" className="shrink-0 w-fit">
@@ -313,32 +293,15 @@ export function Component() {
             </Button>
           </div>
 
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {platformCustomizations.map(({ icon: Icon, platform, detail }) => (
-              <div
-                key={platform}
-                className="flex items-start gap-4 bg-card border rounded-xl p-5"
-              >
-                <div className="flex items-center justify-center size-10 shrink-0 rounded-lg bg-muted border border-border">
-                  <Icon className="size-5" />
-                </div>
-                <div>
-                  <h3 className="font-semibold">{platform}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {detail}
-                  </p>
-                </div>
+          <div className="mt-10 grid sm:grid-cols-3 gap-6">
+            {useCases.map(({ title, description }) => (
+              <div key={title} className="bg-card border rounded-xl p-6">
+                <h3 className="text-lg font-semibold mb-2">{title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {description}
+                </p>
               </div>
             ))}
-          </div>
-
-          <div className="mt-8 flex justify-center">
-            <Button asChild variant="outline" className="w-fit">
-              <Link to="/integrations">
-                See all platform options
-                <IconArrowRight />
-              </Link>
-            </Button>
           </div>
         </div>
       </div>
@@ -347,9 +310,27 @@ export function Component() {
       <div>
         <div className="max-w-(--breakpoint-lg) w-full mx-auto px-6 py-16 md:py-24">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-balance text-center mb-10">
-            Posting is just the start
+            Analytics work alongside posting and feeds
           </h2>
           <div className="grid sm:grid-cols-2 gap-6">
+            <Link
+              to="/social-media/posting"
+              className="flex items-start gap-4 bg-card border rounded-xl p-6 hover:border-primary/50 transition-colors"
+            >
+              <div className="flex items-center justify-center w-10 h-10 shrink-0 rounded-lg bg-muted border border-border">
+                <IconSend className="size-5 text-pop" />
+              </div>
+              <div>
+                <h3 className="font-semibold">Posting</h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Publish text, images, and video to all 9 platforms in a
+                  single call. Schedule, draft, and customize per platform.
+                </p>
+                <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                  Learn more <IconArrowRight className="size-3.5" />
+                </span>
+              </div>
+            </Link>
             <Link
               to="/social-media/feeds"
               className="flex items-start gap-4 bg-card border rounded-xl p-6 hover:border-primary/50 transition-colors"
@@ -362,24 +343,6 @@ export function Component() {
                 <p className="text-sm text-muted-foreground mt-1">
                   Pull published posts from any connected account in a unified
                   format. See what was published, when, and where.
-                </p>
-                <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                  Learn more <IconArrowRight className="size-3.5" />
-                </span>
-              </div>
-            </Link>
-            <Link
-              to="/social-media/analytics"
-              className="flex items-start gap-4 bg-card border rounded-xl p-6 hover:border-primary/50 transition-colors"
-            >
-              <div className="flex items-center justify-center w-10 h-10 shrink-0 rounded-lg bg-muted border border-border">
-                <IconNewspaper className="size-5 text-pop" />
-              </div>
-              <div>
-                <h3 className="font-semibold">Post Analytics</h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Track impressions, reach, likes, comments, shares, and saves
-                  at the post level. Same format, every platform.
                 </p>
                 <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
                   Learn more <IconArrowRight className="size-3.5" />
@@ -404,7 +367,7 @@ export function Component() {
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-muted">
+      <div>
         <div className="max-w-(--breakpoint-lg) w-full mx-auto px-6 py-16 md:py-24">
           <FAQSection
             title="Common questions"
