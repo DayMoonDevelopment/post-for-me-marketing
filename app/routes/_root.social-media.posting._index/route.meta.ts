@@ -2,36 +2,26 @@ import type { Route } from "./+types/route";
 
 export const meta: Route.MetaFunction = () => {
   const canonicalUrl = "https://www.postforme.dev/social-media/posting";
+  const title = "Social Media Posting API — Post for Me";
+  const description =
+    "Post text, images, and video to TikTok, Instagram, Facebook, X, LinkedIn, and more through one API. Schedule and customize per platform.";
 
   return [
-    {
-      title:
-        "Social Media Posting API — Publish, Schedule & Customize Across 9 Platforms | Post for Me",
-    },
-    {
-      name: "description",
-      content:
-        "Post text, images, and video to TikTok, Instagram, Facebook, X, LinkedIn, and more through one API. Schedule posts, customize per platform, and handle media automatically.",
-    },
+    { title },
+    { name: "description", content: description },
     { rel: "canonical", href: canonicalUrl },
 
     // Open Graph
     { property: "og:type", content: "website" },
-    {
-      property: "og:title",
-      content:
-        "Social Media Posting API — Publish, Schedule & Customize Across 9 Platforms | Post for Me",
-    },
-    {
-      property: "og:description",
-      content:
-        "Post text, images, and video to TikTok, Instagram, Facebook, X, LinkedIn, and more through one API. Schedule posts, customize per platform, and handle media automatically.",
-    },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
     { property: "og:url", content: canonicalUrl },
     {
       property: "og:image",
       content: "https://www.postforme.dev/og-image.png",
     },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     {
       property: "og:image:alt",
       content: "Social Media Posting API — Post for Me",
@@ -39,16 +29,8 @@ export const meta: Route.MetaFunction = () => {
 
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },
-    {
-      name: "twitter:title",
-      content:
-        "Social Media Posting API — Publish, Schedule & Customize Across 9 Platforms | Post for Me",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Post text, images, and video to TikTok, Instagram, Facebook, X, LinkedIn, and more through one API.",
-    },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
     {
       name: "twitter:image",
       content: "https://www.postforme.dev/og-image.png",
@@ -66,12 +48,13 @@ export const meta: Route.MetaFunction = () => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        name: "Social Media Posting API — Publish, Schedule & Customize Across 9 Platforms",
-        description:
-          "Post text, images, and video to TikTok, Instagram, Facebook, X, LinkedIn, and more through one API. Schedule posts, customize per platform, and handle media automatically.",
+        "@id": `${canonicalUrl}/#webpage`,
+        name: title,
+        description,
         url: canonicalUrl,
         about: { "@id": "https://www.postforme.dev/#product" },
         isPartOf: { "@id": "https://www.postforme.dev/#website" },
+        breadcrumb: { "@id": `${canonicalUrl}/#breadcrumb` },
       },
     },
 
@@ -80,6 +63,7 @@ export const meta: Route.MetaFunction = () => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}/#breadcrumb`,
         itemListElement: [
           {
             "@type": "ListItem",
@@ -108,6 +92,7 @@ export const meta: Route.MetaFunction = () => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "@id": `${canonicalUrl}/#faq`,
         mainEntity: [
           {
             "@type": "Question",

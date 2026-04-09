@@ -100,7 +100,7 @@ const platformCustomizations = [
   },
   {
     icon: XBrandIcon,
-    platform: "X",
+    platform: "X (Twitter)",
     detail: "Create polls with custom options and duration",
   },
   {

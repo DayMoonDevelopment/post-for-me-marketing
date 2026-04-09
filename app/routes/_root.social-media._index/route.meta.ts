@@ -2,36 +2,26 @@ import type { Route } from "./+types/route";
 
 export const meta: Route.MetaFunction = () => {
   const canonicalUrl = "https://www.postforme.dev/social-media";
+  const title = "Social Media API for Developers — Post for Me";
+  const description =
+    "Ship social media features in hours. Post, schedule, fetch feeds, and track analytics across 9 platforms with one API. No credentials required to start.";
 
   return [
-    {
-      title:
-        "Social Media API — Posting, Scheduling, Feeds & Analytics | Post for Me",
-    },
-    {
-      name: "description",
-      content:
-        "Ship social media features in hours. Post, schedule, fetch feeds, and track analytics across 9 platforms with one API. No platform credentials required to get started.",
-    },
+    { title },
+    { name: "description", content: description },
     { rel: "canonical", href: canonicalUrl },
 
     // Open Graph
     { property: "og:type", content: "website" },
-    {
-      property: "og:title",
-      content:
-        "Social Media API — Posting, Scheduling, Feeds & Analytics | Post for Me",
-    },
-    {
-      property: "og:description",
-      content:
-        "Ship social media features in hours. Post, schedule, fetch feeds, and track analytics across 9 platforms with one API.",
-    },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
     { property: "og:url", content: canonicalUrl },
     {
       property: "og:image",
       content: "https://www.postforme.dev/og-image.png",
     },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     {
       property: "og:image:alt",
       content: "Social Media API — Post for Me",
@@ -39,16 +29,8 @@ export const meta: Route.MetaFunction = () => {
 
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },
-    {
-      name: "twitter:title",
-      content:
-        "Social Media API — Posting, Scheduling, Feeds & Analytics | Post for Me",
-    },
-    {
-      name: "twitter:description",
-      content:
-        "Ship social media features in hours. Post, schedule, fetch feeds, and track analytics across 9 platforms with one API.",
-    },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
     {
       name: "twitter:image",
       content: "https://www.postforme.dev/og-image.png",
@@ -66,12 +48,13 @@ export const meta: Route.MetaFunction = () => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        name: "Social Media API — Posting, Scheduling, Feeds & Analytics",
-        description:
-          "Ship social media features in hours. Post, schedule, fetch feeds, and track analytics across 9 platforms with one API.",
+        "@id": `${canonicalUrl}/#webpage`,
+        name: title,
+        description,
         url: canonicalUrl,
         about: { "@id": "https://www.postforme.dev/#product" },
         isPartOf: { "@id": "https://www.postforme.dev/#website" },
+        breadcrumb: { "@id": `${canonicalUrl}/#breadcrumb` },
       },
     },
 
@@ -80,6 +63,7 @@ export const meta: Route.MetaFunction = () => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}/#breadcrumb`,
         itemListElement: [
           {
             "@type": "ListItem",
@@ -102,6 +86,7 @@ export const meta: Route.MetaFunction = () => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "@id": `${canonicalUrl}/#faq`,
         mainEntity: [
           {
             "@type": "Question",
