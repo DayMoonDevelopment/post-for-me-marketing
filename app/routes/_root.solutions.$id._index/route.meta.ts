@@ -1,5 +1,12 @@
 import type { Route } from "./+types/route";
 
+function truncate(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text;
+  const truncated = text.slice(0, maxLength - 3);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated) + "...";
+}
+
 export const meta: Route.MetaFunction = ({ data, params }) => {
   const canonicalUrl = `https://www.postforme.dev/solutions/${params.id}`;
   const solution = data?.solution;
@@ -48,11 +55,11 @@ export const meta: Route.MetaFunction = ({ data, params }) => {
     // Meta description (150–160 characters) – comprehensive feature overview
     {
       name: "description",
-      content: solution.meta.description,
+      content: truncate(solution.meta.description, 160),
     },
 
     // Canonical URL
-    { rel: "canonical", href: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
 
     // Open Graph – optimized for developer sharing
     { property: "og:type", content: "website" },
@@ -66,6 +73,8 @@ export const meta: Route.MetaFunction = ({ data, params }) => {
     },
     { property: "og:url", content: canonicalUrl },
     { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
 
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },
@@ -145,7 +154,7 @@ export const meta: Route.MetaFunction = ({ data, params }) => {
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "4.8",
-              ratingCount: "127",
+              ratingCount: 127,
               bestRating: "5",
               worstRating: "1",
             },
@@ -159,6 +168,7 @@ export const meta: Route.MetaFunction = ({ data, params }) => {
               "@id": canonicalUrl,
             },
             headline: solution.hero.headline,
+            image: "https://www.postforme.dev/og-image.png",
             description: `${solution.hero.description} ${solution.valueProposition.subheadline}`,
             keywords,
             author: {

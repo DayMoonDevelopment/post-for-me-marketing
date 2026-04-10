@@ -9,7 +9,7 @@ export const meta: Route.MetaFunction = () => {
   return [
     { title },
     { name: "description", content: description },
-    { rel: "canonical", href: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
 
     // Open Graph
     { property: "og:type", content: "website" },

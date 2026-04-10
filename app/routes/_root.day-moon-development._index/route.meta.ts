@@ -19,6 +19,7 @@ export const meta: Route.MetaFunction = () => {
   composer.addSchema({
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://www.postforme.dev/day-moon-development/#organization",
     name: "Day Moon Development",
     url: "https://www.daymoon.dev",
     alternateName: "Daymoon Development",
@@ -68,6 +69,9 @@ export const meta: Route.MetaFunction = () => {
     sameAs: [
       "https://github.com/DayMoonDevelopment",
       "https://www.daymoon.dev",
+      "https://x.com/postforme_dev",
+      "https://discord.gg/Nv6xEZ2vP5",
+      "https://www.linkedin.com/company/day-moon-development",
     ],
     subOrganization: {
       "@type": "Organization",
@@ -82,6 +86,7 @@ export const meta: Route.MetaFunction = () => {
   composer.addSchema({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": "https://www.postforme.dev/day-moon-development/#breadcrumb",
     itemListElement: [
       {
         "@type": "ListItem",

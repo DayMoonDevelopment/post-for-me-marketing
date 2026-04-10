@@ -2,6 +2,8 @@ import type { Route } from "./+types/route";
 
 export const meta: Route.MetaFunction = () => {
   const canonicalUrl = "https://www.postforme.dev";
+  const description =
+    "Developer API to post and schedule content across TikTok, Instagram, Facebook, X, LinkedIn, YouTube, Threads, Pinterest, and Bluesky. One integration.";
 
   return [
     // Standard title (30–60 characters)
@@ -10,11 +12,10 @@ export const meta: Route.MetaFunction = () => {
       // 51 characters – perfect for homepage
     },
 
-    // Meta description (120–160 characters) – homepage-focused with pricing hook
+    // Meta description (120–160 characters)
     {
       name: "description",
-      content:
-        "Developer API to post and schedule content across TikTok, Instagram, Facebook, X, LinkedIn, YouTube, Threads, Pinterest, and Bluesky. One integration, every platform.",
+      content: description,
     },
 
     // Canonical URL
@@ -28,12 +29,15 @@ export const meta: Route.MetaFunction = () => {
     },
     {
       property: "og:description",
-      content:
-        "Automate social media posting across all major platforms with one simple API. Tiered plans start at $10/month – unlimited accounts, analytics, and system-managed credentials included.",
-      // 158 characters
+      content: description,
     },
     { property: "og:url", content: canonicalUrl },
-    { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
+    {
+      property: "og:image",
+      content: "https://www.postforme.dev/og-image.png",
+    },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
 
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },
@@ -43,9 +47,7 @@ export const meta: Route.MetaFunction = () => {
     },
     {
       name: "twitter:description",
-      content:
-        "Post to TikTok, Instagram, Facebook, X, LinkedIn, YouTube & more via one API. Plans from $10/mo with unlimited accounts and built-in analytics.",
-      // 136 characters
+      content: description,
     },
     {
       name: "twitter:image",
@@ -89,6 +91,18 @@ export const meta: Route.MetaFunction = () => {
               contactType: "Customer Support",
               availableLanguage: "English",
             },
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: "US",
+            },
+            knowsAbout: [
+              "Social media APIs",
+              "Social media automation",
+              "Cross-platform content publishing",
+              "OAuth integration",
+              "Developer tools",
+              "REST API design",
+            ],
           },
           // SoftwareApplication schema
           {
@@ -116,12 +130,14 @@ export const meta: Route.MetaFunction = () => {
             ],
             offers: {
               "@type": "AggregateOffer",
+              price: "10",
               priceCurrency: "USD",
               lowPrice: "10",
               highPrice: "1000",
               offerCount: "8",
               availability: "https://schema.org/InStock",
-              description: "Monthly subscription tiers based on post volume",
+              description:
+                "Monthly subscription tiers based on post volume",
               url: "https://www.postforme.dev/pricing",
             },
             provider: {
@@ -135,6 +151,7 @@ export const meta: Route.MetaFunction = () => {
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "4.8",
+              ratingCount: 127,
               reviewCount: "127",
               bestRating: "5",
               worstRating: "1",
@@ -162,6 +179,53 @@ export const meta: Route.MetaFunction = () => {
               },
               "query-input": "required name=search_term_string",
             },
+          },
+          // FAQPage schema for homepage FAQ content
+          {
+            "@type": "FAQPage",
+            "@id": "https://www.postforme.dev/#faq",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "Why should I choose Post for Me over direct platform APIs?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We handle OAuth, token refresh, media processing, and platform-specific quirks, reducing integration time by weeks while giving you full access to each platform's features.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How do I get started?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Getting started is simple. Signup for an account, plug in your App credentials OR use ours, create an API key, and then connect an account and start posting!",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What are the pricing plans for Post for Me?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We offer tiered pricing to give you a predictable, fixed cost that scales with your usage, starting at $10/month for 1,000 total posts.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can I use my own social media developer credentials?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, you can bring your own credentials or use ours to connect user accounts to your app.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do I need to handle OAuth flows?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Nope! We handle all the OAuth flows for you. You just need to give your users a button to connect their accounts.",
+                },
+              },
+            ],
           },
         ],
       },

@@ -23,6 +23,8 @@ export const meta: Route.MetaFunction = () => {
     },
     { property: "og:url", content: canonicalUrl },
     { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:title",

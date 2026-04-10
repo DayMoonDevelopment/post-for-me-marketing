@@ -3,16 +3,18 @@ import type { Route } from "./+types/route";
 export const meta: Route.MetaFunction = () => {
   const canonicalUrl = "https://www.postforme.dev/integrations";
 
+  const description =
+    "Connect to TikTok, Instagram, Facebook, X, LinkedIn, YouTube, Pinterest, Threads, and Bluesky through one unified API.";
+
   return [
     {
       title: "Platform Integrations — Post for Me Social Media API",
     },
     {
       name: "description",
-      content:
-        "Connect to TikTok, Instagram, Facebook, X, LinkedIn, YouTube, Pinterest, Threads, and Bluesky through one unified API. Post, schedule, and track across every platform.",
+      content: description,
     },
-    { rel: "canonical", href: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
 
     // Open Graph
     { property: "og:type", content: "website" },
@@ -22,11 +24,12 @@ export const meta: Route.MetaFunction = () => {
     },
     {
       property: "og:description",
-      content:
-        "Connect to TikTok, Instagram, Facebook, X, LinkedIn, YouTube, Pinterest, Threads, and Bluesky through one unified API. Post, schedule, and track across every platform.",
+      content: description,
     },
     { property: "og:url", content: canonicalUrl },
     { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     {
       property: "og:image:alt",
       content: "Platform Integrations — Post for Me",
@@ -60,10 +63,12 @@ export const meta: Route.MetaFunction = () => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
+        "@id": `${canonicalUrl}/#webpage`,
         name: "Platform Integrations",
         description:
           "Connect to all major social platforms through the Post for Me unified API.",
         url: canonicalUrl,
+        breadcrumb: { "@id": `${canonicalUrl}/#breadcrumb` },
         about: { "@id": "https://www.postforme.dev/#product" },
         isPartOf: { "@id": "https://www.postforme.dev/#website" },
         mainEntity: {
@@ -134,6 +139,7 @@ export const meta: Route.MetaFunction = () => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}/#breadcrumb`,
         itemListElement: [
           {
             "@type": "ListItem",

@@ -25,6 +25,8 @@ export const meta: Route.MetaFunction = ({ data }) => {
     },
     { property: "og:url", content: "https://www.postforme.dev/pricing" },
     { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:title",
@@ -66,6 +68,13 @@ export const meta: Route.MetaFunction = ({ data }) => {
           ],
         },
         category: "Software as a Service",
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.8",
+          ratingCount: 127,
+          bestRating: "5",
+          worstRating: "1",
+        },
         offers: tiers.map((tier) => ({
           "@type": "Offer",
           name: `Pro - up to ${tier.posts.toLocaleString()} Social Posts`,

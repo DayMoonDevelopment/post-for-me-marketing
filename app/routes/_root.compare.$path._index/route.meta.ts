@@ -20,7 +20,7 @@ export const meta: Route.MetaFunction = ({ data, params }) => {
       name: "description",
       content: description,
     },
-    { rel: "canonical", href: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
     { property: "og:type", content: "article" },
     {
       property: "og:title",
@@ -31,7 +31,12 @@ export const meta: Route.MetaFunction = ({ data, params }) => {
       content: description,
     },
     { property: "og:url", content: canonicalUrl },
-    { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
+    {
+      property: "og:image",
+      content: "https://www.postforme.dev/og-image.png",
+    },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:title",
@@ -53,8 +58,15 @@ export const meta: Route.MetaFunction = ({ data, params }) => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "Article",
+        "@id": `${canonicalUrl}/#article`,
         headline,
         description,
+        image: {
+          "@type": "ImageObject",
+          url: "https://www.postforme.dev/og-image.png",
+          width: 1200,
+          height: 630,
+        },
         author: {
           "@type": "Organization",
           name: "Day Moon Development",
@@ -71,6 +83,36 @@ export const meta: Route.MetaFunction = ({ data, params }) => {
         },
         datePublished: "2024-01-01",
         dateModified: new Date().toISOString().split("T")[0],
+        mainEntityOfPage: {
+          "@id": `${canonicalUrl}/#webpage`,
+        },
+      },
+    },
+    {
+      "script:ld+json": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}/#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://www.postforme.dev",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Compare",
+            item: "https://www.postforme.dev/compare",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: `Post for Me vs ${comparison.competitor.name}`,
+            item: canonicalUrl,
+          },
+        ],
       },
     },
   ];
