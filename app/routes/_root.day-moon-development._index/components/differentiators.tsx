@@ -45,7 +45,7 @@ export const Services = () => {
                   <IconCircleCheck className="size-6 text-pop" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">{service.title}</h3>
+                  <h2 className="font-semibold text-lg">{service.title}</h2>
                   <p className="mt-1 text-sm md:text-base text-muted-foreground">
                     {service.description}
                   </p>

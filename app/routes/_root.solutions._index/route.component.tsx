@@ -71,9 +71,9 @@ export function Component() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                <h2 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
                   {solution.nav.title}
-                </h3>
+                </h2>
 
                 {/* Description */}
                 <p className="text-muted-foreground text-sm leading-relaxed">
