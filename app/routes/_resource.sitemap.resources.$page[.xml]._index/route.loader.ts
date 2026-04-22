@@ -1,6 +1,6 @@
 import { XMLBuilder } from "fast-xml-parser";
 
-import { MarbleCMS } from "~/lib/.server/marble";
+import { CMS } from "~/lib/.server/cms";
 import { SITEMAP_CONFIG } from "~/lib/.server/sitemap.config";
 
 import type { LoaderFunctionArgs } from "react-router";
@@ -26,10 +26,10 @@ export async function loader({ params }: LoaderFunctionArgs) {
   }
 
   try {
-    // Fetch specific page of published posts from MarbleCMS
+    // Fetch specific page of published posts from the cms schema
     // Sorted oldest to newest (ascending order by publishedAt)
-    const marble = new MarbleCMS();
-    const response = await marble
+    const cms = new CMS();
+    const response = await cms
       .posts()
       .categories("resources")
       .order("asc")
@@ -38,7 +38,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
       .get();
 
     if (!response?.posts || !response.pagination) {
-      throw new Error("Failed to fetch posts from MarbleCMS");
+      throw new Error("Failed to fetch posts from cms");
     }
 
     // Filter only published posts (should already be filtered by API)

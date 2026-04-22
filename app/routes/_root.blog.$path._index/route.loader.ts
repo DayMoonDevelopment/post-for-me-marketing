@@ -1,12 +1,12 @@
-import { MarbleCMS } from "~/lib/.server/marble";
+import { CMS } from "~/lib/.server/cms";
 
 import type { Route } from "./+types/route";
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const marble = new MarbleCMS();
+  const cms = new CMS();
 
   // Fetch the specific blog post
-  const postResponse = await marble.post(params.path).get();
+  const postResponse = await cms.post(params.path).get();
 
   if (!postResponse) {
     throw new Response("Blog post not found", { status: 404 });
@@ -15,7 +15,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   const post = postResponse.post;
 
   // Fetch related posts (recent posts excluding current one, limited to 4)
-  const relatedPostsResponse = await marble
+  const relatedPostsResponse = await cms
     .posts()
     .categories("blog")
     .order("desc")
