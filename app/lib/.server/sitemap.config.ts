@@ -46,7 +46,7 @@ export const SITEMAP_CONFIG = {
    * Resources (blog posts) sitemap specific settings
    */
   RESOURCES: {
-    /** Number of URLs per resources sitemap page (MarbleCMS API max: 100) */
+    /** Number of URLs per resources sitemap page (kept at 100 to match Supabase default page size) */
     PAGE_SIZE: 100,
     /** URL change frequency for resource pages */
     CHANGE_FREQ: "weekly" as const,
@@ -58,7 +58,7 @@ export const SITEMAP_CONFIG = {
    * Blog sitemap specific settings
    */
   BLOG: {
-    /** Number of URLs per blog sitemap page (MarbleCMS API max: 100) */
+    /** Number of URLs per blog sitemap page (kept at 100 to match Supabase default page size) */
     PAGE_SIZE: 100,
     /** URL change frequency for blog pages */
     CHANGE_FREQ: "weekly" as const,

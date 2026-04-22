@@ -74,7 +74,7 @@ bun run test:watch       # Run tests in watch mode
 
 - **PostHog** integration via `app/providers/posthog-provider.tsx`
 - Loaded in root layout with API key/host from env vars
-- Additional integrations: Crisp (chat), MarbleCMS (blogs and resources)
+- Additional integrations: Crisp (chat). Blog/resources content is read from the Post for Me API's private namespace (`/private/cms/*`) which is scoped to a dedicated Unkey API and not exposed in the public OpenAPI spec.
 - All API keys loaded via root loader and injected as `<script>` tags
 
 ### Environment Variables
@@ -89,11 +89,9 @@ POST_HOG_API_HOST=
 # Crisp Chat
 CRISP_WEBSITE_ID=
 
-# MarbleCMS (blog/resources)
-MARBLE_API_URL=https://api.marblecms.com/v1
-MARBLE_API_KEY=
-# Set to 'true' to show draft posts (for local testing)
-MARBLE_SHOW_DRAFTS=
+# Post for Me API (private namespace for CMS reads)
+POST_FOR_ME_API_URL=    # Base URL, e.g. https://api.postforme.dev
+POST_FOR_ME_API_KEY=    # Unkey key granted `cms.read`
 ```
 
 **Note:** The app will run without these variables, but analytics, chat, and blog features will be disabled.
@@ -104,7 +102,7 @@ MARBLE_SHOW_DRAFTS=
 - Product information: `PRODUCT.md` (product overview, features, pricing)
 - Copywriting guide: `COPYWRITING.md` (voice, tone, style guidelines)
 - Important: Follow developer-first tone from `COPYWRITING.md` - specific not vague, benefits before features, no marketing fluff
-- **Blog/Resources**: Fetched from MarbleCMS via `app/lib/.server/marble.ts` query builder
+- **Blog/Resources**: Fetched from the Post for Me API's private namespace (`/private/cms/*`) via `app/lib/.server/cms.ts` query builder, authenticated with `POST_FOR_ME_API_KEY` (an Unkey key granted the `cms.read` permission). Base URL comes from `POST_FOR_ME_API_URL`. Types live in `app/lib/.server/cms-types.ts`.
 - **Solutions**: Type-safe data in `app/lib/.server/data/solutions.*.ts` files
 - **Comparisons**: Competitor comparison pages in `app/lib/.server/data/comparisons.*.ts`
 - **FAQ**: Structured data in `app/lib/.server/data/faq.ts`

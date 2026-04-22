@@ -1,5 +1,5 @@
+import { CMS } from "./cms";
 import { getSolutionPreviews } from "./data/solutions.server";
-import { MarbleCMS } from "./marble";
 
 import type { ResourcePreview, SolutionPreview } from "~/components/navigation/types";
 
@@ -10,19 +10,19 @@ import type { ResourcePreview, SolutionPreview } from "~/components/navigation/t
  * navigation-related data across the application.
  */
 export class NavigationManager {
-  private marble: MarbleCMS;
+  private cms: CMS;
 
   constructor() {
-    this.marble = new MarbleCMS();
+    this.cms = new CMS();
   }
 
   /**
-   * Fetches featured resources from MarbleCMS
+   * Fetches featured resources from the cms schema
    * Filters for resources category with social-media-platforms tag
    * Sorts to show featured posts first
    */
   private async getFeaturedResources(): Promise<ResourcePreview[]> {
-    const data = await this.marble
+    const data = await this.cms
       .posts()
       .categories("resources")
       .get();

@@ -1,6 +1,6 @@
 import { XMLBuilder } from "fast-xml-parser";
 
-import { MarbleCMS } from "~/lib/.server/marble";
+import { CMS } from "~/lib/.server/cms";
 import { SITEMAP_CONFIG } from "~/lib/.server/sitemap.config";
 
 import type { Route } from "./+types/route";
@@ -38,10 +38,10 @@ export async function loader({ request }: Route.LoaderArgs) {
 
   // Calculate how many resource and blog sitemap pages we need
   try {
-    const marble = new MarbleCMS();
+    const cms = new CMS();
 
     // Fetch first page of posts to get total count for resources sitemap
-    const resourcesResponse = await marble.posts().limit(1).get();
+    const resourcesResponse = await cms.posts().limit(1).get();
 
     if (resourcesResponse?.pagination) {
       const totalPosts = resourcesResponse.pagination.totalItems;
@@ -57,7 +57,7 @@ export async function loader({ request }: Route.LoaderArgs) {
     }
 
     // Fetch first page of blog posts to get total count for blog sitemap
-    const blogResponse = await marble.posts().categories("blog").limit(1).get();
+    const blogResponse = await cms.posts().categories("blog").limit(1).get();
 
     if (blogResponse?.pagination) {
       const totalBlogPosts = blogResponse.pagination.totalItems;

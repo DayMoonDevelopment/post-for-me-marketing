@@ -14,7 +14,7 @@ import {
   SidebarRail,
 } from "~/ui/sidebar";
 
-import type { Tag, Post } from "@usemarble/sdk/models";
+import type { Tag, Post } from "~/lib/.server/cms-types";
 
 interface ResourcesSidebarProps extends React.ComponentProps<typeof Sidebar> {
   tags: Tag[];
