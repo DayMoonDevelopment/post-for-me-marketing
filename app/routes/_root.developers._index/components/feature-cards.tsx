@@ -30,7 +30,7 @@ const features = [
   },
   {
     icon: IconBookmarkCheck,
-    title: "SDK's",
+    title: "SDKs",
     description: "Drop-in libraries for rapid integration.",
     details:
       "Pre-built client libraries for popular programming languages. Get started in minutes with type-safe, well-documented SDKs that handle all the complexity for you.",
@@ -55,7 +55,7 @@ export const FeatureCards = () => {
             <Feature key={index}>
               <FeatureHeader>
                 <Icon />
-                <FeatureTitle>{title}</FeatureTitle>
+                <FeatureTitle as="h2">{title}</FeatureTitle>
                 <FeatureDescription>{description}</FeatureDescription>
               </FeatureHeader>
 

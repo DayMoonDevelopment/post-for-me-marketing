@@ -84,8 +84,6 @@ export const meta: Route.MetaFunction = ({
     ],
     totalItems: Array.isArray(posts) ? posts.length : undefined,
   });
-  metadata.addSchema(collectionPageSchema);
-
   // Add ItemList schema if we have posts data available
   if (Array.isArray(posts) && posts.length > 0) {
     const itemListSchema = metadata.createItemListSchema({
@@ -99,8 +97,15 @@ export const meta: Route.MetaFunction = ({
         image: post.coverImage,
       })),
     });
+    itemListSchema["@id"] = `${siteUrl}/resources/#itemlist`;
     metadata.addSchema(itemListSchema);
+
+    collectionPageSchema.mainEntity = {
+      "@id": `${siteUrl}/resources/#itemlist`,
+    };
   }
+
+  metadata.addSchema(collectionPageSchema);
 
   return metadata.build();
 };

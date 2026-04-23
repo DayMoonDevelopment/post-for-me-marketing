@@ -385,7 +385,7 @@ export const faqItems: FAQItem[] = [
     category: FAQCategory.Technical,
     question: "Can I test the API before purchasing?",
     answer:
-      "You'll need an active plan to use the API, but our $5/month tier is low-cost to start.",
+      "You'll need an active plan to use the API, but our $10/month tier is low-cost to start.",
     routes: [],
   },
   {

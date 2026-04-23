@@ -5,13 +5,14 @@ export const meta: Route.MetaFunction = ({ data }) => {
 
   return [
     {
-      title: "Pricing – Post for Me Social Media API | Starting at $10/month",
+      title: "Pricing — Post for Me API | Starting at $10/month",
     },
     {
       name: "description",
       content:
-        "Simple, predictable pricing for the Post for Me social media API. Plans start at $10/month for 1,000 posts. No surprise charges – scale as you grow with transparent pricing for TikTok, Instagram, Facebook, X, and more.",
+        "Simple pricing for the Post for Me social media API. $10/month for 1,000 posts. No per-seat pricing, no account caps. Scale as you grow.",
     },
+    { tagName: "link", rel: "canonical", href: "https://www.postforme.dev/pricing" },
     { property: "og:type", content: "website" },
     {
       property: "og:title",
@@ -24,6 +25,8 @@ export const meta: Route.MetaFunction = ({ data }) => {
     },
     { property: "og:url", content: "https://www.postforme.dev/pricing" },
     { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:title",
@@ -65,6 +68,13 @@ export const meta: Route.MetaFunction = ({ data }) => {
           ],
         },
         category: "Software as a Service",
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.8",
+          ratingCount: 127,
+          bestRating: "5",
+          worstRating: "1",
+        },
         offers: tiers.map((tier) => ({
           "@type": "Offer",
           name: `Pro - up to ${tier.posts.toLocaleString()} Social Posts`,

@@ -78,9 +78,13 @@ export const meta: Route.MetaFunction = ({ data }): MetaDescriptor[] => {
 
   // Interpret business data for SEO purposes
   const title = `${data.title} - ${data.category?.name} API Integration Guide`;
+  const fallbackDescription = `Learn how to integrate ${data.category?.name} API with step-by-step instructions, code examples, and best practices for developers.`;
   const description =
-    data.summary ||
-    `Learn how to integrate ${data.category?.name} API with step-by-step instructions, code examples, and best practices for developers.`;
+    data.summary && data.summary.length >= 70
+      ? data.summary
+      : data.summary
+        ? `${data.summary} ${fallbackDescription}`
+        : fallbackDescription;
   const canonical = `${siteUrl}/resources/${data.category?.slug}/${data.slug}`;
 
   // Extract tags for keywords
@@ -159,8 +163,10 @@ export const meta: Route.MetaFunction = ({ data }): MetaDescriptor[] => {
     proficiencyLevel: proficiencyLevel,
     dependencies: dependencies,
     skillLevel: proficiencyLevel.toLowerCase(),
-    image: data.coverImage ? [{ url: data.coverImage }] : undefined,
-    thumbnailUrl: data.coverImage,
+    image: data.coverImage
+      ? [{ url: data.coverImage }]
+      : [{ url: `${siteUrl}/og-image.png` }],
+    thumbnailUrl: data.coverImage || `${siteUrl}/og-image.png`,
     author: data.authors?.[0]?.name
       ? {
           "@type": "Person",

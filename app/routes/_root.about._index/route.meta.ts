@@ -8,7 +8,7 @@ export const meta: Route.MetaFunction = () => {
   composer.title =
     "About Post for Me | Unified Social Media API for Developers";
   composer.description =
-    "How Post for Me was built: A unified API for TikTok, Instagram, Facebook, X, LinkedIn, Pinterest, Bluesky, Threads, and YouTube. Open source, transparent pricing from $10/month, built by developers for developers.";
+    "Post for Me was born from building the same social media integrations over and over. One API to replace them all — built by developers, for developers.";
   composer.canonical = "https://www.postforme.dev/about";
   composer.keywords =
     "Post for Me about, unified social media API, developer-first API, social media integration, TikTok API, Instagram API, Facebook API, X API, LinkedIn API, Pinterest API, Bluesky API, Threads API, YouTube API, 9 platforms, API-first platform, open source social API, Day Moon Development, OAuth integration";
@@ -20,10 +20,12 @@ export const meta: Route.MetaFunction = () => {
   composer.addSchema({
     "@context": "https://schema.org",
     "@type": "AboutPage",
+    "@id": "https://www.postforme.dev/about/#webpage",
     name: "About Post for Me",
     description:
       "The story of how Post for Me was built from developer frustrations with fragmented social media integrations.",
     url: "https://www.postforme.dev/about",
+    breadcrumb: { "@id": "https://www.postforme.dev/about/#breadcrumb" },
     mainEntity: {
       "@type": "Organization",
       name: "Post For Me",
@@ -99,6 +101,7 @@ export const meta: Route.MetaFunction = () => {
   composer.addSchema({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": "https://www.postforme.dev/about/#breadcrumb",
     itemListElement: [
       {
         "@type": "ListItem",
@@ -119,6 +122,7 @@ export const meta: Route.MetaFunction = () => {
   composer.addSchema({
     "@context": "https://schema.org",
     "@type": "VideoObject",
+    "@id": "https://www.postforme.dev/about/#video",
     name: "The Easiest Way to Build Social Media Integrations: Post for Me API",
     description:
       "One REST API call to post, schedule, and analyze across TikTok, Instagram, YouTube, Facebook, X, LinkedIn, Threads, Pinterest, and Bluesky.",
@@ -126,6 +130,7 @@ export const meta: Route.MetaFunction = () => {
     uploadDate: "2024-01-01",
     contentUrl: "https://www.youtube.com/watch?v=3CAZhwUdtfw",
     embedUrl: "https://www.youtube-nocookie.com/embed/3CAZhwUdtfw",
+    duration: "PT2M30S",
     publisher: {
       "@type": "Organization",
       name: "Post For Me",

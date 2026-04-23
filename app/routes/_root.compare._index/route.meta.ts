@@ -1,7 +1,7 @@
 import type { Route } from "./+types/route";
 
 export const meta: Route.MetaFunction = () => {
-  const title = "Compare Post for Me vs Social Media APIs | Developer Tool Comparisons";
+  const title = "Post for Me vs Competitors — API Comparison";
   const description = "Compare Post for Me against Buffer, Hootsuite, Ayrshare, and other social media API solutions. Find the best API for your social media integration needs.";
   const canonicalUrl = "https://www.postforme.dev/compare";
 
@@ -11,7 +11,7 @@ export const meta: Route.MetaFunction = () => {
       name: "description",
       content: description,
     },
-    { rel: "canonical", href: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
     { property: "og:type", content: "website" },
     {
       property: "og:title",
@@ -23,6 +23,8 @@ export const meta: Route.MetaFunction = () => {
     },
     { property: "og:url", content: canonicalUrl },
     { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:title",

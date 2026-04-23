@@ -26,7 +26,7 @@ export const meta: Route.MetaFunction = ({ matches, params }) => {
       name: "description",
       content: integration.meta.description,
     },
-    { rel: "canonical", href: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
 
     // Open Graph
     { property: "og:type", content: "website" },
@@ -40,6 +40,8 @@ export const meta: Route.MetaFunction = ({ matches, params }) => {
     },
     { property: "og:url", content: canonicalUrl },
     { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     {
       property: "og:image:alt",
       content: ogImageAlt,
@@ -83,13 +85,23 @@ export const meta: Route.MetaFunction = ({ matches, params }) => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "TechArticle",
+        "@id": `${canonicalUrl}/#article`,
         headline: `${integration.name} Integration`,
         description: integration.meta.description,
         url: canonicalUrl,
         image: "https://www.postforme.dev/og-image.png",
         proficiencyLevel: "Beginner",
         about: { "@id": "https://www.postforme.dev/#product" },
-        publisher: { "@id": "https://www.postforme.dev/#organization" },
+        publisher: {
+          "@id": "https://www.postforme.dev/#organization",
+          "@type": "Organization",
+          name: "Post For Me",
+          url: "https://www.postforme.dev",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://www.postforme.dev/logo.png",
+          },
+        },
         author: {
           "@type": "Organization",
           name: "Day Moon Development",
@@ -105,6 +117,7 @@ export const meta: Route.MetaFunction = ({ matches, params }) => {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}/#breadcrumb`,
         itemListElement: [
           {
             "@type": "ListItem",

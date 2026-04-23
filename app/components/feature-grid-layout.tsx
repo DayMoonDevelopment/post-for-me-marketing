@@ -70,9 +70,13 @@ function FeatureHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function FeatureTitle({ className, ...props }: React.ComponentProps<"h3">) {
+function FeatureTitle({
+  className,
+  as: Tag = "h3",
+  ...props
+}: React.ComponentProps<"h3"> & { as?: "h2" | "h3" }) {
   return (
-    <h3
+    <Tag
       data-slot="feature-title"
       className={cn("text-xl font-semibold", className)}
       {...props}

@@ -17,6 +17,7 @@ export const meta: Route.MetaFunction = () => {
       content:
         "contact Post for Me, support, customer service, get in touch, API support, developer support",
     },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
     { property: "og:type", content: "website" },
     {
       property: "og:title",
@@ -32,6 +33,8 @@ export const meta: Route.MetaFunction = () => {
       property: "og:image",
       content: "https://www.postforme.dev/og-image.png",
     },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:title",
@@ -56,6 +59,9 @@ export const meta: Route.MetaFunction = () => {
         description: "Get in touch with the Post for Me team",
         url: canonicalUrl,
         inLanguage: "en-US",
+        mainEntity: {
+          "@id": "https://www.postforme.dev/#organization",
+        },
         publisher: {
           "@type": "Organization",
           name: "Day Moon Development",

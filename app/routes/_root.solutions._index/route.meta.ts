@@ -10,9 +10,9 @@ export const meta: Route.MetaFunction = () => {
     {
       name: "description",
       content:
-        "Discover how Post for Me powers social media features for schedulers, AI tools, games, SaaS products, e-commerce, influencer platforms, CRMs, DAMs, news publishers, and event management. One API for all platforms.",
+        "See how Post for Me powers social media features for schedulers, AI tools, games, SaaS products, CRMs, e-commerce platforms, and more.",
     },
-    { rel: "canonical", href: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
 
     // Open Graph
     { property: "og:type", content: "website" },
@@ -27,6 +27,8 @@ export const meta: Route.MetaFunction = () => {
     },
     { property: "og:url", content: canonicalUrl },
     { property: "og:image", content: "https://www.postforme.dev/og-image.png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
 
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },
@@ -61,6 +63,23 @@ export const meta: Route.MetaFunction = () => {
         description:
           "Explore how developers across industries use Post for Me to add social media features without infrastructure overhead.",
         url: canonicalUrl,
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: 11,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Social Media Scheduler", url: `${canonicalUrl}/social-media-scheduler` },
+            { "@type": "ListItem", position: 2, name: "AI Content Generation", url: `${canonicalUrl}/ai-content-generation` },
+            { "@type": "ListItem", position: 3, name: "Multi-Account Management", url: `${canonicalUrl}/multi-account-management` },
+            { "@type": "ListItem", position: 4, name: "Game Development", url: `${canonicalUrl}/games` },
+            { "@type": "ListItem", position: 5, name: "SaaS Products", url: `${canonicalUrl}/saas-products` },
+            { "@type": "ListItem", position: 6, name: "E-commerce Platforms", url: `${canonicalUrl}/e-commerce-platforms` },
+            { "@type": "ListItem", position: 7, name: "Influencer Management", url: `${canonicalUrl}/influencer-management` },
+            { "@type": "ListItem", position: 8, name: "CRM Systems", url: `${canonicalUrl}/crm-systems` },
+            { "@type": "ListItem", position: 9, name: "Digital Asset Management", url: `${canonicalUrl}/dam-tools` },
+            { "@type": "ListItem", position: 10, name: "News & Media Publishers", url: `${canonicalUrl}/news-media-publishers` },
+            { "@type": "ListItem", position: 11, name: "Event Management", url: `${canonicalUrl}/event-management` },
+          ],
+        },
         breadcrumb: {
           "@type": "BreadcrumbList",
           itemListElement: [

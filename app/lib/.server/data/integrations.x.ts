@@ -2,7 +2,7 @@ import type { IntegrationData } from "./integrations";
 
 export const x: IntegrationData = {
   id: "x",
-  name: "X",
+  name: "X (Twitter)",
   nav: {
     title: "X (Twitter) Integration",
     description:
