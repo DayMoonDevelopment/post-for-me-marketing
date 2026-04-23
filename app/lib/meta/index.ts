@@ -23,6 +23,12 @@ export class MetadataComposer {
   private _imageHeight: number = 630;
   private _robots?: string;
   private _ogSiteName?: string;
+  private _videoYouTubeId?: string;
+  private _videoTitle?: string;
+  private _videoDescription?: string;
+  private _videoUploadDate?: string;
+  private _videoWidth: number = 1280;
+  private _videoHeight: number = 720;
 
   constructor() {
     // Add base site metadata on construction
@@ -211,6 +217,32 @@ export class MetadataComposer {
   }
 
   /**
+   * Attach a YouTube video to the page.
+   *
+   * Emits OpenGraph video tags (og:video, og:video:secure_url, og:video:type,
+   * og:video:width, og:video:height) and a schema.org VideoObject JSON-LD.
+   *
+   * Only `youtubeId` is required — everything else falls back to the page's
+   * title/description/publishedTime when omitted.
+   */
+  setVideo(config: {
+    youtubeId: string;
+    title?: string;
+    description?: string;
+    uploadDate?: string;
+    width?: number;
+    height?: number;
+  }): this {
+    this._videoYouTubeId = config.youtubeId;
+    this._videoTitle = config.title;
+    this._videoDescription = config.description;
+    this._videoUploadDate = config.uploadDate;
+    if (config.width) this._videoWidth = config.width;
+    if (config.height) this._videoHeight = config.height;
+    return this;
+  }
+
+  /**
    * Set breadcrumb structured data
    */
   setBreadcrumbs(breadcrumbs?: BreadcrumbItem[]): this {
@@ -297,6 +329,18 @@ export class MetadataComposer {
       );
     }
 
+    // OpenGraph video tags (YouTube)
+    if (this._videoYouTubeId) {
+      const embedUrl = `https://www.youtube-nocookie.com/embed/${this._videoYouTubeId}`;
+      autoMeta.push(
+        { property: "og:video", content: embedUrl },
+        { property: "og:video:secure_url", content: embedUrl },
+        { property: "og:video:type", content: "text/html" },
+        { property: "og:video:width", content: this._videoWidth.toString() },
+        { property: "og:video:height", content: this._videoHeight.toString() },
+      );
+    }
+
     // Article-specific metadata
     if (this._contentType === "article") {
       if (this._publishedTime) {
@@ -369,6 +413,36 @@ export class MetadataComposer {
       };
 
       schemas.push({ "script:ld+json": articleSchema } as MetaDescriptor);
+    }
+
+    // Auto-generate VideoObject schema when a YouTube video is attached
+    if (this._videoYouTubeId) {
+      const videoTitle = this._videoTitle ?? this._title;
+      const videoDescription = this._videoDescription ?? this._description;
+      const uploadDate =
+        this._videoUploadDate ??
+        this._publishedTime ??
+        new Date().toISOString();
+
+      if (videoTitle && videoDescription) {
+        schemas.push({
+          "script:ld+json": {
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            name: videoTitle,
+            description: videoDescription,
+            thumbnailUrl: `https://img.youtube.com/vi/${this._videoYouTubeId}/maxresdefault.jpg`,
+            uploadDate,
+            contentUrl: `https://www.youtube.com/watch?v=${this._videoYouTubeId}`,
+            embedUrl: `https://www.youtube-nocookie.com/embed/${this._videoYouTubeId}`,
+            publisher: {
+              "@type": "Organization",
+              name: this._siteName,
+              url: this._siteUrl,
+            },
+          },
+        } as MetaDescriptor);
+      }
     }
 
     return schemas;

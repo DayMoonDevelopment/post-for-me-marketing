@@ -197,6 +197,7 @@ interface ApiArticle {
   content: string;
   featured: boolean;
   cover_image: string | null;
+  cover_video: string | null;
   published_at: string;
   updated_at: string;
   attribution: Post["attribution"];
@@ -234,6 +235,7 @@ function mapArticle(article: ApiArticle): Post {
     content: article.content,
     featured: article.featured,
     coverImage: article.cover_image,
+    coverVideo: article.cover_video,
     publishedAt: new Date(article.published_at),
     updatedAt: new Date(article.updated_at),
     attribution: article.attribution,

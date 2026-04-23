@@ -40,6 +40,7 @@ export interface Post {
   content: string;
   featured: boolean;
   coverImage: string | null;
+  coverVideo: string | null;
   publishedAt: Date;
   updatedAt: Date;
   attribution: Attribution | null;

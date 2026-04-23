@@ -16,6 +16,7 @@ import { XBrandIcon } from "~/components/x-brand-icon";
 import { YouTubeBrandIcon } from "~/components/youtube-brand-icon";
 
 import { parseSocialLink } from "~/lib/social-links";
+import { extractYouTubeId } from "~/lib/utils";
 
 import { Button } from "~/ui/button";
 
@@ -53,6 +54,10 @@ export default function BlogPost() {
   const { post, relatedPosts } =
     useLoaderData<Route.ComponentProps["loaderData"]>();
 
+  const coverVideoId = post.coverVideo
+    ? extractYouTubeId(post.coverVideo)
+    : null;
+
   return (
     <div className="container mx-auto px-4 pt-24 max-w-7xl">
       {/* Article */}
@@ -64,8 +69,18 @@ export default function BlogPost() {
           </RouterLink>
         </Button>
 
-        {/* Featured Image */}
-        {post.coverImage ? (
+        {/* Cover Video (YouTube) — takes priority over cover image */}
+        {coverVideoId ? (
+          <div className="mb-8 relative w-full aspect-video rounded-lg overflow-hidden border">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${coverVideoId}`}
+              title={post.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute top-0 left-0 w-full h-full"
+            />
+          </div>
+        ) : post.coverImage ? (
           <div className="mb-8 rounded-lg overflow-hidden">
             <img
               src={post.coverImage}

@@ -9,6 +9,17 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
+ * Extract the 11-character video ID from any YouTube URL form
+ * (watch, youtu.be, embed, shorts). Returns null if no match.
+ */
+export function extractYouTubeId(url: string): string | null {
+  const match = url.match(
+    /(?:youtube\.com\/(?:embed\/|watch\?v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+  );
+  return match?.[1] ?? null;
+}
+
+/**
  * Breadcrumb item interface
  */
 export interface BreadcrumbItem {

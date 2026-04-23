@@ -1,4 +1,5 @@
 import { MetadataComposer } from "~/lib/meta";
+import { extractYouTubeId } from "~/lib/utils";
 
 import type { Route } from "./+types/route";
 
@@ -129,27 +130,22 @@ export function meta({ data }: Route.MetaArgs) {
 
   metadata.addSchema(speakableSchema);
 
-  // Video Schema - check if content contains YouTube embed
-  if (post.content) {
-    const youtubeRegex =
-      /(?:youtube\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = post.content.match(youtubeRegex);
+  // Video — prefer the explicit cover_video, fall back to scanning content.
+  // setVideo emits both og:video tags and the VideoObject JSON-LD.
+  const coverVideoId = post.coverVideo
+    ? extractYouTubeId(post.coverVideo)
+    : null;
+  const contentVideoId =
+    !coverVideoId && post.content ? extractYouTubeId(post.content) : null;
+  const videoId = coverVideoId ?? contentVideoId;
 
-    if (match) {
-      const videoId = match[1];
-      const videoSchema = {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        name: post.title,
-        description: post.description || post.title,
-        thumbnailUrl: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
-        uploadDate: post.publishedAt.toISOString(),
-        contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
-        embedUrl: `https://www.youtube.com/embed/${videoId}`,
-      };
-
-      metadata.addSchema(videoSchema);
-    }
+  if (videoId) {
+    metadata.setVideo({
+      youtubeId: videoId,
+      title: post.title,
+      description: post.description || post.title,
+      uploadDate: post.publishedAt.toISOString(),
+    });
   }
 
   return metadata.build();
