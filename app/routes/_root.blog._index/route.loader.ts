@@ -1,12 +1,12 @@
-import { MarbleCMS } from "~/lib/.server/marble";
+import { CMS } from "~/lib/.server/cms";
 
 import type { Route } from "./+types/route";
 
 export async function loader(_: Route.LoaderArgs) {
-  const marble = new MarbleCMS();
+  const cms = new CMS();
 
   // Fetch blog posts with the "blog" category, ordered newest first
-  const response = await marble
+  const response = await cms
     .posts()
     .categories("blog")
     .order("desc")

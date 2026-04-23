@@ -56,8 +56,9 @@ export function RawHtml({ html }: { html: string }) {
         // Muted text
         "[&_.muted]:text-sm [&_.muted]:text-muted-foreground",
 
-        // YouTube embed
-        "[&_iframe]:w-full [&_iframe]:max-w-lg [&_iframe]:mx-auto [&_iframe]:aspect-video [&_iframe]:rounded-lg [&_iframe]:border [&_iframe]:overflow-hidden [&_iframe]:relative",
+        // YouTube embed — h-auto lets aspect-video compute the height
+        // (Tiptap emits <iframe height="480"> which would otherwise win).
+        "[&_iframe]:w-full [&_iframe]:h-auto [&_iframe]:max-w-lg [&_iframe]:mx-auto [&_iframe]:aspect-video [&_iframe]:rounded-lg [&_iframe]:border [&_iframe]:overflow-hidden [&_iframe]:relative",
       )}
       dangerouslySetInnerHTML={{ __html: html }}
     />

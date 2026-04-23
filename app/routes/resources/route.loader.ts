@@ -1,17 +1,17 @@
 import { data } from "react-router";
 
-import { MarbleCMS } from "~/lib/.server/marble";
+import { CMS } from "~/lib/.server/cms";
 import { NavigationManager } from "~/lib/.server/navigation-manager";
 
 import type { Route } from "./+types/route";
 
 export async function loader(_args: Route.LoaderArgs) {
-  const marble = new MarbleCMS();
+  const cms = new CMS();
   const navigationManager = new NavigationManager();
 
   // Fetch posts and navigation data in parallel
   const [postsResponse, navigationData] = await Promise.all([
-    marble.posts().categories("resources").limit("all").order("desc").get(),
+    cms.posts().categories("resources").limit("all").order("desc").get(),
     navigationManager.getLoaderData(),
   ]);
 
